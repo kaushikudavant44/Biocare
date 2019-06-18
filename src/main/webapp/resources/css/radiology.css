@@ -1,0 +1,414 @@
+/*-----------12-06-2018 (Radiology Section)----------------------------*/
+/* @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+.radiology_sec {font-family: 'Poppins', sans-serif;}
+.radiology {padding:30px 0; background:url(../images/patternradio.png) repeat-x; background-size: contain;}
+.radiology input, .radiology .sel_doc {width:100%; padding:8px 10px; border:solid 1px #ddd; border-radius:10px; height:34px;}
+.radiology .sel_doc {padding:5px 10px;}
+.radiology .select_tb {padding-right: 6px !important;}
+.radiology input:focus, .radiology .sel_doc:focus {outline:none; border:solid 1px #99d100}
+.radiology_main {background:#fff !important}
+a:hover,a:focus{
+    text-decoration: none;
+    outline: none;
+}
+.radiology .tab .nav-tabs{
+    border-bottom: 0 none;
+}
+.radiology .tab .nav-tabs li{
+    margin-right: 2px;
+}
+.radiology .tab .nav-tabs li a{
+    border: none; 
+    padding: 10px 25px;
+    color: #fff;
+    background: #272e38;
+    border-radius: 0;
+	font-size:16px;
+}
+.radiology .tab .nav-tabs li a:hover{
+    background:#000;
+}
+.radiology .tab .nav-tabs li a i{
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.radiology .tab .nav-tabs li.active a,
+.radiology .tab .nav-tabs li.active a:focus,
+.radiology .tab .nav-tabs li.active a:hover{
+    border: none;
+    background: #0098d8;
+    color:#fff;
+    transition: background 0.20s linear;
+}
+.radiology .tab .nav-tabs li.active:after{
+    content: "";
+    position: absolute;
+    top: 41px;
+    left: 40%;
+    border: 12px solid transparent;
+    border-top-color: #fff;
+    transform: rotate(180deg);
+}
+.radiology .tab .tab-content{
+    background: #fff;
+    line-height: 25px;
+    padding: 30px 25px;
+    border: 1px solid #ddd;
+   border-bottom: 5px solid #737495;
+}
+.radiology_main li img {float:left; border:solid 1px #00a2e6; margin-top: -18px; margin-right: 15px;}
+
+.radiology .bootstrap-datetimepicker-widget th {background:#009ecc}
+.radiology .bootstrap-datetimepicker-widget th:hover {background:#0089b1 !important}
+.radiology .bootstrap-datetimepicker-widget .active {background:#86b700}
+.radiology .bootstrap-datetimepicker-widget td {color:#000;}
+.radiology .bootstrap-datetimepicker-widget td:hover {font-weight:bold}
+@media only screen and (max-width: 480px){
+    .radiology .tab .nav-tabs li{
+        width:100%;
+    }
+    .radiology .tab .nav-tabs li a{
+        padding: 20px;
+        text-align: center;
+    }
+    .radiology .tab .nav-tabs li.active:after{
+        border:none;
+    }
+} */
+
+
+
+
+
+
+
+
+
+/*-----------12-06-2018 (Radiology Section)----------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+.radiology_sec {font-family: 'Poppins', sans-serif;}
+.radiology {padding:30px 0; background-size: contain;}
+.radiology input, .radiology .sel_doc {width:100%; padding:8px 10px; border:solid 1px #ddd; border-radius:10px; height:34px;}
+.radiology .sel_doc {padding:5px 10px;}
+.radiology .select_tb {padding-right: 6px !important;}
+.radiology input:focus, .radiology .sel_doc:focus {outline:none; border:solid 1px #99d100}
+.radiology_main {background:#fff !important}
+a:hover,a:focus{
+    text-decoration: none;
+    outline: none;
+}
+.radiology .tab .nav-tabs{
+    border-bottom: 0 none;
+}
+.radiology .tab .nav-tabs li{
+    margin-right: 2px;
+}
+.radiology .tab .nav-tabs li a{
+    border: none;
+    padding: 10px 25px;
+    color: #fff;
+    background: #272e38;
+    border-radius: 0;
+	font-size:16px;
+}
+.radiology .tab .nav-tabs li a:hover{
+    background:#000;
+}
+.radiology .tab .nav-tabs li a i{
+    font-size: 14px;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.radiology .tab .nav-tabs li.active a,
+.radiology .tab .nav-tabs li.active a:focus,
+.radiology .tab .nav-tabs li.active a:hover{
+    border: none;
+    background: #0098d8;
+    color:#fff;
+    transition: background 0.20s linear;
+}
+.radiology .tab .nav-tabs li.active:after{
+    content: "";
+    position: absolute;
+    top: 41px;
+    left: 40%;
+    border: 12px solid transparent;
+    border-top-color: #fff;
+    transform: rotate(180deg);
+}
+.radiology .tab .tab-content{
+    background: #fff;
+    line-height: 25px;
+    padding: 30px 25px;
+    border: 1px solid #ddd;
+   /* border-bottom: 5px solid #737495;*/
+}
+.radiology_main li img {float:left; border:solid 1px #00a2e6; margin-top: -18px; margin-right: 15px;}
+/* .radiology .col-xs-2, .radiology .col-xs-6 {padding:0} */
+.radiology .bootstrap-datetimepicker-widget th {background:#009ecc}
+.radiology .bootstrap-datetimepicker-widget th:hover {background:#0089b1 !important}
+.radiology .bootstrap-datetimepicker-widget .active {background:#86b700}
+.radiology .bootstrap-datetimepicker-widget td {color:#000;}
+.radiology .bootstrap-datetimepicker-widget td:hover {font-weight:bold}
+@media only screen and (max-width: 480px){
+    .radiology .tab .nav-tabs li{
+        width:100%;
+    }
+    .radiology .tab .nav-tabs li a{
+        padding: 20px;
+        text-align: center;
+    }
+    .radiology .tab .nav-tabs li.active:after{
+        border:none;
+    }
+}
+
+
+/*21-6-2018*/
+.panel-heading a { display:block;}
+input.ckbox { height:auto; width:auto; margin:0px 3px 0 0;}
+.radiology label { text-align:left;}
+.line-height { line-height:36px; margin-bottom:0px;}
+/* .radiology .col-xs-2, .radiology .col-xs-3, .radiology .col-xs-9, .radiology .col-xs-12, .radiology .col-xs-5 {padding:0} */
+.mar-bot { margin-bottom:10px; }
+.pad-0 { padding:0px;}
+.radio-tbl { text-align:center; margin-bottom:20px;}
+.radio-tbl th { background-color:transparent; text-align:center; color:#111; font-weight:bold; text-transform:capitalize;}
+.pndt .col-xs-6 { padding:0 15px;}
+.col-xs-6.pad-left-0 { padding-left:6px;}
+.col-xs-6.pad-right-0 { padding-right:0px;}
+.mar-bot0 { margin-bottom:6px; overflow:hidden;}
+/*5-7-2018*/ 
+
+#file-7 {display: none !important;}
+
+
+input.form-control.top-space-large {
+    margin-top: 25px !important;
+}
+
+
+/*27-7-2018  */
+.radiology .letter-input {
+   border-bottom: 1px solid #444 !important;
+    border-left: none !important;
+     border-right: none !important;
+      border-top: none !important;
+      padding:0px 6px;
+      font-weight:normal;
+      font-size:13px;
+      width: 30%!important;
+    border-radius: 0px!important;
+}
+
+.top-space.div-sm.pull-right {
+    display: block;
+    width:30%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.top-space-large.div-sm.pull-right {
+    display: block;
+    width:45%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 25px;
+}
+
+#collapseFour h3 {
+    font-size: 20px;
+    margin: 0px 0 10px;
+    line-height:22px;
+}
+
+#collapseFour h3 span { display:block; font-size: 20px; color:#444; }
+
+.submit-btn input { 
+	width:auto!important;
+	    width: 100%;
+    padding:10px!important; 
+    border: solid 1px #ddd;
+    border-radius:0px!important;
+     height:auto!important;
+}
+
+section.doc_login.inssurance_buy.radiology label {
+    width:auto;
+    float:none;
+}
+
+.radiology h3 { font-size:20px; margin-top: 0px; font-weight:bold;}
+
+.radiology label { text-align:left;}
+
+.radiology .btn-fr-all {
+    width:auto!important ; 
+    padding:10px !important ;
+    border: solid 1px #ddd;
+     border-radius:0px !important ; 
+    height:auto !important ;
+}
+
+
+
+
+
+.navbar-default .dropdown-menu.notify-drop {
+  min-width:400px;
+  background-color: #fff;
+  min-height:365px;
+  max-height:365px;
+}
+.navbar-default .dropdown-menu.notify-drop .notify-drop-title {
+  border-bottom: 1px solid #e2e2e2;
+  padding: 5px 15px 10px 15px;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content {
+  min-height: 280px;
+  max-height: 280px;
+  overflow-y: scroll;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content::-webkit-scrollbar-track
+{
+  background-color: #F5F5F5;
+}
+
+.navbar-default .dropdown-menu.notify-drop .drop-content::-webkit-scrollbar
+{
+  width: 8px;
+  background-color: #F5F5F5;
+}
+
+.navbar-default .dropdown-menu.notify-drop .drop-content::-webkit-scrollbar-thumb
+{
+  background-color: #ccc;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li {
+  border-bottom: 1px solid #e2e2e2;
+  padding: 10px 0px 5px 0px;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li:nth-child(2n+0) {
+  background-color: #fafafa;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li:hover {
+  background-color: #fcfcfc;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li:last-child {
+  border-bottom: none;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li .notify-img {
+  float: left;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  margin: 0px 0px 8px 0px;
+}
+.navbar-default .dropdown-menu.notify-drop .allRead {
+  margin-right: 7px;
+}
+.navbar-default .dropdown-menu.notify-drop .rIcon {
+  float: right;
+  color: #999;
+}
+.navbar-default .dropdown-menu.notify-drop .rIcon:hover {
+  color: #333;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li a {
+  font-size: 12px;
+  font-weight: normal;
+  padding:10px 0;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li {
+  font-weight: bold;
+  font-size: 11px;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li hr {
+  margin: 5px 0;
+  width: 70%;
+  border-color: #e2e2e2;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content .pd-l0 {
+  padding-left:15px;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li p {
+  font-size: 13px !important;
+  color: #666;
+  font-weight: normal;
+  margin:0px;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li p.date {
+    font-size: 11px !important;
+    font-weight: 600;
+    padding: 0px 3px;
+    position: relative;
+    color: #B97745;
+}
+.navbar-default .dropdown-menu.notify-drop .drop-content > li p.time:hover {
+  background-image: linear-gradient(#fff,#fff);
+}
+.navbar-default .dropdown-menu.notify-drop .notify-drop-footer {
+  border-top: 1px solid #e2e2e2;
+  bottom: 0;
+  position: relative;
+  padding:5px 15px;
+}
+.navbar-default .dropdown-menu.notify-drop .notify-drop-footer a {
+  color:#009fea;
+  text-decoration: none;
+}
+.navbar-default .dropdown-menu.notify-drop .notify-drop-footer a:hover {
+  color: #333;
+}
+
+.navbar-default {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+/* .navbar-nav {
+    margin-top:0px !important;
+} */
+ 
+
+ul.nav.navbar-nav.navbar-right.mar-top0 {
+    margin-top: 0px;
+}
+
+.dr-icon i { font-size:20px; color:#337ab7;}
+
+.notif-heading { color:#000 !important; font-size:18px;}
+
+.notification-menu {
+    position: absolute!important;
+    top: 100%;
+    right:0 !important;
+    z-index: 1000;
+    display: none;
+    float: left;
+    /* width:100%; */
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    color: #000;
+    
+}
+
+
+
+

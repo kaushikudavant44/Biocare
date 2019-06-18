@@ -1,0 +1,105 @@
+.tabs-wrap {
+	margin-top: 0px;
+}
+.tab-content .tab-pane {
+margin-left: 100px;
+margin-right: 300px;
+    padding: 10px;
+}
+
+
+#history .nav-tabs {
+    border: none;
+     padding: 80px;
+    overflow: auto;
+padding-bottom: 30px;   
+}
+
+.footer-btn{
+    margin-left: 70%;
+}
+.nav-tabs>li {
+    
+    float: left;
+    margin-bottom: -1px;
+    width: 25%;
+   font: inherit;
+    margin-left: 20px;
+
+}
+nav-tabs {
+    border-bottom: none;
+    box-shadow:0 2px 3px #eee;
+}
+
+.tab-content>.active {
+    
+    display: block;
+   border: 1px solid #f5f5f5;!important
+}
+.nav-tabs>li>a {
+    margin-right: 30px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 4px 4px;
+    background: #36c0d1;
+    box-shadow:0 2px 3px #eee;
+        font: inherit; color:#fff
+
+}
+.row {
+    /* margin-right: -15px; */
+    /* margin-left: -15px; */
+    
+}
+.input-text{
+    margin: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font: inherit;
+    color: inherit;
+    overflow: hidden
+
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    font: inherit;
+    color: inherit;
+}
+
+.tble th td{
+    font-size: 13px;!important
+     height: 20px;!important
+    width:20px;!important
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

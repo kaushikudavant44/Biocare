@@ -1,0 +1,27 @@
+	#wrapper {
+			width: 100%;
+			padding: 1px;
+			text-align: left;
+			float:left;
+		}
+		canvas {
+			position: relative;
+			margin: 1px;
+			margin-left: 0px;
+			border: 1px solid #3a87ad;
+			float: left;
+			margin-right: 20px
+		}
+		h1, p {
+			padding-left: 2px;
+			width: 100%;
+			margin: 0 auto;
+		}
+		#controlPanel {
+			margin: 2px;
+		}
+		#saveSignature {
+			display: none;
+		}
+		
+	#wrapper button {width: 138px} 

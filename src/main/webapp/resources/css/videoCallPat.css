@@ -1,0 +1,62 @@
+body {margin: 0; padding: 0;}
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 20/12/2018 07:13
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("fonts/videocall/Flaticon.eot");
+  src: url("fonts/videocall/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("fonts/videocall/Flaticon.woff") format("woff"),
+       url("fonts/videocall/Flaticon.ttf") format("truetype"),
+       url("fonts/videocall/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("fonts/videocall/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+       /*  font-size: 20px;
+font-style: normal;
+margin-left: 20px; */
+}
+
+.flaticon-phone:before { content: "\f100"; }
+.flaticon-phone-hang-up:before { content: "\f101"; }
+
+#remotes video {width: 100%; position: absolute; margin: 0  auto; left: 0; right: 0; object-fit:cover !important; overflow: hidden; z-index: 88}
+.videoContainer #localVideo {position: fixed !important; z-index: 999 !important; right: 25px;!important; width: 15% !important; top: 68px; object-fit:cover !important; }
+.videoContainer {padding: 0 !important;}
+video#template {display: none !important;}
+.iconsBlk {    width: 100% !important; padding: 10px !important; display: block; position: absolute; margin: 0 auto; bottom: -30%; text-align: center; z-index:9999}
+.iconsBlk a {padding:20px 30px; color: #fff !important; font-size:20px; border-radius:100px !important}
+.iconsBlk .endCall {background: #E40000}
+.iconsBlk .recieveCall {background: #5EAB00}
+.tabl td {padding: 0 !important;}
+.tabl {height: 100% !important;}
+@media (max-width: 768px){
+	.iconsBlk {bottom: 35px}
+	.videoContainer #localVideo {
+    right: 20px!important;
+    top: 55px !important;
+    width: 20% !important;
+    object-fit:fill !important;
+    z-index: 999
+    
+}
+
+}
+/* .videoContainer #localVideo {object-fit:cover !important; height: 100vh !important; position: absolute;} */
+@media (max-width: 500px){
+	.iconsBlk { bottom: 75px;}
+	.iconsBlk a { padding: 10px 20px; font-size: 14px}
+}
