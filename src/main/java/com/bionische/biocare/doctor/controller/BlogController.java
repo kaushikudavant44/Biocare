@@ -61,7 +61,8 @@ public class BlogController {
 
 		String timestamp = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())+doctorDetails.getDoctorId();
 		try {
-			VpsImageUpload.uploadBlogFile(newBlog.getBlogImage(),
+			VpsImageUpload vpsImageUpload=new VpsImageUpload();
+			vpsImageUpload.uploadBlogFile(newBlog.getBlogImage(),
 					timestamp + VpsImageUpload.getFileExtension(newBlog.getBlogImage()));
 		} catch (IOException e) {
 			

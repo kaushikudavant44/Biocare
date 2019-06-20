@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -40,6 +41,7 @@ import com.bionische.biocare.HomeController;
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.DateConverter;
 import com.bionische.biocare.common.VpsImageUpload;
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.doctor.model.DoctorAppOfLastThirtyDays;
 import com.bionische.biocare.doctor.model.DoctorAppointmentCount;
 import com.bionische.biocare.doctor.model.DoctorBankAccountInfo;
@@ -85,6 +87,10 @@ import com.bionische.biocare.pharmacy.model.MedicalDetails;
 @Controller
 public class DoctorController {
 
+	
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
+	 
 	List<City> cityList;
 	List<State> stateList;
 //	DoctorDetails frgtPwdDoctorDetails;
@@ -124,7 +130,11 @@ msg="";
 	public ModelAndView showPatientHomePage(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView model = new ModelAndView("doctor/doctorHomePage");
 		HttpSession session = request.getSession();
-
+		DoctorDetails doctorDetails = (DoctorDetails) session.getAttribute("doctorDetails");
+		if(doctorDetails.getDelStatus()!=0) {
+			model = new ModelAndView("verificationPending");
+			return model;
+		}
 		Info profileInfo = (Info) session.getAttribute("profilePassword");
 		if(profileInfo==null) {
 			model = new ModelAndView("profilePassword");
@@ -132,7 +142,7 @@ msg="";
 			
 			return model;
 		}
-		DoctorDetails doctorDetails = (DoctorDetails) session.getAttribute("doctorDetails");
+		
 		RestTemplate rest = new RestTemplate();
 
 		MultiValueMap<String, Object> mapRating = new LinkedMultiValueMap<String, Object>();
@@ -374,7 +384,10 @@ msg="";
 
 		 
 
-			vpsImageUpload.saveUploadedFiles(certificatePhoto, 7, certificatePhotoName, doctorDetails.getDoctorId());
+			//vpsImageUpload.saveUploadedFiles(certificatePhoto, 7, certificatePhotoName, doctorDetails.getDoctorId());
+			
+			amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"doctor/" + doctorDetails.getDoctorId() + "/documents/", true);
+			
 			DoctorCertificateDetails doctorCertificateDetails = new DoctorCertificateDetails();
 			doctorCertificateDetails.setCetrificate(certificatePhotoName);
 			doctorCertificateDetails.setDoctorId(doctorDetails.getDoctorId());
@@ -745,10 +758,15 @@ msg="";
 				String certificatePhotoName = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 						+ doctor.getDoctorId() + VpsImageUpload.getFileExtension(certificatePhoto.get(0));
 
-				vpsImageUpload.saveUploadedFiles(signaturePhoto, 10, signature, doctor.getDoctorId());
+				//vpsImageUpload.saveUploadedFiles(signaturePhoto, 10, signature, doctor.getDoctorId());
 
-				vpsImageUpload.saveUploadedFiles(certificatePhoto, 7, certificatePhotoName, doctor.getDoctorId());
+				amazonS3ClientService.uploadFileToS3Bucket(signaturePhoto.get(0),signature,"doctor/" +  doctor.getDoctorId() + "/signature/", true);
+				
+				//vpsImageUpload.saveUploadedFiles(certificatePhoto, 7, certificatePhotoName, doctor.getDoctorId());
 
+				amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"doctor/" + doctorDetails.getDoctorId() + "/documents/", true);
+				
+				
 				doctorCertificateDetails.setCetrificate(certificatePhotoName);
 				doctorCertificateDetails.setDoctorId(doctor.getDoctorId());
 				doctorCertificateDetails.setString1(" ");
@@ -1477,8 +1495,10 @@ msg="User Name not found";
 			VpsImageUpload vpsImageUpload = new VpsImageUpload();
 			profilePhotoName = profilePhoto.get(0).getOriginalFilename();
 
-			vpsImageUpload.saveUploadedFiles(profilePhoto, 1, profilePhotoName, doctorDetails.getDoctorId());
+			//vpsImageUpload.saveUploadedFiles(profilePhoto, 1, profilePhotoName, doctorDetails.getDoctorId());
 
+			 amazonS3ClientService.uploadFileToS3Bucket(profilePhoto.get(0),profilePhotoName,"doctor/" + doctorDetails.getDoctorId() + "/profile/", true);
+			
 			MultiValueMap<String, Object> mapUpload = new LinkedMultiValueMap<String, Object>();
 			mapUpload.add("files", profilePhoto);
 			mapUpload.add("userId", doctorDetails.getDoctorId());

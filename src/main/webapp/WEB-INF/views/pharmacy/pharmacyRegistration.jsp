@@ -103,13 +103,13 @@ function IsNumeric(e) {
 				
 				<div class="col-sm-12 text-center">
 				
-				 <a href="javascript:void(0);" onclick="showReferalBox();"><strong>Have You Referal?</strong></a>
-				<div id="referalDiv" style="display: none">
-				  <div class="col-sm-6">   
+				 
+				<div id="referalDiv" >
+				  <div class="col-sm-8">   
 				  <div class="form-group">
-				 <input type="text" class="input-text capitl_none" name="referal" id="referal" placeholder="Enter Referal Code"/>
-					</div> </div> <div class="col-sm-6">   <div class="form-group">
-				<input type="button" value="select" onclick="applyReferal()" >
+				 <input type="text" class="input-text capitl_none" name="referal" id="referal" placeholder="Enter Referal Code (If Any)"/>
+					</div> </div> <div class="col-sm-4">   <div class="form-group">
+				<input type="button" value="Apply" onclick="applyReferal()" >
 				</div></div>
 				</div>			
 				

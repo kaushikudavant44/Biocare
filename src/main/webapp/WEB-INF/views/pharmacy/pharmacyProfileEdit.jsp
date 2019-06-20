@@ -107,21 +107,22 @@
 				</div>
 				<div class="col-sm-4">
 				<div class="form-group">
-				                     <label for="exampleInputEmail1">City</label>
-                         <select required aria-required="true" class="input-text chosen-select" id="cityId" name="cityId" >
-				            	<option>--select--</option>
-				            	 <c:forEach items="${cityList}" var = "cityList">
-									   <c:choose>
-                                            <c:when test = "${cityList.cityId==cityId}">
-                                                <option selected  value ="${cityList.cityId}">${cityList.cityName }</option>
-                                            </c:when>
-                                            <c:otherwise>
-                 				                 <option  value ="${cityList.cityId}">${cityList.cityName}
-                 				                 </option>
-                                            </c:otherwise>
-                                       </c:choose>
-				                     </c:forEach> 
-				                      </select>				</div>
+				                     <label for="exampleInputEmail1">Country</label>
+<select  required aria-required="true" class="input-text chosen-select" id="countryId" name="countryId" onchange="getStateBYCountry()" required>
+				             <option>---Select Country---</option>
+											 <c:forEach items="${countryList}" var = "countryList">
+								            <c:choose>
+         
+                                               <c:when test = "${countryList.countryId==countryId}">
+                                                   <option selected  value ="${countryList.countryId}">${countryList.countryName }</option>
+                                               </c:when>
+                                               <c:otherwise>
+                                                    <option  value ="${countryList.countryId}">${countryList.countryName }</option>   
+                                               </c:otherwise>
+                                              </c:choose>
+				                             </c:forEach>
+				                </select>			
+				                </div>
 				</div>
 				<div class="col-sm-4">
 				<div class="form-group">
@@ -141,26 +142,25 @@
 				                                         
 				            </select>				</div>
 				</div>
+				
 				<div class="col-sm-4">
 				<div class="form-group">
-				                     <label for="exampleInputEmail1">Country</label>
-<select  required aria-required="true" class="input-text chosen-select" id="countryId" name="countryId" onchange="getStateBYCountry()" required>
-				             <option>---Select Country---</option>
-											 <c:forEach items="${countryList}" var = "countryList">
-								            <c:choose>
-         
-                                               <c:when test = "${countryList.countryId==countryId}">
-                                                   <option selected  value ="${countryList.countryId}">${countryList.countryName }</option>
-                                               </c:when>
-                                               <c:otherwise>
-                                                    <option  value ="${countryList.countryId}">${countryList.countryName }</option>   
-                                               </c:otherwise>
-                                              </c:choose>
-				                             </c:forEach>
-				                </select>			
-				                </div>
+				                     <label for="exampleInputEmail1">City</label>
+                         <select required aria-required="true" class="input-text chosen-select" id="cityId" name="cityId" >
+				            	<option>--select--</option>
+				            	 <c:forEach items="${cityList}" var = "cityList">
+									   <c:choose>
+                                            <c:when test = "${cityList.cityId==cityId}">
+                                                <option selected  value ="${cityList.cityId}">${cityList.cityName }</option>
+                                            </c:when>
+                                            <c:otherwise>
+                 				                 <option  value ="${cityList.cityId}">${cityList.cityName}
+                 				                 </option>
+                                            </c:otherwise>
+                                       </c:choose>
+				                     </c:forEach> 
+				                      </select>				</div>
 				</div>
-				
 				<div class="col-sm-4">
 				<div class="form-group">
 				                     <label for="exampleInputEmail1">Pincode</label>

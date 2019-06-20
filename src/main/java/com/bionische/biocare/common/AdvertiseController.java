@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.doctor.model.DoctorDetails;
 import com.bionische.biocare.lab.model.LabDetails;
 import com.bionische.biocare.model.AdvertiseDetails;
@@ -31,7 +33,8 @@ public class AdvertiseController {
 	
 	public final Log LOGGER = LogFactory.getLog(AdvertiseController.class);
 	
-	
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
 	 @RequestMapping(value="/showAddAdvertise", method=RequestMethod.GET)
 
 	 public String showAddAdvertise(HttpServletRequest request,
@@ -82,7 +85,9 @@ public class AdvertiseController {
 
 			advertiseDetails.setFileName(adsFileName);
 
-			vpsImageUpload.saveUploadedFiles(file, 12, adsFileName, 0);
+			//vpsImageUpload.saveUploadedFiles(file, 12, adsFileName, 0);
+			
+			amazonS3ClientService.uploadFileToS3Bucket(file.get(0),adsFileName,"advertise/", true);
 		}
 		catch (Exception e) {
 			// TODO: handle exception

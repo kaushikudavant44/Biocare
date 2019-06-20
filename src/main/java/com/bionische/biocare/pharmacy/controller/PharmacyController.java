@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.DateConverter;
 import com.bionische.biocare.common.VpsImageUpload;
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.doctor.controller.DoctorController;
 import com.bionische.biocare.doctor.model.DoctorCertificateDetails;
 import com.bionische.biocare.doctor.model.DoctorDetails;
@@ -63,6 +65,8 @@ public class PharmacyController {
 	MedicalDetails forgrtMedicalDetails = null;
 	String verificationCode = null;
 	private MedicalDetails medicalDetailsRes;
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
 	String msg;
 
 	private static final Logger logger = LoggerFactory.getLogger(PharmacyController.class);
@@ -284,7 +288,11 @@ return "verificationPending";
 			   
 			certificatePhotoName=new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 						+ medicalDetails.getMedicalId()+VpsImageUpload.getFileExtension(certificatePhoto.get(0));
-			 vpsImageUpload.saveUploadedFiles(certificatePhoto,6, certificatePhotoName,medicalDetails.getMedicalId());
+			 //vpsImageUpload.saveUploadedFiles(certificatePhoto,6, certificatePhotoName,medicalDetails.getMedicalId());
+			 
+				amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"pharmacy/" + medicalDetailsRes.getMedicalId() + "/documents/", true);
+				
+				
 			 pharmacyCertificateDetails.setCetrificate(certificatePhotoName);
 			 pharmacyCertificateDetails.setMedicalId(medicalDetails.getMedicalId());
 			    pharmacyCertificateDetails.setString1(" ");
@@ -518,6 +526,9 @@ return "verificationPending";
 		try {
 			medicalDetailsRes=Constant.getRestTemplate().postForObject(Constant.url + "insertMedicalDetails", medicalDetailsRes, MedicalDetails.class);
 			
+			HttpSession session = request.getSession();
+		 session.setAttribute("medicalDetails",medicalDetailsRes);
+			
 		} catch (Exception e) {
 			logger.error("Error while Updating Pharmacy Profiles ", e);
 			throw new RuntimeException("Error while Updating Pharmacy Profiles ", e);
@@ -540,7 +551,8 @@ return "verificationPending";
 					   
 					certificatePhotoName=new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 								+ medicalDetailsRes.getMedicalId()+VpsImageUpload.getFileExtension(certificatePhoto.get(0));
-					 vpsImageUpload.saveUploadedFiles(certificatePhoto,6, certificatePhotoName,medicalDetailsRes.getMedicalId());
+					amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"pharmacy/" + medicalDetailsRes.getMedicalId() + "/documents/", true);
+					// vpsImageUpload.saveUploadedFiles(certificatePhoto,6, certificatePhotoName,medicalDetailsRes.getMedicalId());
 					 pharmacyCertificateDetails.setCetrificate(certificatePhotoName);
 					 pharmacyCertificateDetails.setMedicalId(medicalDetailsRes.getMedicalId());
 					    pharmacyCertificateDetails.setString1(" ");
@@ -892,12 +904,16 @@ msg="User Name not found";
 		try {
 			VpsImageUpload vpsImageUpload = new VpsImageUpload();
 			profilePhotoName = profilePhoto.get(0).getOriginalFilename();
-			vpsImageUpload.saveUploadedFiles(profilePhoto, 3, profilePhotoName,medicalDetails.getMedicalId());
+			//vpsImageUpload.saveUploadedFiles(profilePhoto, 3, profilePhotoName,medicalDetails.getMedicalId());
+			
+			amazonS3ClientService.uploadFileToS3Bucket(profilePhoto.get(0),profilePhotoName,"pharmacy/" + medicalDetailsRes.getMedicalId() + "/profile/", true);
+			
+			
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			map.add("medicalId", medicalDetails.getMedicalId());
 			map.add("profilePhoto", profilePhotoName);
 			info =Constant.getRestTemplate().postForObject(Constant.url + "updatePharmacyProfilePic", map, Info.class);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			logger.error("Error while updating Pharmacy Picture ", e);
 			throw new RuntimeException("Error while updating Pharmacy Picture", e);
 		}

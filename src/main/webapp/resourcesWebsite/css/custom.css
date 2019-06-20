@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300i,400,400i,500,700|Slabo+27px');
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800&display=swap');
     /*
 
     font-family: 'Slabo 27px', serif;
@@ -99,7 +98,7 @@ margin-left: 20px;*/
 .flaticon-twitter:before { content: "\f104"; }
 .flaticon-facebook-letter-logo:before { content: "\f105"; }
 body {
-	font-family: 'Roboto', sans-serif; 
+	font-family: 'Open Sans', sans-serif; 
 	color: #4d4d4d;
 	line-height: 28px;
 	font-weight: normal;
@@ -107,7 +106,7 @@ body {
 	overflow-x:hidden;
  }
 
-h1 { font-family: 'Slabo 27px', serif; color:#000000; font-size:40px;}
+h1 { font-family: 'Open Sans', sans-serif; color:#000000; font-size:40px;}
 a { text-decoration:none; outline:none; }
 a:focus { text-decoration:none; outline:none; }
 a:hover { text-decoration:none; outline:none;}
@@ -192,11 +191,11 @@ figure.effect-selena:hover p {
 #why-choose p { text-align:center; font-size:15px; color:#7f7f7f;}
 .gray-border { margin:25px 0;}
 .choose-blk { text-align:center; transition: all 0.15s ease-in; padding:12px 12px;}
-.choose-blk h3 { font-size:20px; font-style:italic; color:#012529; font-weight:bold; }
+.choose-blk h3 { font-size:17px; font-style:italic; color:#012529; font-weight:bold; }
 .choose-blk:hover { background:#fff; box-shadow:none; border:none;}
 .choose-blk { box-shadow:-10px 10px 0px #f5f5f5; border:1px solid #dbdbdb;}
 .choose-blk:hover h3 { color:#01c4c6;}
-.choose-blk p { color:#8a8a8a; font-size:14px;}
+.choose-blk p { color:#8a8a8a; font-size:13px !important;}
 #it-bg { background:url(../images/it-bg.jpg);  background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size:cover; padding:120px 0;}
 
 #it-bg h1 { text-align:right; color:#fff;}
@@ -355,7 +354,7 @@ figure.effect-apollo:hover p {
 .client-text h6 { color:#979797; font-size:13px; margin:0px 0 10px; font-style:italic;}
 .client-text p { font-size:14px; color:#525252; line-height:26px;}
 .white-bg { background:#fff; padding:30px 15px 10px; border-bottom:2px solid #00c8c8 !important; margin:25px 0; border: solid 1px #ccc;}
-#testimonial { /*background:url(../images/testimonial-bg.jpg);*/ background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; padding:80px 0; }
+#testimonial { /*background:url(../images/testimonial-bg.jpg);*/ background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; padding:80px 0; text-align:center }
 #testimonial h1 { font-size:30px; color:#000; text-align:center; margin:0px; text-transform:uppercase; font-weight:bold;  }
 .circle-img { position:relative;}
 .small-icon { position: absolute; right: -10%; top: 51%;}
@@ -408,7 +407,7 @@ footer  p a {text-transform:none}
 #inner-page { padding:70px 0; background:#f7f8f9;}
 #inner-page h1 { font-size:30px; color:#000; text-align:left; margin:0px; text-transform:uppercase; font-weight:bold; }
 .vision-mission h4 { margin:0px 0 15px; font-size:20px; font-weight:bold; font-style:italic; color:#00c8c8;}
-.vision-mission p { font-size:14px; color:#8a8a8a; line-height:26px; font-weight:600;}
+.vision-mission p { font-size:14px; color:#4c4c4c; line-height:26px; font-weight:600;}
 .service-text h4 { font-size:18px; color:#00c8c8; text-align:center; margin:0px 0 15px; text-transform:uppercase; font-weight:bold; font-style:italic; } 
 .service-text p { text-align:center;}
 .service-icon { width:100px; height:100px; border-radius:100%; border:1px solid #00c8c8; margin:0 auto; margin-bottom:15px;} 
@@ -612,7 +611,7 @@ footer  p a {text-transform:none}
 .mar-top20 { margin-top:20px;}
 
 .leader-heading { margin-top:0px; font-size:22px; color:#000; line-height:22px;}
-.leader-heading span { display:block; font-size:13px; color:#999;  }
+.leader-heading span { display:block; font-size:17px; color:#00a7f5; margin: 10px 0; font-weight:600}
 .hvr-float { display:initial;}
 .row {
      margin-right:0px; 
@@ -624,7 +623,13 @@ footer  p a {text-transform:none}
 .topnav {
     padding: 10px 0;
 }
-
+.anchorApp {background:#00a7f5; color:#fff;padding:10px 30px; font-size: 16px;
+    font-weight: 600; transition:all linear 500ms}
+.anchorApp:hover {background:#00c8c8; color:#000}
+.iosAnchr ,.andrdAnchr{padding: 30px 60px; background: #efefef;display: inline-block; margin:5px}
+.iosAnchr img, .andrdAnchr img {float:left; margin-right:15px; margin-top: 10px;}
+.iosAnchr h5, .andrdAnchr h5 {color: #000; font-size: 18px;font-weight: bold; line-height: 26px;}
+.logo img {width:55%}
 @media only screen and (max-width:1024px) {
 .choose-blk h3  { font-size:16px;}
 .choose-blk { padding:12px 6px;} 

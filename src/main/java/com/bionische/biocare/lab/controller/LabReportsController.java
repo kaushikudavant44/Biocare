@@ -146,7 +146,8 @@ public class LabReportsController {
 					}
 				
 				}
-				VpsImageUpload.uploadedPatientReports(files.get(i), 5, fileName, patientId);
+				VpsImageUpload vpsImageUpload=new VpsImageUpload();
+				vpsImageUpload.uploadedPatientReports(files.get(i), 5, fileName, patientId);
 			   }
 				System.out.println("fileNameList= "+fileNameList.toString());
 				patientReportsDetails.setFileName(fileNameList.substring(0, fileNameList.length() - 1));
@@ -184,7 +185,8 @@ public class LabReportsController {
 					+ labTestsList.get(i).getLabTestId() + VpsImageUpload.getFileExtension(file);
 
 			System.out.println("filename"+fileName);
-			VpsImageUpload.uploadedPatientReports(file, 5, fileName, patientId);
+			VpsImageUpload vpsImageUpload=new VpsImageUpload();
+			vpsImageUpload.uploadedPatientReports(file, 5, fileName, patientId);
 			PatientReportsDetails patientReportsDetails = new PatientReportsDetails();
 
 			patientReportsDetails.setFileName(fileName);

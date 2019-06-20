@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -37,6 +38,7 @@ import com.bionische.biocare.HomeController;
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.DateConverter;
 import com.bionische.biocare.common.VpsImageUpload;
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.doctor.controller.DoctorController;
 import com.bionische.biocare.doctor.model.DoctorBankAccountInfo;
 import com.bionische.biocare.doctor.model.DoctorDetails;
@@ -75,7 +77,9 @@ import com.bionische.biocare.pharmacy.model.PharmacyBankAccountInfo;
 public class PatientController {
 
 	 
-	
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
+	 
 	public final Log LOGGER = LogFactory.getLog(PatientController.class);
 	// HttpEntity<String> req=new HttpEntity<String>(Constant.getHeaders());
 	/* List<Country> countryList; */
@@ -531,7 +535,9 @@ catch (Exception e) {
 		    String	profilePhotoName=new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 					+no+ VpsImageUpload.getFileExtension(profilePhotos.get(0));
 		   			
-		   vpsImageUpload.saveUploadedFiles(profilePhotos,2, profilePhotoName,patientDetailss.getPatientId());
+		  // vpsImageUpload.saveUploadedFiles(profilePhotos,2, profilePhotoName,patientDetailss.getPatientId());
+		   amazonS3ClientService.uploadFileToS3Bucket(profilePhotos.get(0),profilePhotoName,"patient/" + patientDetailss.getPatientId() + "/profile/", true);
+		   
 			}catch (Exception e) {
 			
 			}
@@ -751,7 +757,10 @@ catch (Exception e) {
 		
 		System.out.println("profilePhotoName:"+profilePhotoName);
 		
-	    vpsImageUpload.saveUploadedFiles(profilePhoto,2, profilePhotoName,patientDetails.getPatientId()); 
+		   amazonS3ClientService.uploadFileToS3Bucket(profilePhotos.get(0),profilePhotoName,"patient/" + patientDetails.getPatientId() + "/profile/", true);
+			
+		   
+	 //   vpsImageUpload.saveUploadedFiles(profilePhoto,2, profilePhotoName,patientDetails.getPatientId()); 
 		}
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -1597,7 +1606,8 @@ msg="User Name not found";
 				VpsImageUpload vpsImageUpload=new VpsImageUpload();
 				profilePhotoName=profilePhoto.get(0).getOriginalFilename();
 				
-			   vpsImageUpload.saveUploadedFiles(profilePhoto,2, profilePhotoName,patientDetail.getPatientId());
+			 //  vpsImageUpload.saveUploadedFiles(profilePhoto,2, profilePhotoName,patientDetail.getPatientId());
+			   amazonS3ClientService.uploadFileToS3Bucket(profilePhotos.get(0),profilePhotoName,"patient/" + patientDetail.getPatientId() + "/profile/", true);
 				
 				 
 			    MultiValueMap<String, Object> mapUpload=new LinkedMultiValueMap<String, Object>();

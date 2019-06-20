@@ -7,42 +7,28 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 
 public class VpsImageUpload {
 
-	/*
-	 * public static final String doctorProfile = "doctorProfile\\"; public static
-	 * final String patientProfile = "patientProfile\\"; public static final String
-	 * labImages = "labImages\\";
-	 */
-	// public static final String report="reports/";
-	// public static final String
-	// report="/usr/local/tomcat8/apache-tomcat-8.5.34/apache-tomcat-8.5.34/webapps/reports/";
-	public static final String patientImages = "/usr/local/apache-tomcat-9.0.13/webapps/images/patient/";
-	//public static final String PATIENT_VIDEO = "/usr/local/apache-tomcat-9.0.13/webapps/images/patient/";
-//	public static final String patientImages = "reports/";
-//	public static final String doctorImages = "D:\\upload\\new\\";
-
-	public static final String doctorImages = "/usr/local/apache-tomcat-9.0.13/webapps/images/doctor/";
-
-	public static final String labImages = "/usr/local/apache-tomcat-9.0.13/webapps/images/lab/";
-	public static final String pharmacy = "/usr/local/apache-tomcat-9.0.13/webapps/images/pharmacy/";
-	public static final String ADRVERTISE = "/usr/local/apache-tomcat-9.0.13/webapps/images/advertise/";
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
 	
-	// public static final String patientImages="image//";
-	// public static final String
-	// DOCTOR_CERTIFICATE="/usr/local/tomcat8/apache-tomcat-8.5.34/webapps/images/doctor/";
+	 
+	 
+	public static final String patientImages = "patient/";
+	  public static final String doctorImages = "doctor/";
 
-//	public static final String BLOGIMAGESPATH = "/usr/local/apache-tomcat-9.0.13/webapps/images/blogs/";
-
-	public static final String BLOGIMAGESPATH = "/usr/local/apache-tomcat-9.0.13/webapps/images/blogs/";
-
-	// public static final String patientImages="image//";
-	// public static final String
-	// DOCTOR_CERTIFICATE="/usr/local/tomcat8/apache-tomcat-8.5.34/webapps/images/doctor/";
-
-	public static void uploadBlogFile(MultipartFile file, String imageName) throws IOException {
+	public static final String labImages = "lab/";
+	public static final String pharmacy = "pharmacy/";
+	public static final String ADRVERTISE = "advertise/";
+	
+	 public static final String BLOGIMAGESPATH = "blogs/";
+ 
+	/*public static void uploadBlogFile(MultipartFile file, String imageName) throws IOException {
 
 		Path path = null;
 		byte[] bytes = file.getBytes();
@@ -143,8 +129,109 @@ public class VpsImageUpload {
 			}
 			Files.write(path, bytes);
 		}
+	}*/
+
+	public   void uploadBlogFile(MultipartFile file, String imageName) throws IOException {
+ 
+		amazonS3ClientService.uploadFileToS3Bucket(file,imageName,BLOGIMAGESPATH, true);
+		 
 	}
 
+	public   void uploadedPatientReports(MultipartFile file, int imageType, String imageName, int userId)
+			throws IOException {
+		Path path = null;
+		byte[] bytes = file.getBytes();
+
+		if (imageType == 5) {
+		 
+			amazonS3ClientService.uploadFileToS3Bucket(file,imageName,patientImages + userId + "/reports/", true);
+		 
+		}
+
+		if (imageType == 2) {
+	 
+			amazonS3ClientService.uploadFileToS3Bucket(file,imageName,patientImages + userId + "/prescription/", true);
+			 
+		}
+
+	}
+
+	/*public void saveUploadedFiles(List<MultipartFile> files, int imageType, String imageName, int userId)
+			throws IOException {
+
+		for (MultipartFile file : files) {
+
+			if (file.isEmpty()) {
+
+				continue;
+
+			}
+
+			Path path = null;
+			byte[] bytes = file.getBytes();
+
+			if (imageType == 1) {
+ 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,doctorImages + userId + "/profile/", true);
+				
+			} else if (imageType == 2) {
+ 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,patientImages + userId + "/profile/", true);
+
+			} else if (imageType == 3) {
+
+			 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,pharmacy + userId + "/profile/", true);
+			} else if (imageType == 4) {
+
+		 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,labImages + userId + "/profile/", true);
+
+			} else if (imageType == 5) {
+ 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,patientImages + userId + "/reports/", true);
+
+			} else if (imageType == 6) {
+
+			 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,pharmacy + userId + "/documents/", true);
+
+			} else if (imageType == 7) {
+
+			 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,doctorImages + userId + "/documents/", true);
+
+			} else if (imageType == 8) {
+
+			 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,labImages + userId + "/documents/", true);
+
+
+			} else if (imageType == 10) {
+
+			 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,doctorImages + userId + "/signature/", true);
+				
+
+			} else if (imageType == 11) {
+
+ 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,labImages + userId + "/signature/", true);
+				
+			} else if (imageType == 12) {
+ 
+				amazonS3ClientService.uploadFileToS3Bucket(file,imageName,ADRVERTISE, true);
+				
+			}
+			 else if (imageType == 13) {
+//Video
+				 
+					amazonS3ClientService.uploadFileToS3Bucket(file,imageName,patientImages + userId + "/video/", true);
+					
+				}
+		 
+		}
+	}*/
 	public static String getFileExtension(MultipartFile inFile) {
 		String fileExtention = inFile.getOriginalFilename().substring(inFile.getOriginalFilename().lastIndexOf('.'));
 		return fileExtention;

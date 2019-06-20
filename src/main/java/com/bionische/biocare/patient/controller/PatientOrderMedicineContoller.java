@@ -499,7 +499,8 @@ public @ResponseBody List<ConsultingDetails> getLast10ConsultingDeatils(HttpServ
 					 fileName=  new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 						+ i + VpsImageUpload.getFileExtension(files.get(i));
 					 fileNameList.append(fileName+",");
-					 VpsImageUpload.uploadedPatientReports(files.get(i),2, fileName,patientDetails.getPatientId());
+					 VpsImageUpload vpsImageUpload=new VpsImageUpload();
+					 vpsImageUpload.uploadedPatientReports(files.get(i),2, fileName,patientDetails.getPatientId());
 					 
 			}
 				 

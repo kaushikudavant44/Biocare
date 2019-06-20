@@ -226,8 +226,8 @@ public String submitOwnRepotsByPatient(@RequestParam("reportFile") List<Multipar
 		    MultipartFile file = reportFile.get(0);
 			String fileName = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 					+ testId + VpsImageUpload.getFileExtension(file);
-
-			VpsImageUpload.uploadedPatientReports(file, 5, fileName, patientId);
+			VpsImageUpload vpsImageUpload=new VpsImageUpload();
+			vpsImageUpload.uploadedPatientReports(file, 5, fileName, patientId);
 			 
 
 			patientReportsDetails.setFileName(fileName);

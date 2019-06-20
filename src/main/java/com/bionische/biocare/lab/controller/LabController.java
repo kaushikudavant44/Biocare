@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,7 @@ import com.bionische.biocare.HomeController;
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.DateConverter;
 import com.bionische.biocare.common.VpsImageUpload;
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.doctor.model.DoctorDetails;
 import com.bionische.biocare.doctor.model.GetDoctorRatingReviewCount;
 import com.bionische.biocare.ewallet.model.WalletDetails;
@@ -63,6 +65,9 @@ import com.bionische.biocare.radiology.model.PNDTPatientDetails;
 @Scope("session")
 @Controller
 public class LabController {
+	
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
 	List<LabTests> labTestsList = new ArrayList<LabTests>();
 
 	RestTemplate rest = new RestTemplate();
@@ -400,10 +405,13 @@ public class LabController {
 			}
 
 			try {
-				vpsImageUpload.saveUploadedFiles(certificatePhoto, 11, signature, labDetailsRes.getLabId());
+				//vpsImageUpload.saveUploadedFiles(certificatePhoto, 11, signature, labDetailsRes.getLabId());
 
-				vpsImageUpload.saveUploadedFiles(certificatePhoto, 8, certificatePhotoName, labDetailsRes.getLabId());
-
+				amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"lab/" + labDetails.getLabId() + "/signature/", true);
+				   
+				 			   amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"lab/" + labDetails.getLabId() + "/documents/", true);
+					
+					 
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -525,8 +533,12 @@ public class LabController {
 			String certificatePhotoName = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 					+ labDetails.getLabId() + VpsImageUpload.getFileExtension(certificatePhoto.get(0));
 
-			vpsImageUpload.saveUploadedFiles(certificatePhoto, 8, certificatePhotoName, labDetails.getLabId());
+			//vpsImageUpload.saveUploadedFiles(certificatePhoto, 8, certificatePhotoName, labDetails.getLabId());
 
+			
+			   amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"lab/" + labDetails.getLabId() + "/documents/", true);
+				
+			   
 			labCertificateDetails.setCetrificate(certificatePhotoName);
 			labCertificateDetails.setLabId(labDetails.getLabId());
 			labCertificateDetails.setString1(" ");
@@ -1006,13 +1018,18 @@ for(int i=0;i<testIdList.length;i++) {
 		try {
 			VpsImageUpload vpsImageUpload = new VpsImageUpload();
 			profilePhotoName = profilePhoto.get(0).getOriginalFilename();
-			vpsImageUpload.saveUploadedFiles(profilePhoto, 4, profilePhotoName, labDetails.getLabId());
+			//vpsImageUpload.saveUploadedFiles(profilePhoto, 4, profilePhotoName, labDetails.getLabId());
+			
+			
+			   amazonS3ClientService.uploadFileToS3Bucket(profilePhoto.get(0),profilePhotoName,"lab/" + labDetails.getLabId() + "/profile/", true);
+
+			   
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			map.add("labId", labDetails.getLabId());
 			map.add("profilePhoto", profilePhotoName);
 			info = Constant.getRestTemplate().postForObject(Constant.url + "updateLabProfilePic", map, Info.class);
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			logger.error("Error while Updating Lab Profile Picture", e);
 			throw new RuntimeException("Error Updating Lab Profile Picture", e);
 		}

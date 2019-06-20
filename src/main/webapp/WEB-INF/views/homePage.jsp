@@ -260,28 +260,28 @@
 					<img class="first-slide"
 						src="${pageContext.request.contextPath}/resources/images/iboardbg1.jpg"
 						alt="health care">
-						<div class="carousel-caption">
+						<!-- <div class="carousel-caption">
 					        <h3>Used for Pregnancy</h3>
 					        <p>Coming Soon.....</p>
-					      </div>
+					      </div> -->
 				</div>
 				<div class="item">
 					<img class="first-slide"
 						src="${pageContext.request.contextPath}/resources/images/iboardbg2.jpg"
 						alt="health care">
-						<div class="carousel-caption">
+						<!-- <div class="carousel-caption">
 					        <h3>Used for Pregnancy</h3>
 					        <p>Coming Soon.....</p>
-					      </div>
+					      </div> -->
 				</div>
 				<div class="item">
 					<img class="first-slide"
 						src="${pageContext.request.contextPath}/resources/images/iboardbg.jpg"
 						alt="health care">
-						<div class="carousel-caption">
+						<!-- <div class="carousel-caption">
 					        <h3>Used for Pregnancy</h3>
 					        <p>Coming Soon.....</p>
-					      </div>
+					      </div> -->
 				</div>
 			</div>
 			<a class="left carousel-control" href="#myCarousel2" role="button"
@@ -607,25 +607,25 @@
 					<div class="col-sm-6 leftText">
 						<div class="detlbox animate" data-animate="fadeInLeft">
 							<div class="iconbk">
-								<span class="icon-calendar-page"></span>
+								<span class="icon-newspaper"></span>
 							</div>
-							<h4>ffgf</h4>
-							<p>fgfggh.</p>
+							<h4>Hospital Management</h4>
+							<p>Complete hospital management services.</p>
 						</div>
-						<div class="detlbox animate" data-animate="fadeInLeft">
+						<!-- <div class="detlbox animate" data-animate="fadeInLeft">
 							<div class="iconbk">
 								<span class="icon-calendar-with-a-clock-time-tools"></span>
 							</div>
 							<h4>ffh</h4>
 							<p>fgfgfh</p>
-						</div>
-						<div class="detlbox animate" data-animate="fadeInLeft">
+						</div> -->
+						<!-- <div class="detlbox animate" data-animate="fadeInLeft">
 							<div class="iconbk">
 								<span class="icon-newspaper"></span>
 							</div>
 							<h4>cvfgf</h4>
 							<p>ghgh</p>
-						</div>
+						</div> -->
 					</div>
 					
 					<div class="col-sm-6">

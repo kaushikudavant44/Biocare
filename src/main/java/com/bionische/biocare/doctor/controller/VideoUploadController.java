@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.VpsImageUpload;
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.doctor.model.DoctorCertificateDetails;
 import com.bionische.biocare.doctor.model.DoctorDetails;
 import com.bionische.biocare.model.VideoSharing;
@@ -32,6 +34,9 @@ import com.bionische.biocare.patient.model.PatientDetails;
 public class VideoUploadController {
 
 	String msg;
+	
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
 	
 	@RequestMapping(value = "/showUploadVideo", method = RequestMethod.GET)
 	public String showUploadVideo(HttpServletRequest request, HttpServletResponse response,Model model) {
@@ -77,8 +82,12 @@ public class VideoUploadController {
 				+patientId + VpsImageUpload.getFileExtension(file.get(0));
 		VpsImageUpload vpsImageUpload=new VpsImageUpload();
 		try {
-			vpsImageUpload.saveUploadedFiles(file, 13, fileName, patientId);
-		} catch (IOException e) {
+		//	vpsImageUpload.saveUploadedFiles(file, 13, fileName, patientId);
+			
+			
+			amazonS3ClientService.uploadFileToS3Bucket(file.get(0),fileName,"patient/" + patientId + "/video/", true);
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
