@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -31,6 +32,7 @@ import com.bionische.biocare.HomeController;
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.DateConverter;
 import com.bionische.biocare.common.VpsImageUpload;
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.lab.model.GetPatientReports;
 import com.bionische.biocare.lab.model.LabDetails;
 import com.bionische.biocare.lab.model.LabTests;
@@ -46,6 +48,8 @@ import com.bionische.biocare.radiology.model.PNDTPatientDetails;
 @Controller
 public class LabReportsController {
 
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
 	RestTemplate rest = new RestTemplate();
 	Info info = new Info();
 	String msg = "";
@@ -146,8 +150,9 @@ public class LabReportsController {
 					}
 				
 				}
-				VpsImageUpload vpsImageUpload=new VpsImageUpload();
-				vpsImageUpload.uploadedPatientReports(files.get(i), 5, fileName, patientId);
+			 
+				
+				amazonS3ClientService.uploadFileToS3Bucket(files.get(i),fileName,"patient/" + patientId + "/reports/", true);
 			   }
 				System.out.println("fileNameList= "+fileNameList.toString());
 				patientReportsDetails.setFileName(fileNameList.substring(0, fileNameList.length() - 1));
@@ -185,8 +190,10 @@ public class LabReportsController {
 					+ labTestsList.get(i).getLabTestId() + VpsImageUpload.getFileExtension(file);
 
 			System.out.println("filename"+fileName);
-			VpsImageUpload vpsImageUpload=new VpsImageUpload();
-			vpsImageUpload.uploadedPatientReports(file, 5, fileName, patientId);
+			 
+			
+			amazonS3ClientService.uploadFileToS3Bucket(file,fileName,"patient/" + patientId + "/reports/", true);
+			
 			PatientReportsDetails patientReportsDetails = new PatientReportsDetails();
 
 			patientReportsDetails.setFileName(fileName);

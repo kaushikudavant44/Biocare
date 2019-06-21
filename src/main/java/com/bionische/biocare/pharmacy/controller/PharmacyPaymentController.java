@@ -41,6 +41,8 @@ public class PharmacyPaymentController {
 	int duration;
 	int offerId;
 	float packageAmt;
+	float	txnAmount;
+	
 	@RequestMapping(value = "/pharmacySuscriptionPaymentCheckout", method = RequestMethod.POST)
 
 	public String patientSuscriptionPaymentCheckout(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -85,7 +87,7 @@ public class PharmacyPaymentController {
 		
 		model.addAttribute("orderId", orderId);
 		model.addAttribute("amount", totalAmt);
-
+		txnAmount=totalAmt;
 		return "pharmacy/pharmacy_suscription_payment/pharmacyPaymentCheckout";
 
 	}
@@ -102,7 +104,8 @@ public class PharmacyPaymentController {
 
 		request.setAttribute("mobileNo", medicalDetails.getContact());
 		request.setAttribute("email", medicalDetails.getEmail());
-
+		request.setAttribute("txnAmount", String.valueOf(txnAmount));
+		
 		return "pharmacy/pharmacy_suscription_payment/pharmacyPaymentRedirect";
 	}
 	@RequestMapping(value = "/pharmacySuscriptionPaymentResponse", method = RequestMethod.POST)

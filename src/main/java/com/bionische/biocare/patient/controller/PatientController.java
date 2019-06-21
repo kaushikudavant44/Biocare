@@ -1603,12 +1603,16 @@ msg="User Name not found";
 		RestTemplate rest=new RestTemplate();
 		try {
 			
-				VpsImageUpload vpsImageUpload=new VpsImageUpload();
-				profilePhotoName=profilePhoto.get(0).getOriginalFilename();
-				
+		 
+				profilePhotoName=new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
+				+ patientDetail.getPatientId() + VpsImageUpload.getFileExtension(profilePhoto.get(0));
 			 //  vpsImageUpload.saveUploadedFiles(profilePhoto,2, profilePhotoName,patientDetail.getPatientId());
-			   amazonS3ClientService.uploadFileToS3Bucket(profilePhotos.get(0),profilePhotoName,"patient/" + patientDetail.getPatientId() + "/profile/", true);
-				
+				try {
+			  this. amazonS3ClientService.uploadFileToS3Bucket(profilePhoto.get(0),profilePhotoName,"patient/" + patientDetail.getPatientId() + "/profile/", true);
+				}
+				catch (Exception e) {
+				e.printStackTrace();	// TODO: handle exception
+				}
 				 
 			    MultiValueMap<String, Object> mapUpload=new LinkedMultiValueMap<String, Object>();
 			    mapUpload.add("files",profilePhoto);

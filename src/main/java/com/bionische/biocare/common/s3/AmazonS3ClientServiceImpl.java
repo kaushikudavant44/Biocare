@@ -50,7 +50,7 @@ public class AmazonS3ClientServiceImpl implements AmazonS3ClientService{
 	            FileOutputStream fos = new FileOutputStream(file);
 	            fos.write(multipartFile.getBytes());
 	            fos.close();
-
+ 
 	            PutObjectRequest putObjectRequest = new PutObjectRequest(this.awsS3AudioBucket, prefix+fileName, file);
 
 	            if (enablePublicReadAccess) {
@@ -60,6 +60,7 @@ public class AmazonS3ClientServiceImpl implements AmazonS3ClientService{
 	            //removing the file created in the server
 	            file.delete();
 	        } catch (IOException | AmazonServiceException ex) {
+	        	ex.printStackTrace();
 	            logger.error("error [" + ex.getMessage() + "] occurred while uploading [" + fileName + "] ");
 	        }
 	    }

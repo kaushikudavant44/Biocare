@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.DateConverter;
 import com.bionische.biocare.common.VpsImageUpload;
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.doctor.model.DoctorDetails;
 import com.bionische.biocare.lab.model.GetPatientReports;
 import com.bionische.biocare.lab.model.LabTestsList;
@@ -41,6 +43,9 @@ import com.bionische.biocare.patientlab.model.GetLabAppointment;
 @Controller
 public class PatientReportController {
 	
+	
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
 	String message;
 	//HttpEntity<String> req = new HttpEntity<String>(Constant.getHeaders());
 	public final Log LOGGER = LogFactory.getLog(PatientReportController.class);
@@ -226,9 +231,8 @@ public String submitOwnRepotsByPatient(@RequestParam("reportFile") List<Multipar
 		    MultipartFile file = reportFile.get(0);
 			String fileName = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 					+ testId + VpsImageUpload.getFileExtension(file);
-			VpsImageUpload vpsImageUpload=new VpsImageUpload();
-			vpsImageUpload.uploadedPatientReports(file, 5, fileName, patientId);
 			 
+			amazonS3ClientService.uploadFileToS3Bucket(file,fileName,"patient/" + patientId + "/reports/", true);
 
 			patientReportsDetails.setFileName(fileName);
 			patientReportsDetails.setLabTestId(testId);

@@ -131,7 +131,7 @@ public class VpsImageUpload {
 		}
 	}*/
 
-	public   void uploadBlogFile(MultipartFile file, String imageName) throws IOException {
+	/*public   void uploadBlogFile(MultipartFile file, String imageName) throws IOException {
  
 		amazonS3ClientService.uploadFileToS3Bucket(file,imageName,BLOGIMAGESPATH, true);
 		 
@@ -154,7 +154,7 @@ public class VpsImageUpload {
 			 
 		}
 
-	}
+	}*/
 
 	/*public void saveUploadedFiles(List<MultipartFile> files, int imageType, String imageName, int userId)
 			throws IOException {

@@ -407,7 +407,7 @@ public class LabController {
 			try {
 				//vpsImageUpload.saveUploadedFiles(certificatePhoto, 11, signature, labDetailsRes.getLabId());
 
-				amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"lab/" + labDetails.getLabId() + "/signature/", true);
+				//amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"lab/" + labDetails.getLabId() + "/signature/", true);
 				   
 				 			   amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"lab/" + labDetails.getLabId() + "/documents/", true);
 					

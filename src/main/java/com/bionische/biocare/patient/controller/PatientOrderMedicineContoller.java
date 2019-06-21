@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -36,6 +37,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.DateConverter;
 import com.bionische.biocare.common.VpsImageUpload;
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.doctor.model.DoctorDetails;
 import com.bionische.biocare.patient.model.GetCartProducts;
 import com.bionische.biocare.patient.model.Info;
@@ -56,6 +58,10 @@ import com.bionische.biocare.pharmacy.model.PrescriptionToMedical;
 @Controller
 public class PatientOrderMedicineContoller {
 	
+	
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
+	 
 	public final Log LOGGER = LogFactory.getLog(PatientController.class);
 	//HttpEntity<String> req=new HttpEntity<String>(Constant.getHeaders());
 	public List<PatientAddressList> allPatientAddressList;
@@ -499,9 +505,8 @@ public @ResponseBody List<ConsultingDetails> getLast10ConsultingDeatils(HttpServ
 					 fileName=  new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 						+ i + VpsImageUpload.getFileExtension(files.get(i));
 					 fileNameList.append(fileName+",");
-					 VpsImageUpload vpsImageUpload=new VpsImageUpload();
-					 vpsImageUpload.uploadedPatientReports(files.get(i),2, fileName,patientDetails.getPatientId());
 					 
+					 amazonS3ClientService.uploadFileToS3Bucket(files.get(i),fileName,"patient/" + patientDetails.getPatientId() + "/prescription/", true);
 			}
 				 
 			  

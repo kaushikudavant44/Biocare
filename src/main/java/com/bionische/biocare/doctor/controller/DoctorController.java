@@ -96,10 +96,12 @@ public class DoctorController {
 //	DoctorDetails frgtPwdDoctorDetails;
 	GetDoctorRatingReviewCount getDoctorRatingReviewCount;
 	float amount;
+	float txnAmount;
 	int packageId;
 	String orderId;
 	int duration;
 	int durationType;
+	
 	int offerId;
 	float packageAmt;
 	String signature = null;
@@ -525,7 +527,7 @@ msg="";
 			getDoctorProfile = Constant.getRestTemplate().postForObject(Constant.url + "getDoctorProfile", map,
 					GetDoctorProfile.class);
 
-			getDoctorProfile.setProfilePhoto(VpsImageUpload.doctorImages + "" + getDoctorProfile.getProfilePhoto());
+		//	getDoctorProfile.setProfilePhoto(VpsImageUpload.doctorImages + "" + getDoctorProfile.getProfilePhoto());
 			request.getSession().removeAttribute("doctorDetails");
 			request.getSession().setAttribute("doctorDetails", doctorDetails);
 
@@ -754,13 +756,13 @@ msg="";
 
 				DoctorCertificateDetails doctorCertificateDetails = new DoctorCertificateDetails();
 
-				VpsImageUpload vpsImageUpload = new VpsImageUpload();
+				 
 				String certificatePhotoName = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
 						+ doctor.getDoctorId() + VpsImageUpload.getFileExtension(certificatePhoto.get(0));
 
 				//vpsImageUpload.saveUploadedFiles(signaturePhoto, 10, signature, doctor.getDoctorId());
 
-				amazonS3ClientService.uploadFileToS3Bucket(signaturePhoto.get(0),signature,"doctor/" +  doctor.getDoctorId() + "/signature/", true);
+				//amazonS3ClientService.uploadFileToS3Bucket(signaturePhoto.get(0),signature,"doctor/" +  doctor.getDoctorId() + "/signature/", true);
 				
 				//vpsImageUpload.saveUploadedFiles(certificatePhoto, 7, certificatePhotoName, doctor.getDoctorId());
 
@@ -2230,7 +2232,7 @@ msg="User Name not found";
 		
 		
 		}
-		
+		txnAmount=amount;
 		model.addAttribute("amount", amount);
 		
 		return "paymentGatway/TxnTest";
@@ -2249,7 +2251,7 @@ msg="User Name not found";
 			
 			request.setAttribute("mobileNo", doctorDetails.getContactNo());
 			request.setAttribute("email", doctorDetails.getEmail());
-			
+			request.setAttribute("txnAmount", String.valueOf(txnAmount));
 		} catch (Exception e) {
 			
 		

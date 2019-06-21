@@ -495,7 +495,7 @@ return "verificationPending";
 	}
 
 	@RequestMapping(value = "/updatePharmacyProfilesProcess", method = RequestMethod.POST)
-	public String updatePharmacyProfilesProcess(HttpServletRequest request, HttpServletResponse response,@RequestParam("certificatePhoto") List<MultipartFile> certificatePhoto) {
+	public String updatePharmacyProfilesProcess(HttpServletRequest request, HttpServletResponse response,@RequestParam("certificatePhoto") MultipartFile certificatePhoto) {
 		String medicalId = request.getParameter("medicalId");
 		
 	//	medicalDetailsRes
@@ -547,11 +547,11 @@ return "verificationPending";
 				
 				try {
 					 
-					String certificatePhotoName=certificatePhoto.get(0).getOriginalFilename();
+					String certificatePhotoName=certificatePhoto.getOriginalFilename();
 					   
 					certificatePhotoName=new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
-								+ medicalDetailsRes.getMedicalId()+VpsImageUpload.getFileExtension(certificatePhoto.get(0));
-					amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto.get(0),certificatePhotoName,"pharmacy/" + medicalDetailsRes.getMedicalId() + "/documents/", true);
+								+ medicalDetailsRes.getMedicalId()+VpsImageUpload.getFileExtension(certificatePhoto);
+					amazonS3ClientService.uploadFileToS3Bucket(certificatePhoto,certificatePhotoName,"pharmacy/" + medicalDetailsRes.getMedicalId() + "/documents/", true);
 					// vpsImageUpload.saveUploadedFiles(certificatePhoto,6, certificatePhotoName,medicalDetailsRes.getMedicalId());
 					 pharmacyCertificateDetails.setCetrificate(certificatePhotoName);
 					 pharmacyCertificateDetails.setMedicalId(medicalDetailsRes.getMedicalId());

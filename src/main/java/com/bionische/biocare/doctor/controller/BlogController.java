@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.VpsImageUpload;
+import com.bionische.biocare.common.s3.AmazonS3ClientService;
 import com.bionische.biocare.doctor.model.DoctorDetails;
 import com.bionische.biocare.model.GetBlogs;
 import com.bionische.biocare.model.NewBlog;
@@ -34,6 +36,9 @@ import com.bionische.biocare.patient.model.Info;
 @Controller
 public class BlogController {
 
+	 @Autowired
+	    private   AmazonS3ClientService amazonS3ClientService;
+	 
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
 	@RequestMapping(value = "/addNewBlog", method = RequestMethod.GET)
@@ -61,10 +66,11 @@ public class BlogController {
 
 		String timestamp = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())+doctorDetails.getDoctorId();
 		try {
-			VpsImageUpload vpsImageUpload=new VpsImageUpload();
-			vpsImageUpload.uploadBlogFile(newBlog.getBlogImage(),
-					timestamp + VpsImageUpload.getFileExtension(newBlog.getBlogImage()));
-		} catch (IOException e) {
+			 
+			
+			amazonS3ClientService.uploadFileToS3Bucket(newBlog.getBlogImage(),timestamp,"blogs/", true);
+			
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}

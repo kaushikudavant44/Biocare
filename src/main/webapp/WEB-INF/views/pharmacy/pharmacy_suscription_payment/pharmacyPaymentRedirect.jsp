@@ -17,7 +17,7 @@ parameters.put("CHANNEL_ID",PaytmConstants.CHANNEL_ID);
 parameters.put("INDUSTRY_TYPE_ID",PaytmConstants.INDUSTRY_TYPE_ID);
 parameters.put("WEBSITE",PaytmConstants.WEBSITE);
 parameters.put("MOBILE_NO",(String)request.getAttribute("mobileNo"));
- 
+parameters.put("TXN_AMOUNT",(String)request.getAttribute("txnAmount"));
 parameters.put("EMAIL",(String)request.getAttribute("email"));
 parameters.put("CALLBACK_URL",(String)request.getAttribute("responseUrl"));
 String checkSum =  CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(PaytmConstants.MERCHANT_KEY, parameters);
@@ -36,10 +36,10 @@ outputHtml.append("<tbody>");
 for(Map.Entry<String,String> entry : parameters.entrySet()) {
 	String key = entry.getKey();
 	String value = entry.getValue();
-	outputHtml.append("<input type='text' name='"+key+"' value='" +value+"'>");	
+	outputHtml.append("<input type='hidden' name='"+key+"' value='" +value+"'>");	
 }	  
 	  
-outputHtml.append("<input type='text' name='CHECKSUMHASH' value='"+checkSum+"'>");
+outputHtml.append("<input type='hidden' name='CHECKSUMHASH' value='"+checkSum+"'>");
 outputHtml.append("</tbody>");
 outputHtml.append("</table>");
 outputHtml.append("<script type='text/javascript'>");

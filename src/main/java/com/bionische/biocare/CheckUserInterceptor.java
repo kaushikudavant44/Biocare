@@ -137,6 +137,8 @@ public class CheckUserInterceptor extends HandlerInterceptorAdapter {
 				|| path.startsWith("/searchUserNameForPatientForgotPassword")
 				|| path.startsWith("/biocare")
 				|| path.contains(".html")
+				|| path.startsWith("/error")
+				
 				)
 			
 			
@@ -162,13 +164,13 @@ public class CheckUserInterceptor extends HandlerInterceptorAdapter {
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
-
+				System.out.println("path "+path);
 				response.sendRedirect(request.getContextPath() + "/sessionTimeOut");
 				return false;
 			}
 
 			if (medicalDetails == null && doctorDetails == null && patientDetails == null && labDetail == null && session.getAttribute("tempDetails")==null) {
-
+System.out.println("path "+path);
 				response.sendRedirect(request.getContextPath() + "/sessionTimeOut");
 				return false;
 			} 

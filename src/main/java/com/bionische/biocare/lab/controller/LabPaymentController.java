@@ -44,6 +44,7 @@ public class LabPaymentController {
 	int durationType;
 	 int offerId;
 	 float packageAmt;
+	 float txnAmount;
 	 
 	@RequestMapping(value = "/labSuscriptionPaymentCheckout", method = RequestMethod.POST)
 
@@ -88,7 +89,7 @@ public class LabPaymentController {
 		
 		model.addAttribute("orderId", orderId);
 		model.addAttribute("amount", totalAmt);
-
+		txnAmount=totalAmt;
 		return "lab/lab_suscription_payment/labPaymentCheckout";
 
 	}
@@ -105,7 +106,7 @@ public class LabPaymentController {
 
 		request.setAttribute("mobileNo", labDetails.getContact());
 		request.setAttribute("email", labDetails.getEmail());
-
+		request.setAttribute("txnAmount", String.valueOf(txnAmount));
 		return "lab/lab_suscription_payment/labPaymentRedirect";
 	}
 	@RequestMapping(value = "/labSuscriptionPaymentResponse", method = RequestMethod.POST)

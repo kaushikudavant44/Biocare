@@ -42,6 +42,7 @@ public class PatientPaymentController {
 	int packageId;
 	float packageAmt;
 	int offerId;
+	float txnAmount;
 	
 	float totalMedicineAmount;
 	
@@ -79,7 +80,7 @@ public class PatientPaymentController {
 				
 				amount=labAppointmentDetails.getTotalAmount()-walletDetails.getWalletAmount();
 				model.addAttribute("show", 0);
-			
+				txnAmount=amount;
 				
 			}else {
 				
@@ -122,7 +123,7 @@ public class PatientPaymentController {
 
 		request.setAttribute("mobileNo", patientDetail.getContactNo());
 		request.setAttribute("email", patientDetail.getEmail());
-
+		request.setAttribute("txnAmount", String.valueOf(txnAmount));
 		return "patient/lab_payment/labReportPaymentRedirect";
 	}
 
@@ -197,7 +198,7 @@ public class PatientPaymentController {
 						
 			totalAmt=totalAmt-walletDetails.getWalletAmount();
 			model.addAttribute("show", 0);
-					
+			txnAmount=totalAmt;
 		}else {
 			
 			model.addAttribute("show", 1);
@@ -226,7 +227,7 @@ public class PatientPaymentController {
 
 		request.setAttribute("mobileNo", patientDetail.getContactNo());
 		request.setAttribute("email", patientDetail.getEmail());
-
+		request.setAttribute("txnAmount", String.valueOf(txnAmount));
 		return "patient/pharmacy_payment/patientMedicinePaymentRedirect";
 	}
 	@RequestMapping(value = "/patientMedicinePaymentResponse", method = RequestMethod.POST)
@@ -294,7 +295,7 @@ public class PatientPaymentController {
 			
 			totalAmt=totalAmt-walletDetails.getWalletAmount();
 			model.addAttribute("show", 0);
-		
+			txnAmount=totalAmt;
 			
 		}else {
 			
@@ -329,7 +330,7 @@ public class PatientPaymentController {
 
 		request.setAttribute("mobileNo", patientDetail.getContactNo());
 		request.setAttribute("email", patientDetail.getEmail());
-
+		request.setAttribute("txnAmount", String.valueOf(txnAmount));
 		return "patient/consulting_payment/consultingPaymentRedirect";
 	}
 	@RequestMapping(value = "/consultingPaymentResponse", method = RequestMethod.POST)
@@ -393,7 +394,7 @@ public class PatientPaymentController {
 		String orderId = "" + new SimpleDateFormat("yyMMddHHmmss").format(new Date()) + n;
 		model.addAttribute("orderId", orderId);
 		model.addAttribute("amount", totalAmt);
-
+		txnAmount=totalAmt;
 		
 		
 		return "patient/patient_suscription_payment/patientPaymentCheckout";
@@ -412,7 +413,7 @@ public class PatientPaymentController {
 
 		request.setAttribute("mobileNo", patientDetail.getContactNo());
 		request.setAttribute("email", patientDetail.getEmail());
-
+		request.setAttribute("txnAmount", String.valueOf(txnAmount));
 		return "patient/patient_suscription_payment/patientPaymentRedirect";
 	}
 	@RequestMapping(value = "/patientSuscriptionPaymentResponse", method = RequestMethod.POST)
