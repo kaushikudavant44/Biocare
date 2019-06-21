@@ -276,12 +276,14 @@
 	</div>
 	</section>
 	<!-- Baby Report -->
-	<div id="largeModal11" class="modal fade bs-example-modal-sm"
+	<div id="largeModal11" class="modal fade bs-example-modal-sm reportsDesign"
 		tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
 				<div class="modal-body" id="report">
-					<input type="button" onclick="closeModel()" value="x">
+					 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					
+					<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
 					<div class="baby_details card_sec">
 
 

@@ -105,16 +105,20 @@
 </section>
 
 
-<div id="largeModal" class="modal fade bs-example-modal-lg"
+<div id="largeModal" class="modal fade bs-example-modal-lg reportsDesign"
 			tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content" style="margin-top: 20%;">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
+					<div class="modal-body card_sec" id="displayTable">
+					<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-						<h4 class="modal-title"> Prescription </h4>
-					</div>
-					<div class="modal-body" id="displayTable">
+							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
+							<hr>
+							<h4 class="modal-title">Hospital Name <br> <span>Dr. Kaushik Udavant</span></h4>
+							<hr>
+							<div class="circle1">
+							<i class="fa fa-list-ul" aria-hidden="true"></i>
+						</div>
  						 	 <div class="table-responsive">
         	<table width="100%" border="0" class="tbl table table-bordered table table-hover" id="prescTable">
    <tr align="center">
@@ -126,8 +130,12 @@
   </tr>
 
 </table> 
-
+ 
         </div>
+        <hr>
+        <div class="signB">
+						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
+					</div>
 
 					</div>
 					 

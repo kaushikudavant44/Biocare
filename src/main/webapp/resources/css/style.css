@@ -1707,7 +1707,7 @@ div.bhoechie-tab-content input:focus {outline: none;}
 .modal-body .check_baby input { width: 25% !important;}
 .modal-body strong { color: #2273cf;}
  /*-----------9-05-2018 after------------------------*/
-#largeModal11 .modal-body {border-left:55px solid #003951; border-right: 5px solid #00b3ff; padding: 50px 30px 25px 60px; background: url(../images/bg_logo.png) no-repeat right top; border-radius: 63px;}
+.reportsDesign .modal-body {border-left:55px solid #003951; border-right: 5px solid #00b3ff; padding: 50px 30px 25px 60px; background: url(../images/bg_logo.png) no-repeat right top; border-radius: 63px;}
 .card_img {text-align: right; margin-top: 40px;}
 .card_img img {margin: 0 0 0 auto;}
 .card_list {margin: 0; padding:0; list-style: none;}
@@ -1719,8 +1719,16 @@ div.bhoechie-tab-content input:focus {outline: none;}
 .card_list h3 span {color:#8bbe00; line-height: 30px}
 .card_sec .circle1  {position: absolute; margin: 0 auto; left: -3%; top: 42%; background: #00b3ff; border-radius: 100px; width: 50px; height: 50px; text-align: center;color: #fff; font-size: 18px;}
 .card_sec .circle1 i {line-height: 2.8}
-#largeModal11 .modal-content {border-radius: 65px !important}
-#largeModal11 .modal-dialog {  width: 850px !important;}
+.reportsDesign .modal-content {border-radius: 65px !important}
+.reportsDesign .modal-dialog {  width: 850px !important;}
+.reportsDesign button.close {opacity: 0.6; background: #00304f; color: #fff; padding: 5px 10px; right: 35px; top: 18px; position: absolute;}
+.reportsDesign span.icon-printer.down-icon-modal { text-align: right; display: block; z-index: 9; cursor: pointer; position: relative; padding: 5px 10px;margin: 0 40px; display: grid; color: #000; font-size: 20px;position: absolute;
+    right: 30px; top: 15px;}
+ .reportsDesign span.icon-printer.down-icon-modal:hover {color:#0076c1}
+ .reportsDesign .modal-title {font-size: 18px; text-align: right; color: #69a800; text-transform: uppercase;font-weight: bold; margin: 20px 0;}
+  .reportsDesign .modal-title span {font-size: 15px; color: #000; text-transform: capitalize; font-weight: 600}
+ .signB img {width: 100px; height: auto;}
+  .signB {text-align: right;}
  /*--------21-05-2018---------*/
 #form-id input[type=radio] { margin-right: 10px !important; margin-left: 30px !important}
 #form-id h1 {color:#00b3d9 !important; font-size:30px; font-weight: 600}
