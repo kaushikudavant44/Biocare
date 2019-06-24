@@ -363,7 +363,7 @@
 							aria-hidden="true">&times;</button>
 							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
-							<h4 class="modal-title">Hospital Name <br> <span>Dr. Kaushik Udavant</span></h4>
+							<h4 class="modal-title"><span id="hospitalName"></span><br> <span id="drName"></span></h4>
 							<hr>
 							<div class="circle1">
 							<i class="fa fa-list-ul" aria-hidden="true"></i>
@@ -630,6 +630,8 @@
 		 
 		 
 	 }
+  
+  var consultingData;
   function getLast10ConsultingDeatils(){
 
 		 
@@ -653,12 +655,13 @@
 																	patientId : patientId,
 																	ajax : 'true'
 																},
-																function(data) {
+																function(data1) {
 																	
 																	
 																	
-																if(data!=""&&data!=null)
+																if(data1!=""&&data1!=null)
 																	{
+																	consultingData=data1;
 																	var strVarr="";
 																	strVarr += "<table width=\"100\" border=\"1\" class=\"medicine-tbl\" id=\"prescriptionList\">";
 																	strVarr += "  <tbody>";
@@ -676,7 +679,7 @@
 																	 $('#myDIV').append(strVarr);
 																																		
 																		 $.each(
-																					data,
+																					data1,
 																					function(key, data) {
 																						
 																						/* $("#doctorId option:contains(" + data.doctorName +")").attr("selected", true); */
@@ -687,7 +690,8 @@
 																						tr.append($('<td></td>').html(data.date));
 																						tr.append($('<td></td>').html(data.doctorName));																				
 																						tr.append($('<td></td>').html(data.hospitalName));
-																						tr.append($('<td></td>').html('<a href="#"  data-toggle="modal" data-target="#largeModal" onClick="showPrescription(\''+data.patientProblem+'\',\''+data.discussion+'\',\''+data.note+'\','+data.meetId+')"><i class="icon-eye-with-a-diagonal-line-interface-symbol-for-invisibility" title="View"></i></a>'));																			
+																						 
+																						tr.append($('<td></td>').html('<a href="#"  data-toggle="modal" data-target="#largeModal" onClick="showPrescription('+key+')"><i class="icon-eye-with-a-diagonal-line-interface-symbol-for-invisibility" title="View"></i></a>'));																			
 																						tr.append($('<td></td>').html('<a class="card-btn" href="#" onClick="addToCart('+data.meetId+','+data.patintId+')">Add To Cart</a> &nbsp; &nbsp; <a class="card-btn" href="#step2" data-toggle="tab" aria-controls="step2" role="tab" onclick="buyNow('+data.meetId+','+data.doctorId+','+patientId+')">Buy Now</a>'));
 																						
 																						
@@ -754,12 +758,13 @@ if(patientId!="")
 																	patientId : patientId,
 																	ajax : 'true'
 																},
-																function(data) {
+																function(data1) {
 																	
 																	
 																	
-																if(data!=""&&data!=null)
+																if(data1!=""&&data1!=null)
 																	{
+																	consultingData=data1;
 																	var strVarr="";
 																	strVarr += "<table width=\"100\" border=\"1\" class=\"medicine-tbl\" id=\"prescriptionList\">";
 																	strVarr += "  <tbody>";
@@ -777,7 +782,7 @@ if(patientId!="")
 																	 $('#myDIV').append(strVarr);
 																																		
 																		 $.each(
-																					data,
+																					data1,
 																					function(key, data) {
 																						
 																						/* $("#doctorId option:contains(" + data.doctorName +")").attr("selected", true); */
@@ -788,7 +793,7 @@ if(patientId!="")
 																						tr.append($('<td></td>').html(data.date));
 																						tr.append($('<td></td>').html(data.doctorName));																				
 																						tr.append($('<td></td>').html(data.hospitalName));
-																						tr.append($('<td></td>').html('<a href="#"  data-toggle="modal" data-target="#largeModal" onClick="showPrescription(\''+data.patientProblem+'\',\''+data.discussion+'\',\''+data.note+'\','+data.meetId+')"><i class="icon-eye-with-a-diagonal-line-interface-symbol-for-invisibility" title="View"></i></a>'));																			
+																						tr.append($('<td></td>').html('<a href="#"  data-toggle="modal" data-target="#largeModal" onClick="showPrescription('+key+')"><i class="icon-eye-with-a-diagonal-line-interface-symbol-for-invisibility" title="View"></i></a>'));																			
 																						tr.append($('<td></td>').html('<a class="card-btn" href="#" onClick="addToCart('+data.meetId+','+data.patintId+')">Add To Cart</a> &nbsp; &nbsp; <a class="card-btn" href="#step2" data-toggle="tab" aria-controls="step2" role="tab" onclick="buyNow('+data.meetId+','+data.doctorId+','+patientId+')">Buy Now</a>'));
 																						
 																						
@@ -833,12 +838,20 @@ else
 } 
   
   
-  function showPrescription(patientProblem,discussion,note,meetId)
+  function showPrescription(key)
   {	 
+ 
+$.each(
+		consultingData,
+		function(key1, data1) {
+			if(key1==key){
+  	document.getElementById("problem11").innerHTML =data1.patientProblem; 
+  	 document.getElementById("problem12").innerHTML =data1.discussion; 
+  	 document.getElementById("problem13").innerHTML =data1.note;  
   	
-  	document.getElementById("problem11").innerHTML =patientProblem; 
-  	 document.getElementById("problem12").innerHTML =discussion; 
-  	 document.getElementById("problem13").innerHTML =note;  
+  	document.getElementById("hospitalName").innerHTML =data1.hospitalName; 
+  	document.getElementById("drName").innerHTML ="Dr. "+data1.doctorName; 
+		 
   	  $('#prescTable td').remove();
    
   	
@@ -846,7 +859,7 @@ else
   		.getJSON(
   				'${getPrescriptionByMeetingId}',
   				{
-  					meetId : meetId,
+  					meetId : data1.meetId,
   					
   					ajax : 'true'
   				},
@@ -871,7 +884,8 @@ else
   					
 
   				}) 
-        
+			}
+		});
   	 
   }
   
