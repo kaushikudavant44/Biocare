@@ -82,7 +82,7 @@
 				  </tr> -->
 				</table>
 				
-					<a class="fas fa-wallet pull-right" href="${pageContext.request.contextPath}/showReferralCode/${medicalDetails.medicalId}/3"><img src="/biocare/resources/images/refer1.png" class="img-responsive" alt="refer now"></a></td>
+					<a class="fas fa-wallet pull-right" href="${pageContext.request.contextPath}/showReferralCode/${medicalDetails.medicalId}/3"><img src="${pageContext.request.contextPath}/resources/images/refer1.png" class="img-responsive" alt="refer now"></a></td>
 				
 				        </div>
 				       <a href="${pageContext.request.contextPath}/showUpdatePharmacyProfile" data-toggle="popover" title="Edit Profile" class="bg_pop"> <div class="appoint">

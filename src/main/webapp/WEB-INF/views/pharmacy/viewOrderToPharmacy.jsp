@@ -119,23 +119,27 @@
 </section>
 
 <!--priscription  -->
-<div id="largeModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+<div id="largeModal" class="modal fade bs-example-modal-lg reportsDesign" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content" style="margin-top: 20%;">
 				<form action="${pageContext.request.contextPath}/confirmMedicalOrder" method="POST" onsubmit="return confirm('Are you sure submit order?')">
-					<div class="modal-header">
+					<div class="modal-body card_sec" id="displayTable">
+					<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
 						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h4 class="modal-title"> Prescription </h4>
-					</div>
-					<div class="modal-body" id="displayTable">
-					
+								aria-hidden="true">&times;</button>
+								<hr>
+							<h4 class="modal-title"> Hospital Name </h4>
+							<h5 class="text-right"><strong>Doctor Name : </strong> <span id="docName"> </span></h5>
+	                				<!-- <h5><strong>Hospital Name :</strong> <span> Surya Multispaclity Hospital </span></h5> -->
+	                			<h5 class="text-right"><strong>Contact No. :</strong> <span id="docContact"></span></h5>
+							<div class="circle1">
+							<i class="fa fa-list-ul" aria-hidden="true"></i>
+						</div>
+						<hr>
 					<div class="pat_name text-center">
 	                			<div class="row">
 	                				<div class="col-sm-10 modal-pric-details">
-	                				<h5><strong>Doctor Name : </strong> <span id="docName"> </span></h5>
-	                				<!-- <h5><strong>Hospital Name :</strong> <span> Surya Multispaclity Hospital </span></h5> -->
-	                				<h5><strong>Contact No. :</strong> <span id="docContact"></span></h5>
+	                				
 	                				
 	                				</div>
 	                				
@@ -191,25 +195,36 @@
 	                			</div>
 <input type="hidden" id="requestId" name="requestId">
 <input type="hidden" id="totAmount" name="totAmount" value="0" required>
+			<hr>
+					<div class="signB">
+						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
 					</div>
-					 <div class="Modal-footer">
-					 	<p class="text-center medicine-order"><input type="submit" class="btn-fr-all" value="send"></p>
-					 </div>
+					<p class="text-center medicine-order"><input type="submit" class="btn-fr-all" value="send"></p>
+					</div>
+					 
 					</form> 
+					
 				</div>
 			</div>
 		</div>
 					
-		<div id="largeModal1" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+		<div id="largeModal1" class="modal fade bs-example-modal-lg reportsDesign" tabindex="-1" role="dialog">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content" style="margin-top: 20%;">
 				<form action="${pageContext.request.contextPath}/confirmUploadedPrescriptionMedicalOrder" method="POST" onsubmit="return confirm('Are you sure submit order?')">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
+					<div class="modal-body carousel1 card_sec" id="displayTable">
+					<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
+					<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-						<h4 class="modal-title"> Prescription </h4>
-					</div>
-					<div class="modal-body carousel1" id="displayTable">
+							<hr>
+						<h4 class="modal-title"> Hospital Name </h4>
+						<h5 class="text-right"><strong>Doctor Name : </strong> <span id="docName">Dr.Kaushik </span></h5>
+	                				<!-- <h5><strong>Hospital Name :</strong> <span> Surya Multispaclity Hospital </span></h5> -->
+	                			<h5 class="text-right"><strong>Contact No. :</strong> <span id="docContact">1234567890</span></h5>
+							<div class="circle1">
+							<i class="fa fa-list-ul" aria-hidden="true"></i>
+						</div>
+						<hr>
 					<div id="myCarousel" class="carousel carousel-fade slide" data-ride="carousel"> 
 						  <div class="carousel-inner" role="listbox">
 						     <%--<div class="item active"><iframe src="https://www.youtube-nocookie.com/embed/Bi8ikmo1pMI?rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -228,12 +243,15 @@
 	                		<hr>
 	                		<p class="text-center"><label>Enter Total Amount</label>
 						<input type="text" name="totAmount"  id="totAmount" placeholder="Enter total Amount..." class="prescAmt"></p>
+					<hr>
+					<div class="signB">
+						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
 					</div>
 					<input type="hidden" id="requestId1" name="requestId">
+					<p class="text-center medicine-order"><input type="submit" class="btn-fr-all" value="send"></p>
+					 
+					</div>
 					
-					 <div class="Modal-footer">
-					 	<p class="text-center medicine-order"><input type="submit" class="btn-fr-all" value="send"></p>
-					 </div>
 					</form> 
 				</div>
 			</div>

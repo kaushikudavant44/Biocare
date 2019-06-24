@@ -1707,7 +1707,7 @@ div.bhoechie-tab-content input:focus {outline: none;}
 .modal-body .check_baby input { width: 25% !important;}
 .modal-body strong { color: #2273cf;}
  /*-----------9-05-2018 after------------------------*/
-.reportsDesign .modal-body {border-left:55px solid #003951; border-right: 5px solid #00b3ff; padding: 50px 30px 25px 60px; background: url(../images/bg_logo.png) no-repeat right top; border-radius: 63px;}
+.reportsDesign .modal-body {border-left:55px solid #003951; border-right: 5px solid #00b3ff; padding: 50px 30px 25px 60px; /* background: url(../images/bg_logo.png) no-repeat right top;  */border-radius: 63px;}
 .card_img {text-align: right; margin-top: 40px;}
 .card_img img {margin: 0 0 0 auto;}
 .card_list {margin: 0; padding:0; list-style: none;}
@@ -1715,6 +1715,8 @@ div.bhoechie-tab-content input:focus {outline: none;}
 .card_list li:first-child {border-bottom: none}
 .card_list li {margin: 8px 0; border-bottom: dashed 1px #f2f2f2; padding-bottom: 7px;}
 .card_sec input {width:30px!important}
+.card_sec .btn-fr-all {width: auto !important; margin-top: 18px;}
+.card_sec td input, .card_sec .prescAmt { width: 100px!important;  text-align: center;}
 .card_list h3 {color:#00b3ff; font-weight: bold; font-size: 25px; margin: 7px 0}
 .card_list h3 span {color:#8bbe00; line-height: 30px}
 .card_sec .circle1  {position: absolute; margin: 0 auto; left: -3%; top: 42%; background: #00b3ff; border-radius: 100px; width: 50px; height: 50px; text-align: center;color: #fff; font-size: 18px;}
@@ -1727,7 +1729,7 @@ div.bhoechie-tab-content input:focus {outline: none;}
  .reportsDesign span.icon-printer.down-icon-modal:hover {color:#0076c1}
  .reportsDesign .modal-title {font-size: 18px; text-align: right; color: #69a800; text-transform: uppercase;font-weight: bold; margin: 20px 0;}
   .reportsDesign .modal-title span {font-size: 15px; color: #000; text-transform: capitalize; font-weight: 600}
- .signB img {width: 100px; height: auto;}
+ .signB img {width: 100px !important; height: auto !important; border: none !important;}
   .signB {text-align: right;}
  /*--------21-05-2018---------*/
 #form-id input[type=radio] { margin-right: 10px !important; margin-left: 30px !important}
@@ -1785,6 +1787,7 @@ div.bhoechie-tab-content input:focus {outline: none;}
 .check_availability .tab-content {margin: 20px 0;}
 .member-btn a {margin-right: 15px;}
 .heading {color: #000;}
+.invoicefoot {padding: 5px 10px !important; text-align: center;}
 /*------------------11-06-2018-------------------------*/
 button {
     margin-bottom: 3px;

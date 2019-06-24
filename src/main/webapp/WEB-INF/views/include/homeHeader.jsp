@@ -15,10 +15,10 @@
               <ul class="dropdown-menu square">
                <li><a class="hvr-sweep-to-right" href="${pageContext.request.contextPath}/#iboard"><span class="fa fa-info"></span> &nbsp; Overview</a></li>
                 <li><a class="hvr-sweep-to-right" href="${pageContext.request.contextPath}/showWaitingRoom"><span class="fa fa-television"></span>&nbsp; Waiting Room TV</a></li>
-                <li><a class="hvr-sweep-to-right"  href="${pageContext.request.contextPath}/showWaitingPoster"><span class="fa fa-clipboard"></span>&nbsp; Waiting Room Poster</a></li>
-             <li><a class="hvr-sweep-to-right"  href="${pageContext.request.contextPath}/showWallboard"><span class="fa fa-clipboard"></span>&nbsp; Exam Room Wallboard</a></li>
-              <li><a class="hvr-sweep-to-right"  href="${pageContext.request.contextPath}/showExamTablet"><span class="fa fa-tablet"></span>&nbsp; Exam Room Tablet</a></li>
-               <li><a class="hvr-sweep-to-right"  href="${pageContext.request.contextPath}/showInfusionTablet"><span class="fa fa-tablet"></span>&nbsp; Infusion Room Tablet</a></li>
+                <%-- <li><a class="hvr-sweep-to-right"  href="${pageContext.request.contextPath}/showWaitingPoster"><span class="fa fa-clipboard"></span>&nbsp; Waiting Room Poster</a></li> --%>
+             <li><a class="hvr-sweep-to-right"  href="${pageContext.request.contextPath}/showWallboard"><span class="fa fa-clipboard"></span>&nbsp; Dr. Room iBoard</a></li>
+              <li><a class="hvr-sweep-to-right"  href="${pageContext.request.contextPath}/showExamTablet"><span class="fa fa-tablet"></span>&nbsp; Dr. Room Tablet</a></li>
+               <%-- <li><a class="hvr-sweep-to-right"  href="${pageContext.request.contextPath}/showInfusionTablet"><span class="fa fa-tablet"></span>&nbsp; Infusion Room Tablet</a></li> --%>
               </ul>
             </li>
           <li class="dnld-app1"><a href="${pageContext.request.contextPath}/#blog">Blog </a></li>  
