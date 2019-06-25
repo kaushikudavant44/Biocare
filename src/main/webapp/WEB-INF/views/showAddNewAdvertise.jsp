@@ -51,8 +51,7 @@
 <div class="container-fluid">
 	<div class="row">
         <div class="bhoechie-tab-container">
-        <a href="${pageContext.request.contextPath}/showCurrentActiveAdvertise">Show My Advertise</a>
-        
+       
         	<c:choose>
 			<c:when test="${sessionScope.userType==1}">
 			 
@@ -74,8 +73,10 @@
             </c:when>
             </c:choose>
            
-            <div
-					class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bhoechie-tab doc_profile">
+            <div class="bhoechie-tab doc_profile">
+            <br>
+             <a href="${pageContext.request.contextPath}/showCurrentActiveAdvertise" class="serchDoc pull-right">Show My Advertise <span class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a>
+        
 					<div class="bhoechie-tab-content active">
 						<form method="POST" action='${pageContext.request.contextPath}/addNewAdvertise'
 							enctype="multipart/form-data" id="reset">
