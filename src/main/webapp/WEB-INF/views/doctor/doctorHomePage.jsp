@@ -103,7 +103,7 @@
 				<%-- <a class="fas fa-wallet profWallet" href="${pageContext.request.contextPath}/showWalletDetails"><img src="/biocare/resources/images/wallet.png" class="img-responsive" alt="wallet"><span>(0${walletDetails.walletAmount} Rs./-)</span></a> --%>
 				<a  href="#passwordModel" data-toggle="modal" class="profWallet"><span>Change Profile Password</span></a>
 				
-				<a class="fas fa-wallet pull-right" href="${pageContext.request.contextPath}/showReferralCode/${getDoctorProfile.doctorId}/0"><img src="/biocare/resources/images/refer1.png" class="img-responsive" alt="refer now"></a>   
+				<a class="fas fa-wallet pull-right" href="${pageContext.request.contextPath}/showReferralCode/${getDoctorProfile.doctorId}/0"><img src="${pageContext.request.contextPath}/resources/images/refer1.png" class="img-responsive" alt="refer now"></a>   
 				        </div>
 				       <a href="${pageContext.request.contextPath}/showUpdateDoctorProfile" data-toggle="popover" title="Edit Profile" class="bg_pop"> <div class="appoint">
 				         <div class="appoint1 hvr-pulse">

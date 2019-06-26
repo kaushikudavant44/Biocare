@@ -87,12 +87,12 @@
 							<div class="row editpg">
 								<input type="hidden" value="${doctorBankAccountInfo.id}"
 									name="id">
-								<div class="col-sm-1">
+								<div class="col-sm-4">
 									<div class="form-group">
 										<label>Blog Title</label>
 									</div>
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-6">
 									<div class="form-group">
 										<input type="text" required class="input-text"
 											name="blogTitle" id="blogTitle" data-rule-required="true" />
@@ -102,12 +102,12 @@
 
 
 						 <div class="row editpg">
-								<div class="col-sm-1">
+								<div class="col-sm-4">
 									<div class="form-group">
 										<label>Blog Image</label>
 									</div>
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-6">
 									<div class="form-group">
 										<input type="file" name="blogImage" id="blogImage" />
 									</div>
@@ -116,7 +116,7 @@
 
 
 							<div class="row editpg">
-								<div class="col-sm-1">
+								<div class="col-sm-4">
 									<div class="form-group">
 										<label>Blog Content</label>
 									</div>
@@ -133,7 +133,7 @@
 							<div class="col-sm-12 text-center">
 								<div class="form-group">
 
-									<button type="submit">Submit</button>
+									<button type="submit" class="btn-fr-all">Submit</button>
 
 								</div>
 							</div>

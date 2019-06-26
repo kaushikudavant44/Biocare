@@ -1788,6 +1788,9 @@ div.bhoechie-tab-content input:focus {outline: none;}
 .member-btn a {margin-right: 15px;}
 .heading {color: #000;}
 .invoicefoot {padding: 5px 10px !important; text-align: center; color:#fff}
+.docsuggsettest label {margin-bottom: 10px !important;}
+.docsuggsettest p {margin-bottom: 0 !important;}
+.docconslt p {border: solid 1px #ccc; padding: 0px 10px}
 /*------------------11-06-2018-------------------------*/
 button {
     margin-bottom: 3px;
