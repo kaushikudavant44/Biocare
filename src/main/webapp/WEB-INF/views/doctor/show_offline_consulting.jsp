@@ -2125,8 +2125,8 @@ else{
 				var  clearButton = document.getElementById('clear');
 				clearButton.click();
 
-				var a=reportUrl+patientId+"/reports/"+fileName;
-				document.getElementById('reportImageDiv').style.backgroundImage = "url('"+a+"')";
+				var fileUrl=reportUrl+patientId+"/reports/"+fileName;
+				document.getElementById('reportImageDiv').style.backgroundImage = "url('"+fileUrl+"')";
 
 				
 				$('#myModal').modal('show');
