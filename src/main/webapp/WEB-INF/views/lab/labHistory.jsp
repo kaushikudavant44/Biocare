@@ -368,7 +368,7 @@ $(document).ready(function() {
 					$('#myModal11').modal('show');
 				}
 				else if (type ==2) {
-					window.open('${pageContext.request.contextPath}/showDcmViewer?input='+location.protocol+'//'+  host+'/images/patient/'+patientId+"/reports/"+fileName, '_blank'); 
+					window.open(fileName, '_blank'); 
 
 				}else if(type==3){
 					
