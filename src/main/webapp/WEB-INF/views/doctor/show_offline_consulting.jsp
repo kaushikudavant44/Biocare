@@ -9,8 +9,8 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
@@ -37,21 +37,22 @@
 	href="${pageContext.request.contextPath}/resources/css/animate.min.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/set2.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
 <link
 	href="${pageContext.request.contextPath}/resources/css/home_page.css"
 	rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/resources/css/style.css"
 	rel="stylesheet" type="text/css">
-	
+
 <link
 	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/lobipanel.css" />
 <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/css/videoCall2.css">
-           <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/videoCall2.css">
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/fSelect.css" />
 <style>
 .loader {
@@ -75,19 +76,24 @@
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 rotate
 
 
+
+
 (360
 deg
+
+
 );
-
- 
-
 }
 }
 @
@@ -100,19 +106,24 @@ keyframes spin { 0% {
 transform
 
 
+
+
 :
 
+
  
+
 
 rotate
 
 
+
+
 (360
 deg
+
+
 );
-
- 
-
 }
 }
 .autocomplete-suggestions {
@@ -140,30 +151,28 @@ deg
 	color: #3399ff;
 }
 
-.hidden1,.hidden2 {
+.hidden1, .hidden2 {
 	display: none;
 }
 
-
 table.scroll {
-     width: 100%;  
-    
-    
+	width: 100%;
 }
 
-table.scroll tbody,
-table.scroll thead { display: block; }
-
- 
+table.scroll tbody, table.scroll thead {
+	display: block;
+}
 
 table.scroll tbody {
-width: 100%; 
-    max-height:500px;
-    overflow-y: auto;
-    overflow-x: hidden;
+	width: 100%;
+	max-height: 500px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
-  
+
+
+
 </style>
 
 <script type="text/javascript">
@@ -178,12 +187,70 @@ width: 100%;
        
     </script>
 
+<script type="text/javascript"
+	src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+
+<style type="text/css">
+*, :before, :after {
+	box-sizing: border-box;
+}
+
+.signature-component {
+	text-align: left;
+	display: inline-block;
+	max-width: 100%;
+	h1
+	{
+	margin-bottom
+	:
+	0;
+}
+
+h2 {
+	margin: 0;
+	font-size: 100%;
+}
+
+button {
+	padding: 1em;
+	background: transparent;
+	box-shadow: 2px 2px 4px #777;
+	margin-top: .5em;
+	border: 1px solid #777;
+	font-size: 1rem;
+	&.
+	toggle
+	{
+	background
+	:
+	rgba(
+	red
+	,
+	.2
+	);
+}
+
+}
+canvas {
+	display: block;
+	position: relative;
+	border: 1px solid;
+}
+
+img {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+}
+</style>
+
 </head>
 <body onload="getMedicineName()">
 
-<input type="hidden" id="dcmFileUrl" value="${dcmFileUrl}">
+	<input type="hidden" id="dcmFileUrl" value="${dcmFileUrl}">
 	<c:url var="checkPaymentStatus" value="/checkPaymentStatus" />
-	
+
 	<c:url var="addMedicineToList" value="/addMedicineToList" />
 
 	<c:url var="removeMedicineFromList" value="/removeMedicineFromList" />
@@ -194,15 +261,14 @@ width: 100%;
 
 	<c:url var="getPatientHistoryByPatientId"
 		value="/getPatientHistoryByPatientId" />
-		
-		<c:url var="savePndtIndicationDetails"
+
+	<c:url var="savePndtIndicationDetails"
 		value="/savePndtIndicationDetails" />
 
-<c:url var="submitConsultingPaymentByDoctor"
+	<c:url var="submitConsultingPaymentByDoctor"
 		value="/submitConsultingPaymentByDoctor" />
 
-<c:url var="savePndtChildrenDetails"
-		value="/savePndtChildrenDetails" />
+	<c:url var="savePndtChildrenDetails" value="/savePndtChildrenDetails" />
 
 
 	<c:url var="getFrequentlyUsedMedByDoctorId"
@@ -211,8 +277,8 @@ width: 100%;
 		value="/getPatientConsultedHistory" />
 	<c:url var="getPrescriptionByMeetingId"
 		value="/getPrescriptionByMeetingId" />
-		
-<c:url var="sendMessageToPatient" value="/sendMessageToPatient" />
+
+	<c:url var="sendMessageToPatient" value="/sendMessageToPatient" />
 	<c:url var="sendVideoCallToPatient" value="/sendVideoCallToPatient" />
 
 	<c:url var="addDoctorVideoDetails" value="/addDoctorVideoDetails" />
@@ -220,22 +286,25 @@ width: 100%;
 
 	<c:url var="addDoctorAudioDetails" value="/addDoctorAudioDetails" />
 
-<c:url var="updateVideoBypatientIdAndstatus" value="/updateVideoBypatientIdAndstatus" />
+	<c:url var="updateVideoBypatientIdAndstatus"
+		value="/updateVideoBypatientIdAndstatus" />
 
-<c:url var="updateAudioBypatientIdAndstatus" value="/updateAudioBypatientIdAndstatus" />
-<c:url var="getAllLabTests" value="/getAllLabTests" />
-<c:url var="getLabByCityAndTests" value="/getLabByCityAndTests" />
-<c:url var="saveTestsSuggestion" value="/saveTestsSuggestion" />
-<c:url var="getSuggestLabTestFromDoctor" value="/getSuggestLabTestFromDoctor" />
+	<c:url var="updateAudioBypatientIdAndstatus"
+		value="/updateAudioBypatientIdAndstatus" />
+	<c:url var="getAllLabTests" value="/getAllLabTests" />
+	<c:url var="getLabByCityAndTests" value="/getLabByCityAndTests" />
+	<c:url var="saveTestsSuggestion" value="/saveTestsSuggestion" />
+	<c:url var="getSuggestLabTestFromDoctor"
+		value="/getSuggestLabTestFromDoctor" />
 
- 
+
 
 	<jsp:include page="../include/doctorHeader.jsp" />
-	
-		
-	
-	
-	
+
+
+
+
+
 	<input type="hidden" id="url" value="${url}">
 	<div class="clearfix"></div>
 	<section class="doc_login inssurance_buy  consultpg-displ">
@@ -259,7 +328,8 @@ width: 100%;
 						<c:set var="class5" value="${activeConsultingHistory}" />
  --%>
 						<!-- <input type="hidden" value="activeHistory" id="activeHistory"> -->
-<input type="hidden" name="doctorFees" id="doctorFees" value="${sessionScope.doctorDetails.fees}">
+						<input type="hidden" name="doctorFees" id="doctorFees"
+							value="${sessionScope.doctorDetails.fees}">
 						<section id="consult">
 						<div class="bs-example">
 							<ul class="nav nav-tabs consult_patient_tab">
@@ -267,11 +337,11 @@ width: 100%;
 									id="patInfo" onclick="showSecA(1)">Info</a></li>
 								<li><a data-toggle="tab" href="#sectionB"
 									onclick="getPatientHistory(${patientDetails.patientId}, ${appoitId}); showSecA(2);">History</a></li>
-							    <%--  <c:if test="${sessionScope.radiologist=='Radiologist'}">
+								<%--  <c:if test="${sessionScope.radiologist=='Radiologist'}">
 							    	<li><a data-toggle="tab" href="#sectionF">PNDT Details </a></li>
 							  </c:if> --%>
-							    
-							    
+
+
 								<li><a data-toggle="tab" href="#sectionC"
 									onclick="getPatientReports(); showSecA(3)">Reports</a></li>
 								<li><a data-toggle="tab" href="#sectionD"
@@ -279,7 +349,7 @@ width: 100%;
 								<li><a data-toggle="tab" href="#sectionE"
 									onclick="getPatientConsultedHistory(${patientDetails.patientId});showSecA(5);">Consult
 										History</a></li>
-								
+
 								<!--<li><a data-toggle="tab" href="#sectionE">Labs Reports</a></li>-->
 
 							</ul>
@@ -309,8 +379,15 @@ width: 100%;
 												<li>City: <span> ${patientDetails.string1} </span></li>
 												<li>Phone No: <span>${patientDetails.contactNo}
 												</span></li>
-												<li>Email: <span class="font-style-normal">${patientDetails.email} </span></li>
+												<li>Email: <span class="font-style-normal">${patientDetails.email}
+												</span></li>
 											</ul>
+
+
+
+
+
+
 										</div>
 									</div>
 								</div>
@@ -319,48 +396,50 @@ width: 100%;
 									<!-- <div class="tab-content"> -->
 
 									<div class="doc_availble dr-site">
-									<div role="tabpanel" class="tab-pane fade in active"
-										id="profile">
-										<div class="panel-group" id="accordion" role="tablist"
-											aria-multiselectable="true">
-											<%-- <form
+										<div role="tabpanel" class="tab-pane fade in active"
+											id="profile">
+											<div class="panel-group" id="accordion" role="tablist"
+												aria-multiselectable="true">
+												<%-- <form
 													action="${pageContext.request.contextPath}/submitPatientPersonalHistoryRegProcess"
 													method="POST"> --%>
-											<div class="panel-group" id="accordion">
-											<div class="panel panel-default">
-												<div class="panel-heading" role="tab" id="headingOne">
-													<h4 class="panel-title">
-														<a role="button" data-toggle="collapse"
-															data-parent="#accordion" href="#collapseOne"
-															aria-expanded="true" aria-controls="collapseOne">
-															Chief or presenting Complaints </a>
-													</h4>
-												</div>
-												<div id="collapseOne" class="panel-collapse collapse in"
-													role="tabpanel" aria-labelledby="headingOne">
-													<div class="panel-body">
-														<textarea name="Chief" id="complaints" disabled="disabled">${patientHistoryChiefComplaints.complaints}</textarea>
+												<div class="panel-group" id="accordion">
+													<div class="panel panel-default">
+														<div class="panel-heading" role="tab" id="headingOne">
+															<h4 class="panel-title">
+																<a role="button" data-toggle="collapse"
+																	data-parent="#accordion" href="#collapseOne"
+																	aria-expanded="true" aria-controls="collapseOne">
+																	Chief or presenting Complaints </a>
+															</h4>
+														</div>
+														<div id="collapseOne" class="panel-collapse collapse in"
+															role="tabpanel" aria-labelledby="headingOne">
+															<div class="panel-body">
+																<textarea name="Chief" id="complaints"
+																	disabled="disabled">${patientHistoryChiefComplaints.complaints}</textarea>
+															</div>
+														</div>
 													</div>
 												</div>
-											</div>
-											</div>
-											<div class="panel-group" id="accordion">
-											<div class="panel panel-default">
-												<div class="panel-heading" role="tab" id="headingTwo">
-													<h4 class="panel-title">
-														<a  role="button" data-toggle="collapse"
-															data-parent="#accordion" href="#collapseTwo"
-															aria-expanded="false" aria-controls="collapseTwo">
-															Past History </a>
-													</h4>
-												</div>
-												<div id="collapseTwo" class="panel-collapse collapse"
-													role="tabpanel" aria-labelledby="headingTwo">
-													<div class="panel-body" >
-														<strong>History of Past illness like:</strong>
+												<div class="panel-group" id="accordion">
+													<div class="panel panel-default">
+														<div class="panel-heading" role="tab" id="headingTwo">
+															<h4 class="panel-title">
+																<a role="button" data-toggle="collapse"
+																	data-parent="#accordion" href="#collapseTwo"
+																	aria-expanded="false" aria-controls="collapseTwo">
+																	Past History </a>
+															</h4>
+														</div>
+														<div id="collapseTwo" class="panel-collapse collapse"
+															role="tabpanel" aria-labelledby="headingTwo">
+															<div class="panel-body">
+																<strong>History of Past illness like:</strong>
 
-														<div class="cont_blk past_history" id="pastHistoryIllnessDiv">
-															<%-- <c:forEach items="${patientHistoryIllnessList}"
+																<div class="cont_blk past_history"
+																	id="pastHistoryIllnessDiv">
+																	<%-- <c:forEach items="${patientHistoryIllnessList}"
 																var="patientHistoryIllnessList" varStatus="count">
 																<c:choose>
 
@@ -396,437 +475,454 @@ width: 100%;
 													</c:choose>
 													</c:forEach> --%>
 
-												</div>
-											</div>
+																</div>
+															</div>
 
-										</div>
-									</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading" role="tab" id="headingThree">
-											<h4 class="panel-title">
-												<a role="button" data-toggle="collapse"
-													data-parent="#accordion" href="#collapseThree"
-													aria-expanded="false" aria-controls="collapseThree">
-													Personal History </a>
-											</h4>
-										</div>
-										<div id="collapseThree" class="panel-collapse collapse"
-											role="tabpanel" aria-labelledby="headingThree">
-											<div class="panel-body">
-												<strong>1. Marital status with number of children</strong>
-												<div class="cont_blk past_history">
-													<textarea name="Maritalstatus" id="maritalStatus"
-														disabled="disabled">${patientPersonalHistory.maritalStatus}</textarea>
+														</div>
+													</div>
 												</div>
-											 
+												<div class="panel panel-default">
+													<div class="panel-heading" role="tab" id="headingThree">
+														<h4 class="panel-title">
+															<a role="button" data-toggle="collapse"
+																data-parent="#accordion" href="#collapseThree"
+																aria-expanded="false" aria-controls="collapseThree">
+																Personal History </a>
+														</h4>
+													</div>
+													<div id="collapseThree" class="panel-collapse collapse"
+														role="tabpanel" aria-labelledby="headingThree">
+														<div class="panel-body">
+															<strong>1. Marital status with number of
+																children</strong>
+															<div class="cont_blk past_history">
+																<textarea name="Maritalstatus" id="maritalStatus"
+																	disabled="disabled">${patientPersonalHistory.maritalStatus}</textarea>
+															</div>
+
+															<div class="clearfix"></div>
+															<hr>
+															<strong>2. Occupation (nature and environment
+																job) and education, unemployment</strong>
+															<textarea name="Occupation" id="occupation"
+																disabled="disabled">${patientPersonalHistory.occupation}</textarea>
+															<hr>
+															<strong>3. Income (asked indirectly) and social
+																status</strong>
+															<textarea name="Income" id="anualIncome"
+																disabled="disabled">${patientPersonalHistory.anualIncome}</textarea>
+															<hr>
+															<strong>4. Addiction (tea, coffee, smoking,
+																alcoholism, substance abuse e.g chewing tobacco, ganja,
+																heroin; try to estimate the amount of consumption of
+																tobacco or alcohol)</strong>
+															<textarea name="Addiction" id="addiction"
+																disabled="disabled">${patientPersonalHistory.addiction}</textarea>
+															<hr>
+															<strong>5. Dietary habit(for diagnosis of
+																avitaminosis, malnutrition, obesity)</strong>
+															<textarea name="Dietary" id="dietaryHabits"
+																disabled="disabled">${patientPersonalHistory.dietaryHabits}</textarea>
+															<hr>
+															<strong>6. History of Contraception</strong>
+															<textarea name="Contraception"
+																id="historyOfConterception" disabled="disabled">${patientPersonalHistory.historyOfConterception}</textarea>
+															<hr>
+															<strong>7. High Risk behaviour (e.g IV drug
+																abuse, multiple sexual partner, homosexuality
+																etc)-important in hepatitis B or C infection, AIDS and
+																SBE.</strong>
+															<textarea name="HighRiskbehaviour" id="highRiskBehaviour"
+																disabled="disabled">${patientPersonalHistory.highRiskBehaviour}</textarea>
+														</div>
+													</div>
+												</div>
+												<div class="panel panel-default">
+													<div class="panel-heading" role="tab" id="headingSix">
+														<h4 class="panel-title">
+															<a role="button" data-toggle="collapse"
+																data-parent="#accordion" href="#collapseSix"
+																aria-expanded="false" aria-controls="collapseSix">
+																Family History </a>
+														</h4>
+													</div>
+													<div id="collapseSix" class="panel-collapse collapse"
+														role="tabpanel" aria-labelledby="headingSix">
+														<div class="panel-body">
+
+															<textarea name="FamilyHistory" id="familyHistory"
+																disabled="disabled">${patientFamilyHistory.familyHistory}</textarea>
+
+
+														</div>
+													</div>
+												</div>
+												<div class="panel panel-default">
+													<div class="panel-heading" role="tab" id="headingFour">
+														<h4 class="panel-title">
+															<a role="button" data-toggle="collapse"
+																data-parent="#accordion" href="#collapseFour"
+																aria-expanded="false" aria-controls="collapseFour">
+																Treatment History </a>
+														</h4>
+													</div>
+													<div id="collapseFour" class="panel-collapse collapse"
+														role="tabpanel" aria-labelledby="headingFour">
+														<div class="panel-body">
+															<div class="cont_blk past_history">
+																<strong>1.Treatment received so far, for the
+																	present illness.</strong>
+																<textarea name="Treatment" id="treatmentReceived"
+																	disabled="disabled">${patientTreatementHistoryp.treatmentReceived}</textarea>
+																<div class="clearfix"></div>
+																<hr>
+																<strong>2.Any H/O drug allergy or reactions.</strong>
+																<textarea name="drugallergy" id="allergyReactions"
+																	disabled="disabled">${patientTreatementHistoryp.allergyReactions}</textarea>
+																<div class="clearfix"></div>
+																<hr>
+																<strong>3.Any surgical intervention or H/O
+																	accidents in significant past.</strong>
+																<textarea name="surgicalintervention"
+																	id="surgicalIntervention" disabled="disabled">${patientTreatementHistoryp.surgicalIntervention}</textarea>
+																<div class="clearfix"></div>
+																<hr>
+																<strong>4. Prolonged use of oral contraceptives
+																	(may precipitate CVA), penicillamine(used in wilson's
+																	disease; may develop nephrotic syndrome), vitamin C
+																	(may produce oxalate stone) etc.</strong>
+																<textarea name="contraceptives"
+																	id="useOralContraceptives" disabled="disabled">${patientTreatementHistoryp.useOralContraceptives}</textarea>
+																<div class="clearfix"></div>
+																<hr>
+																<strong>5. Blood transfusion</strong>
+
+																<textarea name="Bloodtransfusion" id="bloodTransfusion"
+																	disabled="disabled">${patientTreatementHistoryp.bloodTransfusion}</textarea>
+																<div class="clearfix"></div>
+																<hr>
+																<strong>6. Intake of NSAID (may produce acute
+																	gastric erosion, NSAID-induced asthma etc.)</strong>
+
+																<textarea name="Intake" id="intakeNsaid"
+																	disabled="disabled">${patientTreatementHistoryp.intakeNsaid}</textarea>
+
+																<div class="clearfix"></div>
+																<hr>
+																<strong>7. Regular user of oral contraceptives,
+																	vitamins, laxatives, sedatives or herbal remedies.</strong>
+
+																<textarea name="contraceptives"
+																	id="regularUsezoralContraceptives" disabled="disabled">${patientTreatementHistoryp.regularUsezoralContraceptives}</textarea>
+
+																<div class="clearfix"></div>
+															</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="panel panel-default">
+													<div class="panel-heading" role="tab" id="headingFive">
+														<h4 class="panel-title">
+															<a role="button" data-toggle="collapse"
+																data-parent="#accordion" href="#collapseFive"
+																aria-expanded="false" aria-controls="collapseFive">
+																Psychological History </a>
+														</h4>
+													</div>
+													<div id="collapseFive" class="panel-collapse collapse"
+														role="tabpanel" aria-labelledby="headingFive">
+														<div class="panel-body">
+															<textarea name="PsychologicalHistory"
+																id="psychologicalHistory" disabled="disabled">${patientPsychologicalHistory.psychologicalHistory}</textarea>
+														</div>
+													</div>
+												</div>
+												<div class="panel panel-default">
+													<div class="panel-heading" role="tab" id="headingFive">
+														<h4 class="panel-title">
+															<a role="button" data-toggle="collapse"
+																data-parent="#accordion" href="#collapseSeven"
+																aria-expanded="false" aria-controls="collapseSeven">
+																Menstrual and obstetric History </a>
+														</h4>
+													</div>
+													<div id="collapseSeven" class="panel-collapse collapse"
+														role="tabpanel" aria-labelledby="headingSeven">
+														<div class="panel-body">
+															<strong>1.Menarche.</strong>
+															<textarea name="Menarche" id="menarche"
+																disabled="disabled">${menstrualObstetricHistory.menarche}</textarea>
+															<hr>
+															<strong>2.Duration of the period.</strong>
+															<textarea name="durationperoid" id="durationOfPeriod"
+																disabled="disabled">${menstrualObstetricHistory.durationOfPeriod}</textarea>
+															<hr>
+															<strong>3.Quantity of blood loss(usually
+																assessed by number of pads consumed or passage of
+																clots).</strong>
+															<textarea name="bloodloss" id="qtyOfBloodLoss"
+																disabled="disabled">${menstrualObstetricHistory.qtyOfBloodLoss}</textarea>
+															<hr>
+															<strong>4.Dysmenorrhoea, amenorrhoea or other
+																menstrual irregularities.</strong>
+															<textarea name="Dysmenorrhoea"
+																id="menstrualErregularities" disabled="disabled">${menstrualObstetricHistory.menstrualErregularities}</textarea>
+															<hr>
+															<strong>5.Date of last menstrual period.</strong>
+															<textarea name="menstrual" id="dateOfLastPeriod"
+																disabled="disabled">${menstrualObstetricHistory.dateOfLastPeriod}</textarea>
+															<hr>
+															<strong>6.Menopause, post-menopausal bleeding.</strong>
+															<textarea name="Menopause" id="menopause"
+																disabled="disabled">${menstrualObstetricHistory.menopause}</textarea>
+															<hr>
+															<strong>7.Obstetric history: </strong>
+															<div class="clearfix"></div>
+															<strong>a) No.of pregnancies</strong>
+															<textarea name="pregnancies" id="noOfPregnancies"
+																disabled="disabled">${menstrualObstetricHistory.noOfPregnancies}</textarea>
+															<hr>
+															<strong> b) Outcome of pregnancies : H/O
+																abortions or carried to term:live birth (male/female)</strong>
+															<textarea name="Outcomepregnancies"
+																id="outcomeOfPregnancies" disabled="disabled">${menstrualObstetricHistory.outcomeOfPregnancies}</textarea>
+															<hr>
+															<strong>c) Complications during pregnancy (e.g
+																hypertension, gestational diabetes mellitus)</strong>
+															<div class="cont_blk past_history">
+																<textarea name="Complicationspregnancy"
+																	id="complicationsDuringPregnancies" disabled="disabled">${menstrualObstetricHistory.complicationsDuringPregnancies}</textarea>
+															</div>
+															<div class="clearfix"></div>
+															<hr>
+															<strong> d) Mode of delivery (Vaginal , foreeps,
+																caesaream)</strong>
+															<textarea name="Modedelivery" id="made_of_delivery"
+																disabled="disabled">${menstrualObstetricHistory.made_of_delivery}</textarea>
+															<hr>
+															<strong> e) Last child birth</strong>
+															<textarea name="Lastbirth" id="last_child_birth"
+																disabled="disabled">${menstrualObstetricHistory.last_child_birth}</textarea>
+
+														</div>
+													</div>
+												</div>
 												<div class="clearfix"></div>
-												<hr>
-												<strong>2. Occupation (nature and environment job)
-													and education, unemployment</strong>
-												<textarea name="Occupation" id="occupation"
-													disabled="disabled">${patientPersonalHistory.occupation}</textarea>
-												<hr>
-												<strong>3. Income (asked indirectly) and social
-													status</strong>
-												<textarea name="Income" id="anualIncome" disabled="disabled">${patientPersonalHistory.anualIncome}</textarea>
-												<hr>
-												<strong>4. Addiction (tea, coffee, smoking,
-													alcoholism, substance abuse e.g chewing tobacco, ganja,
-													heroin; try to estimate the amount of consumption of
-													tobacco or alcohol)</strong>
-												<textarea name="Addiction" id="addiction"
-													disabled="disabled">${patientPersonalHistory.addiction}</textarea>
-												<hr>
-												<strong>5. Dietary habit(for diagnosis of
-													avitaminosis, malnutrition, obesity)</strong>
-												<textarea name="Dietary" id="dietaryHabits"
-													disabled="disabled">${patientPersonalHistory.dietaryHabits}</textarea>
-												<hr>
-												<strong>6. History of Contraception</strong>
-												<textarea name="Contraception" id="historyOfConterception"
-													disabled="disabled">${patientPersonalHistory.historyOfConterception}</textarea>
-												<hr>
-												<strong>7. High Risk behaviour (e.g IV drug abuse,
-													multiple sexual partner, homosexuality etc)-important in
-													hepatitis B or C infection, AIDS and SBE.</strong>
-												<textarea name="HighRiskbehaviour" id="highRiskBehaviour"
-													disabled="disabled">${patientPersonalHistory.highRiskBehaviour}</textarea>
-											</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading" role="tab" id="headingSix">
-											<h4 class="panel-title">
-												<a  role="button" data-toggle="collapse"
-													data-parent="#accordion" href="#collapseSix"
-													aria-expanded="false" aria-controls="collapseSix">
-													Family History </a>
-											</h4>
-										</div>
-										<div id="collapseSix" class="panel-collapse collapse"
-											role="tabpanel" aria-labelledby="headingSix">
-											<div class="panel-body">
-
-												<textarea name="FamilyHistory" id="familyHistory"
-													disabled="disabled">${patientFamilyHistory.familyHistory}</textarea>
 
 
-											</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading" role="tab" id="headingFour">
-											<h4 class="panel-title">
-												<a role="button" data-toggle="collapse"
-													data-parent="#accordion" href="#collapseFour"
-													aria-expanded="false" aria-controls="collapseFour">
-													Treatment History </a>
-											</h4>
-										</div>
-										<div id="collapseFour" class="panel-collapse collapse"
-											role="tabpanel" aria-labelledby="headingFour">
-											<div class="panel-body">
-												<div class="cont_blk past_history">
-													<strong>1.Treatment received so far, for the
-														present illness.</strong>
-													<textarea name="Treatment" id="treatmentReceived"
-														disabled="disabled">${patientTreatementHistoryp.treatmentReceived}</textarea>
-													<div class="clearfix"></div>
-													<hr>
-													<strong>2.Any H/O drug allergy or reactions.</strong>
-													<textarea name="drugallergy" id="allergyReactions"
-														disabled="disabled">${patientTreatementHistoryp.allergyReactions}</textarea>
-													<div class="clearfix"></div>
-													<hr>
-													<strong>3.Any surgical intervention or H/O
-														accidents in significant past.</strong>
-													<textarea name="surgicalintervention"
-														id="surgicalIntervention" disabled="disabled">${patientTreatementHistoryp.surgicalIntervention}</textarea>
-													<div class="clearfix"></div>
-													<hr>
-													<strong>4. Prolonged use of oral contraceptives
-														(may precipitate CVA), penicillamine(used in wilson's
-														disease; may develop nephrotic syndrome), vitamin C (may
-														produce oxalate stone) etc.</strong>
-													<textarea name="contraceptives" id="useOralContraceptives"
-														disabled="disabled">${patientTreatementHistoryp.useOralContraceptives}</textarea>
-													<div class="clearfix"></div>
-													<hr>
-													<strong>5. Blood transfusion</strong>
-
-													<textarea name="Bloodtransfusion" id="bloodTransfusion"
-														disabled="disabled">${patientTreatementHistoryp.bloodTransfusion}</textarea>
-													<div class="clearfix"></div>
-													<hr>
-													<strong>6. Intake of NSAID (may produce acute
-														gastric erosion, NSAID-induced asthma etc.)</strong>
-
-													<textarea name="Intake" id="intakeNsaid"
-														disabled="disabled">${patientTreatementHistoryp.intakeNsaid}</textarea>
-
-													<div class="clearfix"></div>
-													<hr>
-													<strong>7. Regular user of oral contraceptives,
-														vitamins, laxatives, sedatives or herbal remedies.</strong>
-
-													<textarea name="contraceptives"
-														id="regularUsezoralContraceptives" disabled="disabled">${patientTreatementHistoryp.regularUsezoralContraceptives}</textarea>
-
-													<div class="clearfix"></div>
-												</div>
-
-											</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading" role="tab" id="headingFive">
-											<h4 class="panel-title">
-												<a role="button" data-toggle="collapse"
-													data-parent="#accordion" href="#collapseFive"
-													aria-expanded="false" aria-controls="collapseFive">
-													Psychological History </a>
-											</h4>
-										</div>
-										<div id="collapseFive" class="panel-collapse collapse"
-											role="tabpanel" aria-labelledby="headingFive">
-											<div class="panel-body">
-												<textarea name="PsychologicalHistory"
-													id="psychologicalHistory" disabled="disabled">${patientPsychologicalHistory.psychologicalHistory}</textarea>
-											</div>
-										</div>
-									</div>
-									<div class="panel panel-default">
-										<div class="panel-heading" role="tab" id="headingFive">
-											<h4 class="panel-title">
-												<a role="button" data-toggle="collapse"
-													data-parent="#accordion" href="#collapseSeven"
-													aria-expanded="false" aria-controls="collapseSeven">
-													Menstrual and obstetric History </a>
-											</h4>
-										</div>
-										<div id="collapseSeven" class="panel-collapse collapse"
-											role="tabpanel" aria-labelledby="headingSeven">
-											<div class="panel-body">
-												<strong>1.Menarche.</strong>
-												<textarea name="Menarche" id="menarche" disabled="disabled">${menstrualObstetricHistory.menarche}</textarea>
-												<hr>
-												<strong>2.Duration of the period.</strong>
-												<textarea name="durationperoid" id="durationOfPeriod"
-													disabled="disabled">${menstrualObstetricHistory.durationOfPeriod}</textarea>
-												<hr>
-												<strong>3.Quantity of blood loss(usually assessed
-													by number of pads consumed or passage of clots).</strong>
-												<textarea name="bloodloss" id="qtyOfBloodLoss"
-													disabled="disabled">${menstrualObstetricHistory.qtyOfBloodLoss}</textarea>
-												<hr>
-												<strong>4.Dysmenorrhoea, amenorrhoea or other
-													menstrual irregularities.</strong>
-												<textarea name="Dysmenorrhoea" id="menstrualErregularities"
-													disabled="disabled">${menstrualObstetricHistory.menstrualErregularities}</textarea>
-												<hr>
-												<strong>5.Date of last menstrual period.</strong>
-												<textarea name="menstrual" id="dateOfLastPeriod"
-													disabled="disabled">${menstrualObstetricHistory.dateOfLastPeriod}</textarea>
-												<hr>
-												<strong>6.Menopause, post-menopausal bleeding.</strong>
-												<textarea name="Menopause" id="menopause"
-													disabled="disabled">${menstrualObstetricHistory.menopause}</textarea>
-												<hr>
-												<strong>7.Obstetric history: </strong>
-												<div class="clearfix"></div>
-												<strong>a) No.of pregnancies</strong>
-												<textarea name="pregnancies" id="noOfPregnancies"
-													disabled="disabled">${menstrualObstetricHistory.noOfPregnancies}</textarea>
-												<hr>
-												<strong> b) Outcome of pregnancies : H/O abortions
-													or carried to term:live birth (male/female)</strong>
-												<textarea name="Outcomepregnancies"
-													id="outcomeOfPregnancies" disabled="disabled">${menstrualObstetricHistory.outcomeOfPregnancies}</textarea>
-												<hr>
-												<strong>c) Complications during pregnancy (e.g
-													hypertension, gestational diabetes mellitus)</strong>
-												<div class="cont_blk past_history">
-													<textarea name="Complicationspregnancy"
-														id="complicationsDuringPregnancies" disabled="disabled">${menstrualObstetricHistory.complicationsDuringPregnancies}</textarea>
-												</div>
-												<div class="clearfix"></div>
-												<hr>
-												<strong> d) Mode of delivery (Vaginal , foreeps,
-													caesaream)</strong>
-												<textarea name="Modedelivery" id="made_of_delivery"
-													disabled="disabled">${menstrualObstetricHistory.made_of_delivery}</textarea>
-												<hr>
-												<strong> e) Last child birth</strong>
-												<textarea name="Lastbirth" id="last_child_birth"
-													disabled="disabled">${menstrualObstetricHistory.last_child_birth}</textarea>
-
-											</div>
-										</div>
-									</div>
-									<div class="clearfix"></div>
-									
-									
-									<!-- <p>
+												<!-- <p>
 											<label><input type="checkbox" value="">
 												&nbsp;<strong>I Agree</strong></label>
 										</p> -->
-									<div class="clearfix"></div>
+												<div class="clearfix"></div>
 
-									<!-- <input type="submit" class="history_sbmt" name="Submit"> -->
-									</form>
-								</div>
-							</div>
-							</div>
-						</div>
-						
-						
-						
-
-						<div id="sectionC" class="tab-pane fade">
-
-							
-
-								<input type="hidden" value="${reportUrl}" id="reportUrl">
-								<div class="table-responsive">
-								 <input type="text" id="reportTableSearch" onkeyup="searchData()" class="form-control search" placeholder=" Search" style="float: right; width: 300px">
-									<div class="clearfix"></div>
-									<hr>
-									<table id="reportTable">
-										<thead>
-											<tr>
-												<th scope="col">Sr.no</th>
-												<th scope="col">Test</th>
-												<th scope="col">Date</th>
-												<!-- <th scope="col">View Reports</th> -->
-											</tr>
-										</thead>
-										<tbody>
-
-										</tbody>
-
-
-									</table>
-
-								</div>
-								<div align="center" class="loader"></div>
-								<!--  <a href="#" data-target="#myModal10" data-toggle="modal" class="history_sbmt">canvas</a>
-  <a href="#" data-target="#myModal11" data-toggle="modal" class="history_sbmt">pdf</a> -->
-
-						
-							<!-- <a href="#" data-target="#largeModal11" data-toggle="modal"
-								class="history_sbmt">submit</a> -->
-
-						</div>
-
-
-						<div id="sectionD" class="tab-pane fade">
-							<form id="drconsult"
-								action="${pageContext.request.contextPath}/submitDoctorPatientMeeting"
-								method="post">
-
-
-								<input type="hidden" name="appointId" id="appointId"
-									value="${appoitId}">
-								<div class="form-group">
-									<label for="staticEmail" class="col-sm-3 col-form-label">Patient
-										Problem :</label> <input type="text" class="" id="patientProblem"
-										placeholder="Enter patient problem" name="patientProblem" 
-										required>
-								</div>
-								<div class="form-group">
-									<label for="inputPassword" class="col-sm-3 col-form-label">Discussion
-										:</label>
-									<textarea class="" id="discussion"
-										placeholder="Enter Discussion" name="discussion" rows="2"
-										required></textarea>
+												<!-- <input type="submit" class="history_sbmt" name="Submit"> -->
+												</form>
+											</div>
+										</div>
+									</div>
 								</div>
 
-								<div class="form-group">
-									<label for="staticEmail" class="col-sm-3 col-form-label">Special
-										Instruction :</label>
-									<textarea class="" id="specInstuction"
-										placeholder="Enter Special Instuction" name="specInstuction"
-										rows="2" required></textarea>
-								</div>
-								<div class="form-group">
-									<input type="button" value="Add Prescription"
-										class="btn btn-info btn-fr-all" data-toggle="modal"
-										data-target="#largeModal" onclick="showAddPrescription()">
-										
-										<input type="button" value="Suggest Tests"
-										class="btn btn-info btn-fr-all" data-toggle="modal"
-										data-target="#labTestModal">
-										
-									 
-								</div>
-								<div class="form-group">
+
+
+
+								<div id="sectionC" class="tab-pane fade">
+
+
+
+									<input type="hidden" value="${reportUrl}" id="reportUrl">
 									<div class="table-responsive">
-										<table width="100%" border="0"
-											class="tbl table table-bordered table table-hover"
-											id="medicineTable"  style="display: none">
+										<input type="text" id="reportTableSearch"
+											onkeyup="searchData()" class="form-control search"
+											placeholder=" Search" style="float: right; width: 300px">
+										<div class="clearfix"></div>
+										<hr>
+										<table id="reportTable">
 											<thead>
-												<tr align="center">
-													<th>Sr.No</th>
-													<!-- <th>Time</th>
-											<th>Date</th> -->
-													<th>Medicine Name</th>
-													<th>Quantity</th>
-													<th>Instructions</th>
-													<th>Timing</th>
-													<th>Delete</th>
+												<tr>
+													<th scope="col">Sr.no</th>
+													<th scope="col">Test</th>
+													<th scope="col">Date</th>
+													<!-- <th scope="col">View Reports</th> -->
 												</tr>
 											</thead>
 											<tbody>
 
 											</tbody>
 
+
 										</table>
 
 									</div>
+									<div align="center" class="loader"></div>
+									<!--  <a href="#" data-target="#myModal10" data-toggle="modal" class="history_sbmt">canvas</a>
+  <a href="#" data-target="#myModal11" data-toggle="modal" class="history_sbmt">pdf</a> -->
 
 
-									<input type="hidden" value="${patientDetails.patientId}"
-										name="patientId" id="patientId"> <input type="hidden"
-										value="${patientDetails.email}" name="email" id="email">
-									<input type="hidden" value="${doctorDetails.doctorId}"
-										name="doctorId" id="doctorId"> <input type="hidden"
-										value="${doctorDetails.fName}" name="fName" id="fName">
-									<!--*****  Patient Id Hardcoded ****** -->
-<input type="hidden" value="${hospitalId}" name="hospitalId">
-									<input type="button" value="Submit"
-										class="btn btn-info btn-fr-all" onclick="checkPaymentStatus1()">
+									<!-- <a href="#" data-target="#largeModal11" data-toggle="modal"
+								class="history_sbmt">submit</a> -->
+
 								</div>
-								
-							</form>
-						</div>
-						<div id="sectionE" class="tab-pane fade">
-							<div class="table-responsive consult_hist">
-								<table class="table table-striped table-bordered table-hover fixed_headers" width="100%" id="consultHistory">
-									<thead>
-										<tr class="first-tbl-bor">
-											<th>Sr. No.</th>
-											<th>Date</th>
-											<th>Time</th>
-											<th>Details</th>
-											<th>Instruction</th>
-											<th>View</th>
-										</tr>
-									</thead>
-									<tbody id="consHist">
-										 
-									 
-							</tbody>
-							</table>
+
+
+								<div id="sectionD" class="tab-pane fade">
+									<form id="drconsult"
+										action="${pageContext.request.contextPath}/submitDoctorPatientMeeting"
+										method="post">
+
+
+										<input type="hidden" name="appointId" id="appointId"
+											value="${appoitId}">
+										<div class="form-group">
+											<label for="staticEmail" class="col-sm-3 col-form-label">Patient
+												Problem :</label> <input type="text" class="" id="patientProblem"
+												placeholder="Enter patient problem" name="patientProblem"
+												required>
+										</div>
+										<div class="form-group">
+											<label for="inputPassword" class="col-sm-3 col-form-label">Discussion
+												:</label>
+											<textarea class="" id="discussion"
+												placeholder="Enter Discussion" name="discussion" rows="2"
+												required></textarea>
+										</div>
+
+										<div class="form-group">
+											<label for="staticEmail" class="col-sm-3 col-form-label">Special
+												Instruction :</label>
+											<textarea class="" id="specInstuction"
+												placeholder="Enter Special Instuction" name="specInstuction"
+												rows="2" required></textarea>
+										</div>
+										<div class="form-group">
+											<input type="button" value="Add Prescription"
+												class="btn btn-info btn-fr-all" data-toggle="modal"
+												data-target="#largeModal" onclick="showAddPrescription()">
+
+											<input type="button" value="Suggest Tests"
+												class="btn btn-info btn-fr-all" data-toggle="modal"
+												data-target="#labTestModal">
+
+
+										</div>
+										<div class="form-group">
+											<div class="table-responsive">
+												<table width="100%" border="0"
+													class="tbl table table-bordered table table-hover"
+													id="medicineTable" style="display: none">
+													<thead>
+														<tr align="center">
+															<th>Sr.No</th>
+															<!-- <th>Time</th>
+											<th>Date</th> -->
+															<th>Medicine Name</th>
+															<th>Quantity</th>
+															<th>Instructions</th>
+															<th>Timing</th>
+															<th>Delete</th>
+														</tr>
+													</thead>
+													<tbody>
+
+													</tbody>
+
+												</table>
+
+											</div>
+
+
+											<input type="hidden" value="${patientDetails.patientId}"
+												name="patientId" id="patientId"> <input
+												type="hidden" value="${patientDetails.email}" name="email"
+												id="email"> <input type="hidden"
+												value="${doctorDetails.doctorId}" name="doctorId"
+												id="doctorId"> <input type="hidden"
+												value="${doctorDetails.fName}" name="fName" id="fName">
+											<!--*****  Patient Id Hardcoded ****** -->
+											<input type="hidden" value="${hospitalId}" name="hospitalId">
+											<input type="button" value="Submit"
+												class="btn btn-info btn-fr-all"
+												onclick="checkPaymentStatus1()">
+										</div>
+
+									</form>
+								</div>
+								<div id="sectionE" class="tab-pane fade">
+									<div class="table-responsive consult_hist">
+										<table
+											class="table table-striped table-bordered table-hover fixed_headers"
+											width="100%" id="consultHistory">
+											<thead>
+												<tr class="first-tbl-bor">
+													<th>Sr. No.</th>
+													<th>Date</th>
+													<th>Time</th>
+													<th>Details</th>
+													<th>Instruction</th>
+													<th>View</th>
+												</tr>
+											</thead>
+											<tbody id="consHist">
+
+
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+							<div class="clearfix"></div>
 
 						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
+						</section>
 
-			</div>
-	</section>
-
-	<c:if test="${virtual==1}">
-	<div class="Fixed_calling-icon" id="virtualBtn">
-		<div class="content_img">
-			<img src='${pageContext.request.contextPath}/resources/images/video_b.png'
-				class="img-responsive show_hide" alt="video call"
-				onclick="videoCallToPatient()"<%--  onclick="makeCall(${patientDetails.patientId})" --%>>
-			<input type="hidden" id="firstUrl">
-			<div class="video1">Make a video call to patient.</div>
-		</div>
-		<%-- <div class="content_img">
+						<c:if test="${virtual==1}">
+							<div class="Fixed_calling-icon" id="virtualBtn">
+								<div class="content_img">
+									<img
+										src='${pageContext.request.contextPath}/resources/images/video_b.png'
+										class="img-responsive show_hide" alt="video call"
+										onclick="videoCallToPatient()"<%--  onclick="makeCall(${patientDetails.patientId})" --%>>
+									<input type="hidden" id="firstUrl">
+									<div class="video1">Make a video call to patient.</div>
+								</div>
+								<%-- <div class="content_img">
 			 <img src='${pageContext.request.contextPath}/resources/images/call_b.png' class="img-responsive show_hide1" alt="chat call" onclick="audioCall(${patientDetails.patientId})">
 			<div>Make a audio call to patient.</div>
 
 		</div>  --%>
-		<div class="content_img">
-		<input id="txtLogin"  type="hidden" value="Dr. ${sessionScope.doctorDetails.fName} ${sessionScope.doctorDetails.lName}" class="loginInput"/>
-		 
-			 <img src='${pageContext.request.contextPath}/resources/images/chat_b.png' class="img-responsive show_hide1 loginInput" alt="chat call" onclick="startChatting();">
-			
-			<div>Chat With patient.</div>
-			<input type="hidden" id="patientName" value="${patientDetails.fName} ${patientDetails.lName}">
-	<input type="hidden" id="doctorName" value="${sessionScope.doctorDetails.fName} ${sessionScope.doctorDetails.lName}">
-														 
-		</div>
-		
-		</div>
-		</c:if>
-		
-	
-		 
+								<div class="content_img">
+									<input id="txtLogin" type="hidden"
+										value="Dr. ${sessionScope.doctorDetails.fName} ${sessionScope.doctorDetails.lName}"
+										class="loginInput" /> <img
+										src='${pageContext.request.contextPath}/resources/images/chat_b.png'
+										class="img-responsive show_hide1 loginInput" alt="chat call"
+										onclick="startChatting();">
 
-	
-	<div class="clearfix"></div>
+									<div>Chat With patient.</div>
+									<input type="hidden" id="patientName"
+										value="${patientDetails.fName} ${patientDetails.lName}">
+									<input type="hidden" id="doctorName"
+										value="${sessionScope.doctorDetails.fName} ${sessionScope.doctorDetails.lName}">
 
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- <div class="bs-example hidden1" id="videoCallDiv">
+								</div>
+
+							</div>
+						</c:if>
+
+
+
+
+
+						<div class="clearfix"></div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="bs-example hidden1" id="videoCallDiv">
 		<div id="lobipanel-constrain-size" class="panel panel-primary">
 			<div class="panel-heading">
 				<div class="panel-title">
@@ -869,13 +965,14 @@ width: 100%;
 	</div>
 	 
       
- -->
-</section>
+ --> </section>
 
- 
+
 	<jsp:include page="../include/footer.jsp" />
- 
-<div id="largeModal" class="modal fade bs-example-modal-md prescription_mod" tabindex="-1" role="dialog" style="margin-top: 50px">
+
+	<div id="largeModal"
+		class="modal fade bs-example-modal-md prescription_mod" tabindex="-1"
+		role="dialog" style="margin-top: 50px">
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -927,22 +1024,20 @@ width: 100%;
 									name="timingCheck"> Evening
 								</label> <label class="checkbox-inline"><input type="checkbox"
 									id="inlineCheckbox3" value="Night" class="chk"
-									name="timingCheck"> Night
-								</label>
+									name="timingCheck"> Night </label>
 							</div>
 						</div>
-						
+
 
 
 
 					</form>
 				</div>
 				<div class="modal-footer">
-				
-				<input type="button" value="Clear"
-						class="btn btn-info btn-fr-all" data-toggle="modal"
-						onclick="clearFields()">
-					<input type="button" value="Add Prescription"
+
+					<input type="button" value="Clear" class="btn btn-info btn-fr-all"
+						data-toggle="modal" onclick="clearFields()"> <input
+						type="button" value="Add Prescription"
 						class="btn btn-info btn-fr-all" data-toggle="modal"
 						onclick="addPrescription()">
 					<!-- <input
@@ -952,11 +1047,13 @@ width: 100%;
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 
 
-<div id="labTestModal" class="modal fade bs-example-modal-md prescription_mod" tabindex="-1" role="dialog" style="margin-top: 50px">
+	<div id="labTestModal"
+		class="modal fade bs-example-modal-md prescription_mod" tabindex="-1"
+		role="dialog" style="margin-top: 50px">
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -965,28 +1062,32 @@ width: 100%;
 					<h4 class="modal-title">Suggest Lab Tests</h4>
 				</div>
 				<div class="modal-body">
-					 
-						<div class="form-group row">
-							<label for="medicine" class="col-sm-4 col-form-label">Tests :</label>
-							<div class="col-sm-8 medicine1">
-								<select class="multiSelect" multiple="multiple"  id="testId" name="testId" multiple="multiple">
-					      		    <c:forEach items="${labTestsList}" var = "labTestsList">
-					      		      	 
-      <option value="${labTestsList.labTestId}">${labTestsList.labTestName}</option>    
 
-</c:forEach>
-					      		</select>
-							</div></div>
-							<div class="form-group row">
-							<label for="medicine" class="col-sm-4 col-form-label"></label>
-							<div class="col-sm-8 medicine1" id="ref">
-								 <a href="#" onclick="getLabByTests()">Refer a Lab</a>
-							</div>
+					<div class="form-group row">
+						<label for="medicine" class="col-sm-4 col-form-label">Tests
+							:</label>
+						<div class="col-sm-8 medicine1">
+							<select class="multiSelect" multiple="multiple" id="testId"
+								name="testId" multiple="multiple">
+								<c:forEach items="${labTestsList}" var="labTestsList">
+
+									<option value="${labTestsList.labTestId}">${labTestsList.labTestName}</option>
+
+								</c:forEach>
+							</select>
 						</div>
-						<div id="labDetails" style="display:none">
-						  <table id="labDetailsTable" border="0" style="border-style: hidden" class="scroll">  
-						 
-						 <!-- <thead>
+					</div>
+					<div class="form-group row">
+						<label for="medicine" class="col-sm-4 col-form-label"></label>
+						<div class="col-sm-8 medicine1" id="ref">
+							<a href="#" onclick="getLabByTests()">Refer a Lab</a>
+						</div>
+					</div>
+					<div id="labDetails" style="display: none">
+						<table id="labDetailsTable" border="0"
+							style="border-style: hidden" class="scroll">
+
+							<!-- <thead>
 						 <tr>
 						 <th>Lab Name</th>
 						 <th>Address</th>
@@ -994,33 +1095,35 @@ width: 100%;
 						 <th>Action</th>
 						 </tr>
 						 </thead> -->
-						   <tbody>
-   
-  
-						   </tbody>     
-						          </table> 
-						           
-					 
-</div>
-					 
+							<tbody>
+
+
+							</tbody>
+						</table>
+
+
+					</div>
+
 				</div>
 				<div class="modal-footer">
-				
-				<input type="button" value="Suggest"
+
+					<input type="button" value="Suggest"
 						class="btn btn-info btn-fr-all" data-dismiss="modal"
 						onclick="saveTestsSuggestion()">
-					 
-					 
+
+
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
-	
-	
-	
-	
-	<div id="viewLabTestModal" class="modal fade bs-example-modal-md prescription_mod" tabindex="-1" role="dialog" style="margin-top: 50px">
+
+
+
+
+	<div id="viewLabTestModal"
+		class="modal fade bs-example-modal-md prescription_mod" tabindex="-1"
+		role="dialog" style="margin-top: 50px">
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -1029,38 +1132,83 @@ width: 100%;
 					<h4 class="modal-title">Suggested Lab Tests</h4>
 				</div>
 				<div class="modal-body">
-					 <div id="suggestedTestDiv" style="display:none">
+					<div id="suggestedTestDiv" style="display: none">
 						<div class="form-group row">
-							<label for="medicine" class="col-sm-4 col-form-label">Suggested Tests :</label>
+							<label for="medicine" class="col-sm-4 col-form-label">Suggested
+								Tests :</label>
 							<div class="col-sm-8 medicine1">
-								 <p id="suggestedLabTest"> </p>
-							</div></div>
-							 
-							 
-							 <div class="form-group row">
-							<label for="medicine" class="col-sm-4 col-form-label">Referred Lab :</label>
+								<p id="suggestedLabTest"></p>
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<label for="medicine" class="col-sm-4 col-form-label">Referred
+								Lab :</label>
 							<div class="col-sm-8 medicine1">
-								 <p id="referredLab"></p>
-							</div></div>
-							 </div>
-						<div id="emptyLabTestDiv">
-						    <div class="form-group row">
-							<label for="medicine" class="col-sm-4 col-form-label">Not Suggested Tests</label>
-							 </div>
-</div>
-					 
+								<p id="referredLab"></p>
+							</div>
+						</div>
+					</div>
+					<div id="emptyLabTestDiv">
+						<div class="form-group row">
+							<label for="medicine" class="col-sm-4 col-form-label">Not
+								Suggested Tests</label>
+						</div>
+					</div>
+
 				</div>
-				 
+
 			</div>
 		</div>
-		
+
 	</div>
-	
-	
-	
+
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+
+
+					<section class="signature-component">
+					
+					<div  id="reportImageDiv"  height: 400px; width: 400px;">
+						
+						<canvas id="signature-pad" width="400px" height="400px"></canvas>
+
+						<div>
+							<button id="clear">Clear</button>
+
+						</div>
+						
+					</div>
+
+					</section>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Modal -->
+
+
 
 	<div class="lab_img">
-		<div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal fade" id="myModal10" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			<div class="modal-dialog">
 
 				<!-- Modal content-->
@@ -1071,16 +1219,16 @@ width: 100%;
 					</div>
 					<div class="modal-body">
 						<div id="sketch">
-						
-				<canvas id="paint" width="980" height="850"></canvas> 
-						
+
+
 							<img id="reportImage" src="" class="img-responsive"
 								alt="Report not Available">
-							
-							
+
+
+
 							<p class="text-center">
-								<a href="#" id="pen11" onclick="selectPen()"><span class="fa fa-pencil" ></span>Pen</a> <a
-									href="#" id="eraser"><span
+								<a href="#" id="pen11" onclick="selectPen()"><span
+									class="fa fa-pencil"></span>Pen</a> <a href="#" id="eraser"><span
 									class="glyphicon glyphicon-erase"></span>Eraser</a>
 							</p>
 						</div>
@@ -1090,7 +1238,7 @@ width: 100%;
 
 			</div>
 		</div>
-		
+
 		<!-- Modal -->
 		<div class="modal fade" id="myModal11" role="dialog">
 			<div class="modal-dialog">
@@ -1111,77 +1259,78 @@ width: 100%;
 
 			</div>
 		</div>
-		
-		
-		<!--  -->
-		 
-		
-		
-		<!--  -->
-		 <!-- Modal content-->
-  		<div id="myModal78" class="modal fade" style="display: none;">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title">Add Children Details</h4>
-				</div>
-				<div class="modal-body">
-					<div class="table-responsive">
-						<table width="100" border="1" class="radio-tbl">
-							<tbody>
-
-								<tr>
-									<td><label for="gender">Gender</label></td>
-									<td><label for="age">DOB</label></td>
-									<!--   <td><label for="agetype">Age Type</td> -->
-
-								</tr>
-								<tr>
-									<td colspan="3">&nbsp;</td>
-								</tr>
 
 
 
-								<tr>
+		<!-- Modal content-->
+		<div id="myModal78" class="modal fade" style="display: none;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4 class="modal-title">Add Children Details</h4>
+					</div>
+					<div class="modal-body">
+						<div class="table-responsive">
+							<table width="100" border="1" class="radio-tbl">
+								<tbody>
+
+									<tr>
+										<td><label for="gender">Gender</label></td>
+										<td><label for="age">DOB</label></td>
+										<!--   <td><label for="agetype">Age Type</td> -->
+
+									</tr>
+									<tr>
+										<td colspan="3">&nbsp;</td>
+									</tr>
 
 
-									<input type="hidden" value="1" name="patientId1" id="patientId1">
-									<td><select class="form-control" id="gender1" name="gender1">
-											<option value="0" name="gender" disabled="">Select
-												Gender</option>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
-									</select></td>
-									<td><input type="text" class="form-control form_datetime" name="dob" id="dob" placeholder="Date Of Birth"></td>
-								</tr>
-							</tbody>
-						</table>
+
+									<tr>
 
 
-						<table id="showChildsTable">
-							<tbody>
-							</tbody>
+										<input type="hidden" value="1" name="patientId1"
+											id="patientId1">
+										<td><select class="form-control" id="gender1"
+											name="gender1">
+												<option value="0" name="gender" disabled="">Select
+													Gender</option>
+												<option value="male">Male</option>
+												<option value="female">Female</option>
+										</select></td>
+										<td><input type="text" class="form-control form_datetime"
+											name="dob" id="dob" placeholder="Date Of Birth"></td>
+									</tr>
+								</tbody>
+							</table>
 
-						</table>
+
+							<table id="showChildsTable">
+								<tbody>
+								</tbody>
+
+							</table>
+
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-info"
+							onclick="multiFunctionCall()">Update</button>
+						<button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
 
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-info" onclick="multiFunctionCall()">Update</button>
-					<button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
 
-				</div>
-				
-				
-				
-				<!--   </form> -->
-				<script>
+
+
+					<!--   </form> -->
+					<script>
 					var male = 0;
 					var female = 0;
 				</script>
-				<script>
+					<script>
 					function multiFunctionCall() {
 
 						addChildInList();
@@ -1189,7 +1338,7 @@ width: 100%;
 					}
 				</script>
 
-				<script>
+					<script>
 					function enableDisableContent() {
 						var indicationDiagnos = document
 								.getElementById("indicationDiagnos").value;
@@ -1210,7 +1359,7 @@ width: 100%;
 				</script>
 
 
-				<script>
+					<script>
 					function enableGenDis() {
 
 						var genDis = document.getElementById("genDis").value;
@@ -1223,7 +1372,7 @@ width: 100%;
 
 					}
 				</script>
-				<script>
+					<script>
 					function enableInput() {
 						var nonInvasiveUltra = document
 								.getElementById("nonInvasiveUltra").value;
@@ -1238,7 +1387,7 @@ width: 100%;
 				</script>
 
 
-				<script>
+					<script>
 					function getMaleFemaleChild() {
 
 						var gender = document.getElementById("gender1").value;
@@ -1257,31 +1406,31 @@ width: 100%;
 						document.getElementById("totalChild").value=totalCount;
 					}
 				</script>
-			
-			
-			
-			
-			
 
+
+
+
+
+
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	
-  
- 
-	 
-			
-	<!-- Close model --> 
-	
 
 
 
 
-	<!-- Bootstrap core JavaScript================================================== -->
 
 
-	<script type="text/javascript">
+		<!-- Close model -->
+
+
+
+
+
+		<!-- Bootstrap core JavaScript================================================== -->
+
+
+		<script type="text/javascript">
             
 
             function copyToClipboard(element) {
@@ -1295,38 +1444,39 @@ width: 100%;
  
         </script>
 
-	 
- 
-	
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/owl.carousel.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/jquery.autocomplete.min.js"></script>
 
-	<script
-		src="${pageContext.request.contextPath}/resources/js/ie10-viewport-bug-workaround.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/scrolla.jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
-	<script
-		src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js'></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/lobipanel.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/highlight.pack.js"></script>
-		
-	      	<script
-		src="${pageContext.request.contextPath}/resources/js/fSelect.js"></script>  
-		
-			<script>
+
+
+		<script
+			src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/owl.carousel.js"></script>
+		<script type="text/javascript"
+			src="${pageContext.request.contextPath}/resources/js/jquery.autocomplete.min.js"></script>
+
+		<script
+			src="${pageContext.request.contextPath}/resources/js/ie10-viewport-bug-workaround.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/scrolla.jquery.min.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+		<script
+			src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js'></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/lobipanel.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/highlight.pack.js"></script>
+
+		<script
+			src="${pageContext.request.contextPath}/resources/js/fSelect.js"></script>
+
+		<script>
 (function($) {
     $(function() {
         window.fs_test = $('.multiSelect').fSelect();
@@ -1335,7 +1485,7 @@ width: 100%;
 </script>
 
 
-	<script>
+		<script>
 	
 	var childsModelList=[];
 	<c:forEach items="${pndtPatientDetails.childsModelList}" var="childsModelList">
@@ -1360,12 +1510,6 @@ width: 100%;
 
 
 	</c:forEach>
-	
-	
-	
-	
-	
-	
 	
               function addChildInList(){
         
@@ -1411,11 +1555,11 @@ width: 100%;
             
               
               </script>
-	
 
-	
 
-	<script>
+
+
+		<script>
         $(function(){
             var codes = $('.highlight code');
             codes.each(function (ind, el) {
@@ -1494,7 +1638,7 @@ width: 100%;
         });
         
     </script>
-	<script>
+		<script>
 		$('#myTabs a').click(function(e) {
 			e.preventDefault()
 			$(this).tab('show')
@@ -1502,7 +1646,7 @@ width: 100%;
 	</script>
 
 
-	<script>
+		<script>
 	$(function() {
 	    $("td[colspan=3]").find("p").hide();
 	    $(".collapse").click(function(event) {
@@ -1516,13 +1660,9 @@ width: 100%;
 	    });
 	});
 </script>
-	<script>
-		/* $('#datetimepicker1').datetimepicker({
-			format : 'DD/MM/YYYY'
-		});
-		$('.adult_b').datetimepicker({
-			format : 'DD/MM/YYYY'
-		}); */
+		<script>
+
+
 		function validateForm() {
 			var x = document.forms["myForm"]["fname"].value;
 			if (x == "") {
@@ -1594,9 +1734,9 @@ width: 100%;
 							'thePanel');
 				});
 	</script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/classie.js"></script>
-	<script>
+		<script
+			src="${pageContext.request.contextPath}/resources/js/classie.js"></script>
+		<script>
 		(function() {
 			// trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
 			if (!String.prototype.trim) {
@@ -1633,7 +1773,7 @@ width: 100%;
 		})();
 	</script>
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 		function showAddPrescription() {
 			
 			$(".medicine1 .medicine").focus();
@@ -1757,7 +1897,7 @@ else{
 		 
 	</script>
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 		var clickCount = 0;
 		function getPatientReports() {
 			
@@ -1855,7 +1995,7 @@ else{
 		}
 	</script>
 
-	<script>
+		<script>
 		 
  
 		function getBabyBornCard(patientId) {
@@ -1916,7 +2056,7 @@ else{
 			
 			//Canvas 13-04-2018
  			
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
+		//	ctx.clearRect(0, 0, canvas.width, canvas.height);
 			var reportUrl = document.getElementById("reportUrl").value;
 			var host= window.location.hostname;
 			if (type == 0) {
@@ -1971,275 +2111,38 @@ else{
 				ctx.drawImage(img, 0, 0);
 			}  else {
 				
-				$('#myModal10').remove();
+			/* 	$('#myModal10').remove();
 				 var myClone = originalModal10.clone();
 				    $('body').append(myClone);
 				document.getElementById("reportImage").src = reportUrl+""+patientId+"/reports/"+fileName;
 						
 				$('#myModal10').modal('show');
 				var img = document.getElementById("reportImage");
-				ctx.drawImage(img, 0, 0);
+				ctx.drawImage(img, 0, 0); */
+								
+		
+				
+				var  clearButton = document.getElementById('clear');
+				clearButton.click();
+
+				var a=reportUrl+patientId+"/reports/"+fileName;
+				document.getElementById('reportImageDiv').style.backgroundImage = "url('"+a+"')";
+
+				
+				$('#myModal').modal('show');
+
 			}
 			
 		}
 		
 	 
-		var lastX;
-		var lastY;
-		var strokeColor = "red";
-		var strokeWidth = 5;
-		var mouseX;
-		var mouseY;
-		var canvasOffset = $("#paint").offset();
-		var offsetX = canvasOffset.left;
-		var offsetY = canvasOffset.top;
-		var isMouseDown = false;
-
-		function handleMouseDown(e) {
-			
-			
-			alert("mouse down");
-			mouseX = parseInt(e.clientX - offsetX);
-			mouseY = parseInt(e.clientY - offsetY);
-
-			// Put your mousedown stuff here
-			lastX = mouseX - 220;
-			lastY = mouseY - 80;
-			isMouseDown = true;
-		}
-
-		function handleMouseUp(e) {
-
-			mouseX = parseInt(e.clientX - offsetX);
-			mouseY = parseInt(e.clientY - offsetY);
-
-			// Put your mouseup stuff here
-			isMouseDown = false;
-		}
-
-		function handleMouseOut(e) {
-			mouseX = parseInt(e.clientX - offsetX);
-			mouseY = parseInt(e.clientY - offsetY);
-
-			// Put your mouseOut stuff here
-			isMouseDown = false;
-		}
-
-		function handleMouseMove(e) {
-
-			mouseX = parseInt(e.clientX - offsetX) - 220;
-			mouseY = parseInt(e.clientY - offsetY) - 80;
-
-			// Put your mousemove stuff here
-			if (isMouseDown) {
-				ctx.beginPath();
-				if (mode == "pen") {
-					
-					alert("fg");
-					ctx.globalCompositeOperation = "source-over";
-					ctx.moveTo(lastX, lastY);
-					ctx.lineTo(mouseX, mouseY);
-					ctx.stroke();
-				
-				} else {
-				
-					ctx.globalCompositeOperation = "destination-out";
-					ctx.arc(lastX, lastY, 8, 0, Math.PI * 2, false);
-					ctx.fill();
-				
-				}
-				lastX = mouseX;
-				lastY = mouseY;
-			}
-		}
-
-		$("#paint").mousedown(function(e) {
-			handleMouseDown(e);
-		});
-		$("#paint").mousemove(function(e) {
-			handleMouseMove(e);
-		});
-		$("#paint").mouseup(function(e) {
-			handleMouseUp(e);
-		});
-		$("#paint").mouseout(function(e) {
-			handleMouseOut(e);
-		});
-
-		var mode = "pen";
 	
-		$("#pen11").click(function() {
-			alert("hicc");
-			mode = "pen";
-		});
-		$("#eraser").click(function() {
-			mode = "eraser";
-		}); 
-		
-	
-	 function selectPen(){
-			alert("cdc");
-			mode = "pen";
-		
-	 } 
-		
-		
 		
 		
 		
 	</script>
 
-<!-- <script type="text/javascript">
-
-var div=document.getElementById("sketch");
-var canvas = document.createElement('canvas');
-
-div.appendChild(canvas)
-var context = canvas.getContext("2d");
-
-/* context = canvas.getContext("2d"); */
-context.strokeStyle = "#ff0000";
-context.lineJoin = "round";
-context.lineWidth = 5;
-
-var clickX = [];
-var clickY = [];
-var clickDrag = [];
-var paint;
-
-/**
- * Add information where the user clicked at.
- * @param {number} x
- * @param {number} y
- * @return {boolean} dragging
- */
-function addClick(x, y, dragging) {
-    clickX.push(x);
-    clickY.push(y);
-    clickDrag.push(dragging);
-}
-
-/**
- * Redraw the complete canvas.
- */
-function redraw() {
-    // Clears the canvas
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-	alert("cc");
-    for (var i = 0; i < clickX.length; i += 1) {
-        if (!clickDrag[i] && i == 0) {
-            context.beginPath();
-            context.moveTo(clickX[i], clickY[i]);
-            context.stroke();
-        } else if (!clickDrag[i] && i > 0) {
-            context.closePath();
-
-            context.beginPath();
-            context.moveTo(clickX[i], clickY[i]);
-            context.stroke();
-        } else {
-            context.lineTo(clickX[i], clickY[i]);
-            context.stroke();
-        }
-    }
-}
-
-/**
- * Draw the newly added point.
- * @return {void}
- */
-function drawNew() {
-    var i = clickX.length - 1
-    if (!clickDrag[i]) {
-        if (clickX.length == 0) {
-            context.beginPath();
-            context.moveTo(clickX[i], clickY[i]);
-            context.stroke();
-        } else {
-            context.closePath();
-
-            context.beginPath();
-            context.moveTo(clickX[i], clickY[i]);
-            context.stroke();
-        }
-    } else {
-        context.lineTo(clickX[i], clickY[i]);
-        context.stroke();
-    }
-}
-
-function mouseDownEventHandler(e) {
-    paint = true;
-    var x = e.pageX - canvas.offsetLeft;
-    var y = e.pageY - canvas.offsetTop;
-    if (paint) {
-        addClick(x, y, false);
-        drawNew();
-    }
-}
-
-function touchstartEventHandler(e) {
-    paint = true;
-    if (paint) {
-        addClick(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop, false);
-        drawNew();
-    }
-}
-
-function mouseUpEventHandler(e) {
-    context.closePath();
-    paint = false;
-}
-
-function mouseMoveEventHandler(e) {
-    var x = e.pageX - canvas.offsetLeft;
-    var y = e.pageY - canvas.offsetTop;
-    if (paint) {
-        addClick(x, y, true);
-        drawNew();
-    }
-}
-
-function touchMoveEventHandler(e) {
-    if (paint) {
-        addClick(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop, true);
-        drawNew();
-    }
-}
-
-function setUpHandler(isMouseandNotTouch, detectEvent) {
-    removeRaceHandlers();
-    if (isMouseandNotTouch) {
-        canvas.addEventListener('mouseup', mouseUpEventHandler);
-        canvas.addEventListener('mousemove', mouseMoveEventHandler);
-        canvas.addEventListener('mousedown', mouseDownEventHandler);
-        mouseDownEventHandler(detectEvent);
-    } else {
-        canvas.addEventListener('touchstart', touchstartEventHandler);
-        canvas.addEventListener('touchmove', touchMoveEventHandler);
-        canvas.addEventListener('touchend', mouseUpEventHandler);
-        touchstartEventHandler(detectEvent);
-    }
-}
-
-function mouseWins(e) {
-    setUpHandler(true, e);
-}
-
-function touchWins(e) {
-    setUpHandler(false, e);
-}
-
-function removeRaceHandlers() {
-    canvas.removeEventListener('mousedown', mouseWins);
-    canvas.removeEventListener('touchstart', touchWins);
-}
-
-canvas.addEventListener('mousedown', mouseWins);
-canvas.addEventListener('touchstart', touchWins);
-
-</script> -->
-	<script>
+		<script>
 	//This is use for show consult history 
   function getPatientConsultedHistory(patientId){
 		 
@@ -2394,8 +2297,8 @@ canvas.addEventListener('touchstart', touchWins);
 		
 	</script>
 
-	<!-- suggesting cities -->
-	<script type="text/javascript">
+		<!-- suggesting cities -->
+		<script type="text/javascript">
 	 
 	
 	 var medicines = [];
@@ -2442,11 +2345,11 @@ canvas.addEventListener('touchstart', touchWins);
 
 
 
-	 
-		 
-	 
-	 
-	<script type="text/javascript">
+
+
+
+
+		<script type="text/javascript">
 	function toggle_visibility(id) {
 		var e = document.getElementById(id);
 		e.style.display = ((e.style.display!='none') ? 'none' : 'block');
@@ -2493,8 +2396,8 @@ canvas.addEventListener('touchstart', touchWins);
 
 		});
 	</script>
-	 
-	<script type="text/javascript">
+
+		<script type="text/javascript">
 function showSecA(sec)
 	{
 	if(sec==1){
@@ -2547,7 +2450,7 @@ function showSecA(sec)
 
 
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 function getPatientHistory(patientId,appoitId)
 	{
  
@@ -2668,7 +2571,7 @@ $.getJSON('${getPatientHistoryByPatientId}', {
 
 
 
-<script type="text/javascript">
+		<script type="text/javascript">
 function clearFields(){
 	
 	document.getElementById("medicine").value="";
@@ -2680,12 +2583,12 @@ function clearFields(){
 	document.getElementById("inlineCheckbox3").checked=false;
 }
 </script>
-<script>
+		<script>
 document.getElementById("callDiv").style.display="none";
  
 </script>
 
-<script>
+		<script>
 $(document).ready(function () {
     //Toggle fullscreen
     $("#panel-fullscreen").click(function (e) {
@@ -2711,7 +2614,7 @@ $(document).ready(function () {
 
 
 </script>
-<script type="text/javascript">
+		<script type="text/javascript">
 function checkPaymentStatus1(){
 	
 	
@@ -2751,7 +2654,7 @@ function checkPaymentStatus1(){
 }
 
 </script>
-	<script type="text/javascript">
+		<script type="text/javascript">
  
 
   function searchData() {
@@ -2846,7 +2749,7 @@ function checkPaymentStatus1(){
 }
 </script>
 
-<script type="text/javascript">
+		<script type="text/javascript">
 
 function videoCallToPatient()
 {
@@ -2926,12 +2829,12 @@ function sendMessage()
 
 
 </script>
-<script type="text/javascript">
+		<script type="text/javascript">
 function openModell() {
 	$('#myModal78').modal('show');
 }
 </script>
-<script type="text/javascript">
+		<script type="text/javascript">
 
 
 
@@ -3021,7 +2924,7 @@ function addIndication() {
 
 </script>
 
-<script>
+		<script>
         function calculateWeeksAndDays(){
         var lastMenstPeriod=document.getElementById("nameField").value;
         
@@ -3066,12 +2969,455 @@ function addIndication() {
         document.getElementById("totWeekNDay").value=totalWeeksAndDay;
         }
         </script>
-         <script type="text/javascript">
+		<script type="text/javascript">
 		$('.form_datetime').datepicker({
 			autoclose : true,
 			format : "dd-mm-yyyy"
 		})
 	</script>
-        
+
+
+
+
+		<script>
+
+
+var SignaturePad = (function(document) {
+    "use strict";
+
+    var log = console.log.bind(console);
+
+    var SignaturePad = function(canvas, options) {
+        var self = this,
+            opts = options || {};
+
+        this.velocityFilterWeight = opts.velocityFilterWeight || 0.7;
+        this.minWidth = opts.minWidth || 0.5;
+        this.maxWidth = opts.maxWidth || 2.5;
+        this.dotSize = opts.dotSize || function() {
+                return (self.minWidth + self.maxWidth) / 2;
+            };
+        this.penColor = opts.penColor || "black";
+        this.backgroundColor = opts.backgroundColor || "rgba(0,0,0,0)";
+        this.throttle = opts.throttle || 0;
+        this.throttleOptions = {
+            leading: true,
+            trailing: true
+        };
+        this.minPointDistance = opts.minPointDistance || 0;
+        this.onEnd = opts.onEnd;
+        this.onBegin = opts.onBegin;
+
+        this._canvas = canvas;
+        this._ctx = canvas.getContext("2d");
+        this._ctx.lineCap = 'round';
+        this.clear();
+
+        // we need add these inline so they are available to unbind while still having
+        //  access to 'self' we could use _.bind but it's not worth adding a dependency
+        this._handleMouseDown = function(event) {
+            if (event.which === 1) {
+                self._mouseButtonDown = true;
+                self._strokeBegin(event);
+            }
+        };
+
+        var _handleMouseMove = function(event) {
+           event.preventDefault();
+            if (self._mouseButtonDown) {
+                self._strokeUpdate(event);
+                if (self.arePointsDisplayed) {
+                    var point = self._createPoint(event);
+                    self._drawMark(point.x, point.y, 5);
+                }
+            }
+        };
+
+        this._handleMouseMove = _.throttle(_handleMouseMove, self.throttle, self.throttleOptions);
+        //this._handleMouseMove = _handleMouseMove;
+
+        this._handleMouseUp = function(event) {
+            if (event.which === 1 && self._mouseButtonDown) {
+                self._mouseButtonDown = false;
+                self._strokeEnd(event);
+            }
+        };
+
+        this._handleTouchStart = function(event) {
+            if (event.targetTouches.length == 1) {
+                var touch = event.changedTouches[0];
+                self._strokeBegin(touch);
+            }
+        };
+
+        var _handleTouchMove = function(event) {
+            // Prevent scrolling.
+            event.preventDefault();
+
+            var touch = event.targetTouches[0];
+            self._strokeUpdate(touch);
+            if (self.arePointsDisplayed) {
+                var point = self._createPoint(touch);
+                self._drawMark(point.x, point.y, 5);
+            }
+        };
+        this._handleTouchMove = _.throttle(_handleTouchMove, self.throttle, self.throttleOptions);
+        //this._handleTouchMove = _handleTouchMove;
+
+        this._handleTouchEnd = function(event) {
+            var wasCanvasTouched = event.target === self._canvas;
+            if (wasCanvasTouched) {
+                event.preventDefault();
+                self._strokeEnd(event);
+            }
+        };
+
+        this._handleMouseEvents();
+        this._handleTouchEvents();
+    };
+
+    SignaturePad.prototype.clear = function() {
+        var ctx = this._ctx,
+            canvas = this._canvas;
+
+        ctx.fillStyle = this.backgroundColor;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        this._reset();
+    };
+
+    SignaturePad.prototype.showPointsToggle = function() {
+        this.arePointsDisplayed = !this.arePointsDisplayed;
+    };
+
+    SignaturePad.prototype.toDataURL = function(imageType, quality) {
+        var canvas = this._canvas;
+        return canvas.toDataURL.apply(canvas, arguments);
+    };
+
+    SignaturePad.prototype.fromDataURL = function(dataUrl) {
+        var self = this,
+            image = new Image(),
+            ratio = window.devicePixelRatio || 1,
+            width = this._canvas.width / ratio,
+            height = this._canvas.height / ratio;
+
+        this._reset();
+        image.src = dataUrl;
+        image.onload = function() {
+            self._ctx.drawImage(image, 0, 0, width, height);
+        };
+        this._isEmpty = false;
+    };
+
+    SignaturePad.prototype._strokeUpdate = function(event) {
+        var point = this._createPoint(event);
+        if(this._isPointToBeUsed(point)){
+            this._addPoint(point);
+        }
+    };
+
+    var pointsSkippedFromBeingAdded = 0;
+    SignaturePad.prototype._isPointToBeUsed = function(point) {
+        // Simplifying, De-noise
+        if(!this.minPointDistance)
+            return true;
+
+        var points = this.points;
+        if(points && points.length){
+            var lastPoint = points[points.length-1];
+            if(point.distanceTo(lastPoint) < this.minPointDistance){
+                // log(++pointsSkippedFromBeingAdded);
+                return false;
+            }
+        }
+        return true;
+    };
+
+    SignaturePad.prototype._strokeBegin = function(event) {
+        this._reset();
+        this._strokeUpdate(event);
+        if (typeof this.onBegin === 'function') {
+            this.onBegin(event);
+        }
+    };
+
+    SignaturePad.prototype._strokeDraw = function(point) {
+        var ctx = this._ctx,
+            dotSize = typeof(this.dotSize) === 'function' ? this.dotSize() : this.dotSize;
+
+        ctx.beginPath();
+        this._drawPoint(point.x, point.y, dotSize);
+        ctx.closePath();
+        ctx.fill();
+    };
+
+    SignaturePad.prototype._strokeEnd = function(event) {
+        var canDrawCurve = this.points.length > 2,
+            point = this.points[0];
+
+        if (!canDrawCurve && point) {
+            this._strokeDraw(point);
+        }
+        if (typeof this.onEnd === 'function') {
+            this.onEnd(event);
+        }
+    };
+
+    SignaturePad.prototype._handleMouseEvents = function() {
+        this._mouseButtonDown = false;
+
+        this._canvas.addEventListener("mousedown", this._handleMouseDown);
+        this._canvas.addEventListener("mousemove", this._handleMouseMove);
+        document.addEventListener("mouseup", this._handleMouseUp);
+    };
+
+    SignaturePad.prototype._handleTouchEvents = function() {
+        // Pass touch events to canvas element on mobile IE11 and Edge.
+        this._canvas.style.msTouchAction = 'none';
+        this._canvas.style.touchAction = 'none';
+
+        this._canvas.addEventListener("touchstart", this._handleTouchStart);
+        this._canvas.addEventListener("touchmove", this._handleTouchMove);
+        this._canvas.addEventListener("touchend", this._handleTouchEnd);
+    };
+
+    SignaturePad.prototype.on = function() {
+        this._handleMouseEvents();
+        this._handleTouchEvents();
+    };
+
+    SignaturePad.prototype.off = function() {
+        this._canvas.removeEventListener("mousedown", this._handleMouseDown);
+        this._canvas.removeEventListener("mousemove", this._handleMouseMove);
+        document.removeEventListener("mouseup", this._handleMouseUp);
+
+        this._canvas.removeEventListener("touchstart", this._handleTouchStart);
+        this._canvas.removeEventListener("touchmove", this._handleTouchMove);
+        this._canvas.removeEventListener("touchend", this._handleTouchEnd);
+    };
+
+    SignaturePad.prototype.isEmpty = function() {
+        return this._isEmpty;
+    };
+
+    SignaturePad.prototype._reset = function() {
+        this.points = [];
+        this._lastVelocity = 0;
+        this._lastWidth = (this.minWidth + this.maxWidth) / 2;
+        this._isEmpty = true;
+        this._ctx.fillStyle = this.penColor;
+    };
+
+    SignaturePad.prototype._createPoint = function(event) {
+        var rect = this._canvas.getBoundingClientRect();
+        return new Point(
+            event.clientX - rect.left,
+            event.clientY - rect.top
+        );
+    };
+
+    SignaturePad.prototype._addPoint = function(point) {
+        var points = this.points,
+            c2, c3,
+            curve, tmp;
+
+        points.push(point);
+
+        if (points.length > 2) {
+            // To reduce the initial lag make it work with 3 points
+            // by copying the first point to the beginning.
+            if (points.length === 3) points.unshift(points[0]);
+
+            tmp = this._calculateCurveControlPoints(points[0], points[1], points[2]);
+            c2 = tmp.c2;
+            tmp = this._calculateCurveControlPoints(points[1], points[2], points[3]);
+            c3 = tmp.c1;
+            curve = new Bezier(points[1], c2, c3, points[2]);
+            this._addCurve(curve);
+
+            // Remove the first element from the list,
+            // so that we always have no more than 4 points in points array.
+            points.shift();
+        }
+    };
+
+    SignaturePad.prototype._calculateCurveControlPoints = function(s1, s2, s3) {
+        var dx1 = s1.x - s2.x,
+            dy1 = s1.y - s2.y,
+            dx2 = s2.x - s3.x,
+            dy2 = s2.y - s3.y,
+
+            m1 = {
+                x: (s1.x + s2.x) / 2.0,
+                y: (s1.y + s2.y) / 2.0
+            },
+            m2 = {
+                x: (s2.x + s3.x) / 2.0,
+                y: (s2.y + s3.y) / 2.0
+            },
+
+            l1 = Math.sqrt(1.0 * dx1 * dx1 + dy1 * dy1),
+            l2 = Math.sqrt(1.0 * dx2 * dx2 + dy2 * dy2),
+
+            dxm = (m1.x - m2.x),
+            dym = (m1.y - m2.y),
+
+            k = l2 / (l1 + l2),
+            cm = {
+                x: m2.x + dxm * k,
+                y: m2.y + dym * k
+            },
+
+            tx = s2.x - cm.x,
+            ty = s2.y - cm.y;
+
+        return {
+            c1: new Point(m1.x + tx, m1.y + ty),
+            c2: new Point(m2.x + tx, m2.y + ty)
+        };
+    };
+
+    SignaturePad.prototype._addCurve = function(curve) {
+        var startPoint = curve.startPoint,
+            endPoint = curve.endPoint,
+            velocity, newWidth;
+
+        velocity = endPoint.velocityFrom(startPoint);
+        velocity = this.velocityFilterWeight * velocity +
+            (1 - this.velocityFilterWeight) * this._lastVelocity;
+
+        newWidth = this._strokeWidth(velocity);
+        this._drawCurve(curve, this._lastWidth, newWidth);
+
+        this._lastVelocity = velocity;
+        this._lastWidth = newWidth;
+    };
+
+    SignaturePad.prototype._drawPoint = function(x, y, size) {
+        var ctx = this._ctx;
+
+        ctx.moveTo(x, y);
+        ctx.arc(x, y, size, 0, 2 * Math.PI, false);
+        this._isEmpty = false;
+    };
+
+    SignaturePad.prototype._drawMark = function(x, y, size) {
+        var ctx = this._ctx;
+
+        ctx.save();
+        ctx.moveTo(x, y);
+        ctx.arc(x, y, size, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'rgba(255, 0, 0, 0.2)';
+        ctx.fill();
+        ctx.restore();
+    };
+
+    SignaturePad.prototype._drawCurve = function(curve, startWidth, endWidth) {
+        var ctx = this._ctx,
+            widthDelta = endWidth - startWidth,
+            drawSteps, width, i, t, tt, ttt, u, uu, uuu, x, y;
+
+        drawSteps = Math.floor(curve.length());
+        ctx.beginPath();
+        for (i = 0; i < drawSteps; i++) {
+            // Calculate the Bezier (x, y) coordinate for this step.
+            t = i / drawSteps;
+            tt = t * t;
+            ttt = tt * t;
+            u = 1 - t;
+            uu = u * u;
+            uuu = uu * u;
+
+            x = uuu * curve.startPoint.x;
+            x += 3 * uu * t * curve.control1.x;
+            x += 3 * u * tt * curve.control2.x;
+            x += ttt * curve.endPoint.x;
+
+            y = uuu * curve.startPoint.y;
+            y += 3 * uu * t * curve.control1.y;
+            y += 3 * u * tt * curve.control2.y;
+            y += ttt * curve.endPoint.y;
+
+            width = startWidth + ttt * widthDelta;
+            this._drawPoint(x, y, width);
+        }
+        ctx.closePath();
+        ctx.fill();
+    };
+
+    SignaturePad.prototype._strokeWidth = function(velocity) {
+        return Math.max(this.maxWidth / (velocity + 1), this.minWidth);
+    };
+
+    var Point = function(x, y, time) {
+        this.x = x;
+        this.y = y;
+        this.time = time || new Date().getTime();
+    };
+
+    Point.prototype.velocityFrom = function(start) {
+        return (this.time !== start.time) ? this.distanceTo(start) / (this.time - start.time) : 1;
+    };
+
+    Point.prototype.distanceTo = function(start) {
+        return Math.sqrt(Math.pow(this.x - start.x, 2) + Math.pow(this.y - start.y, 2));
+    };
+
+    var Bezier = function(startPoint, control1, control2, endPoint) {
+        this.startPoint = startPoint;
+        this.control1 = control1;
+        this.control2 = control2;
+        this.endPoint = endPoint;
+    };
+
+    // Returns approximated length.
+    Bezier.prototype.length = function() {
+        var steps = 10,
+            length = 0,
+            i, t, cx, cy, px, py, xdiff, ydiff;
+
+        for (i = 0; i <= steps; i++) {
+            t = i / steps;
+            cx = this._point(t, this.startPoint.x, this.control1.x, this.control2.x, this.endPoint.x);
+            cy = this._point(t, this.startPoint.y, this.control1.y, this.control2.y, this.endPoint.y);
+            if (i > 0) {
+                xdiff = cx - px;
+                ydiff = cy - py;
+                length += Math.sqrt(xdiff * xdiff + ydiff * ydiff);
+            }
+            px = cx;
+            py = cy;
+        }
+        return length;
+    };
+
+    Bezier.prototype._point = function(t, start, c1, c2, end) {
+        return start * (1.0 - t) * (1.0 - t) * (1.0 - t) +
+            3.0 * c1 * (1.0 - t) * (1.0 - t) * t +
+            3.0 * c2 * (1.0 - t) * t * t +
+            end * t * t * t;
+    };
+
+    return SignaturePad;
+})(document);
+
+var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
+    backgroundColor: 'rgba(255, 255, 255, 0)',
+    penColor: 'rgb(255, 0, 0)',
+    velocityFilterWeight: .1,
+    minWidth: 0.5,
+    maxWidth: 2.5,
+    throttle: 16, // max x milli seconds on event update, OBS! this introduces lag for event update
+    minPointDistance: 3,
+});
+var  clearButton = document.getElementById('clear');
+
+
+clearButton.addEventListener('click', function(event) {
+    signaturePad.clear();
+});
+
+</script>
 </body>
 </html>
