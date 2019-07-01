@@ -27,11 +27,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bionische.biocare.common.Constant;
 import com.bionische.biocare.common.DateConverter;
-import com.bionische.biocare.common.VpsImageUpload;
 import com.bionische.biocare.patient.model.Info;
 import com.bionische.biocare.patientdoctor.model.PrescriptionDetails;
 import com.bionische.biocare.pharmacy.model.GetMedicalOrderDetails;
+import com.bionische.biocare.pharmacy.model.GetPrescriptionDetailsForInvoice;
 import com.bionische.biocare.pharmacy.model.GetPrescriptionDetailsForOrder;
+import com.bionische.biocare.pharmacy.model.GetPrescriptionDetailsWithDoctorDetails;
 import com.bionische.biocare.pharmacy.model.GetSelfUploadedPrescriptionToMedical;
 import com.bionische.biocare.pharmacy.model.MedicalDetails;
 import com.bionische.biocare.pharmacy.model.PrescriptionOrderDetails;
@@ -75,7 +76,7 @@ public class MedicalOrderController {
 	
 	
 	@RequestMapping(value = "/getPrescriptionDetailsForOrder", method = RequestMethod.GET)
-	@ResponseBody public List<GetPrescriptionDetailsForOrder> getPrescriptionDetailsForOrder(HttpServletRequest request, HttpServletResponse response) {
+	@ResponseBody public GetPrescriptionDetailsWithDoctorDetails getPrescriptionDetailsForOrder(HttpServletRequest request, HttpServletResponse response) {
 		  getPrescriptionDetailsForOrderList=new ArrayList<GetPrescriptionDetailsForOrder>();
 	
 		int requestId=Integer.parseInt(request.getParameter("requestId"));
@@ -85,20 +86,47 @@ public class MedicalOrderController {
 		
 		try {
 			
-			ParameterizedTypeReference<List<GetPrescriptionDetailsForOrder>> typeRef = new ParameterizedTypeReference<List<GetPrescriptionDetailsForOrder>>() {
-			};
-			ResponseEntity<List<GetPrescriptionDetailsForOrder>> responseEntity =Constant.getRestTemplate().exchange(Constant.url + "getPrescriptionDetailsForOrder",	HttpMethod.POST, new HttpEntity<MultiValueMap<String, Object>>(map), typeRef);
+			 
+			GetPrescriptionDetailsWithDoctorDetails getPrescriptionDetailsWithDoctorDetails =Constant.getRestTemplate().postForObject(Constant.url + "getPrescriptionDetailsAndDoctorDetails",	map,GetPrescriptionDetailsWithDoctorDetails.class);
 			
-			getPrescriptionDetailsForOrderList=responseEntity.getBody();
+			getPrescriptionDetailsForOrderList=getPrescriptionDetailsWithDoctorDetails.getGetPrescriptionDetailsForOrderList();
 			
 			 
-			 
+			return getPrescriptionDetailsWithDoctorDetails;
 		} catch (Exception e) {
 			logger.error("Error while Getting Preecsription details by request Id", e);
 			throw new RuntimeException("Error while Preecsription details by request Id", e);
 		}
 		
-	return getPrescriptionDetailsForOrderList;
+	
+	}
+	
+	
+	
+	@RequestMapping(value = "/getPrescriptionDetailsForInvoice", method = RequestMethod.GET)
+	@ResponseBody public GetPrescriptionDetailsForInvoice getPrescriptionDetailsForInvoice(HttpServletRequest request, HttpServletResponse response) {
+		  getPrescriptionDetailsForOrderList=new ArrayList<GetPrescriptionDetailsForOrder>();
+	
+		int requestId=Integer.parseInt(request.getParameter("requestId"));
+		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+		map.add("requestId", requestId);
+	 
+		
+		try {
+		 
+			 
+			GetPrescriptionDetailsForInvoice getPrescriptionDetailsForInvoice =Constant.getRestTemplate().postForObject(Constant.url + "getPrescriptionDetailsForInvoice",	map,GetPrescriptionDetailsForInvoice.class);
+			
+			getPrescriptionDetailsForOrderList=getPrescriptionDetailsForInvoice.getGetPrescriptionDetailsForOrderList();
+			
+			 
+			return getPrescriptionDetailsForInvoice;
+		} catch (Exception e) {
+			logger.error("Error while Getting Preecsription details by request Id", e);
+			throw new RuntimeException("Error while Preecsription details by request Id", e);
+		}
+		
+	
 	}
 	
 	

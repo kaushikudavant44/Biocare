@@ -35,7 +35,8 @@
 <c:url var="getPrescriptionByMeetingId" value="/getPrescriptionByMeetingId" />
 <c:url var="showMyAllOder" value="/showMyAllOder" />
 <c:url var="cancelOrder" value="/cancelOrder" />
-
+<c:url var="getPrescriptionDetailsForOrder" value="/getPrescriptionDetailsForOrder" />
+<c:url var="getPrescriptionDetailsForInvoice" value="/getPrescriptionDetailsForInvoice" />
 
 <div class="clearfix"></div>
 <section class="doc_login inssurance_buy" id="medicine">
@@ -201,7 +202,7 @@
                 					
                 						<div class="palce-text">
                 						<div class="order-cancel-btn">
-			<a class="btn-fr-all top-xs" href="#" data-toggle="modal" data-target="#largeModal" onclick="showPrescription(${PatientOrderDetailsList.meetId},'${PatientOrderDetailsList.doctorName}')"><span class="hidden-xs">View</span> Prescription </a>                				</div>		
+			<a class="btn-fr-all top-xs" href="#" data-toggle="modal" data-target="#largeModal" onclick="getPrescriptionDetails(${PatientOrderDetailsList.requestToMedicalId})"><span class="hidden-xs">View</span> Prescription </a>                				</div>		
                 					    
                 														
 										</div>
@@ -397,12 +398,12 @@
                 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
                 				
                 				<div class="order-cancel-btn">
-                					<a class="btn-fr-all top-xs" href="<%-- ${pageContext.request.contextPath}/showPharmacyBill/${PatientOrderDetailsList.requestToMedicalId}/${PatientOrderDetailsList.meetId} --%> #" data-toggle="modal" data-target="#bill"><span class="hidden-xs">View</span> Bill </a>
+                					<a class="btn-fr-all top-xs" href="#" onclick="getPrescriptionDetailsForInvoice(${PatientOrderDetailsList.requestToMedicalId},${PatientOrderDetailsList.totalAmt});" data-toggle="modal" data-target="#bill"><span class="hidden-xs">View</span> Bill </a>
                 				</div>
                 				</div>
                 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5">
                 				<div class="order-cancel-btn">
-                					<a class="btn-fr-all top-xs" href="#" data-toggle="modal" data-target="#largeModal" onclick="showPrescription(${PatientOrderDetailsList.meetId},'${PatientOrderDetailsList.doctorName}')"><span class="hidden-xs">View</span> Prescription </a>
+                					<a class="btn-fr-all top-xs" href="#" data-toggle="modal" data-target="#largeModal" onclick="getPrescriptionDetails(${PatientOrderDetailsList.requestToMedicalId})"><span class="hidden-xs">View</span> Prescription </a>
                 				</div>
                 				</div>
                 				</div>
@@ -730,7 +731,7 @@
 							aria-hidden="true">&times;</button>
 							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
-							<h4 class="modal-title">Hospital Name <br> <span  id="docName"></span></h4>
+							<h4 class="modal-title"><span id="hospitalName"></span> <br> <span  id="drName"></span></h4>
 							<hr>
 							<div class="circle1">
 							<i class="fa fa-list-ul" aria-hidden="true"></i>
@@ -751,6 +752,7 @@
 	                		<br>
  						 	 <div class="table-responsive">
         	<table width="100%" border="0" class="tbl table table-bordered table table-hover" id="prescTable">
+        	<thead>
    <tr align="center">
     <th>Sr.No</th>
     <th>Medicine</th>
@@ -758,13 +760,15 @@
     <th>Instructions</th>
     <th>Timing</th>
   </tr>
-
+</thead>
+<tbody>
+</tbody>
 </table> 
 
         </div>
         <hr>
 					<div class="signB">
-						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
+						Signature: <img id="doctorSign" class="img-responsive img-center">
 					</div>
 
 					</div>
@@ -779,118 +783,106 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="margin-top: 20%;">
 				<div class="modal-body card_sec" id="displayTable">
-				<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
-						<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-								<hr>
-							<h4 class="modal-title"> Bio pharma</h4>
-							<h5 class="text-right"><strong>Address : </strong> <span>Nasalapur,Nashik,Maharashtra
- </span></h5>
-	                				<!-- <h5><strong>Hospital Name :</strong> <span> Surya Multispaclity Hospital </span></h5> -->
-	                			<h5 class="text-right"><strong>Contact No. :</strong> <span>7276757346</span></h5>
-	                			<h5 class="text-right"><strong>Email Id. :</strong> <span>gpagar33@gmail.com</span></h5>
-							
-							<div class="circle1">
-							<i class="fa fa-list-ul" aria-hidden="true"></i>
-						</div>
-						<hr>
-					<div class="invoice overflow-auto">
-		        <div>
-		            <header>
-		                <div class="row">
-		                    <div class="col">
-		                   
-		                        <a target="_blank" >
-		                            <img src="${pageContext.request.contextPath}/resources/images/logo.png" data-holder-rendered="true" />
-		                            </a>
-		                    </div>
-		                    <hr>
-		                    <div class="col company-details">
-		                        <h2 class="name">
-		                            <a target="_blank">
-		                            ${getMedicalOrderDetails.medicalName}
-		                            </a>
-		                        </h2>
-		                        <div>${getMedicalOrderDetails.address}</div>
-		                        <div>${getMedicalOrderDetails.contact}</div>
-		                        <div>${getMedicalOrderDetails.email}</div>
-		                    </div>
-		                </div>
-		            </header>
-		            <main>
-		                <div class="row contacts text-left">
-		                    <div class="col-sm-6 invoice-to">
-		                        <div class="text-gray-light"><strong>INVOICE TO:</strong></div>
-		                         <h4 class="to">${getMedicalOrderDetails.patientName} fgdtht</h4>
-		                       <!--  <div class="email"><a >ganesh@example.com</a></div> -->
-		                    </div>
-		                    <div class="col-sm-6 invoice-details text-right">
-		                        <div class="invoice-id"><strong>INVOICE ${getMedicalOrderDetails.requestToMedicalId}</strong></div>
-		                        <h5 class="date"><span>Date of Invoice: ${getMedicalOrderDetails.paymentDate}</span></h5>
-		                    </div>
-		                </div>
-		                <table border="0" cellspacing="0" cellpadding="0">
-		                    <thead>
-		                        <tr>
-		                            <th >SR.NO.</th>
-		                            <th class="text-center">ITEM NAME</th>
-		                            <th class="text-right">QTY</th>
-		                            <th class="text-right">RATE</th>
-		                            <th class="right">TOTAL</th>
-		                        </tr>
-		                    </thead>
-		                  <c:set var="subtotal" value="${0}"></c:set>
-		                    <tbody>
-		                    
-		                    <c:forEach items="${prescriptionDetailsList}" var="prescriptionDetailsList" varStatus="count">
-		                        <tr>
-		                            <td class="center">${count.index+1}</td>
-		                            <td class="center">${prescriptionDetailsList.medicineName}</td>
-									<td class="qty">${prescriptionDetailsList.quantity}</td>
-		                            <td class="unit">${prescriptionDetailsList.price}</td>
+					<a onclick="printTable()"><span
+						class="icon-printer down-icon-modal"></span></a>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<hr>
+					<h4 class="modal-title" id="medicalName"></h4>
+					<h5 class="text-right">
+						<strong>Address : </strong> <span id="mediclaAddress"> </span>
+					</h5>
 
-		                            <td class="total">${prescriptionDetailsList.price}</td>
-		                            
-		                             <c:set var="subtotal" value="${subtotal + prescriptionDetailsList.price}"></c:set>
-		                        </tr>
-		                      </c:forEach>
-		                    </tbody>
-		                    <tfoot>
-		                        <tr>
-		                            <td colspan="2"></td>
-		                            <td colspan="2">SUBTOTAL</td>
-		                            <td>${subtotal}</td>
-		                        </tr>
-		                       <!--  <tr>
-		                            <td colspan="2"></td>
-		                            <td colspan="2">TAX 25%</td>
-		                            <td>Rs. 1,300.00</td>
-		                        </tr> -->
-		                        <tr>
-		                            <td colspan="2"></td>
-		                            <td colspan="2">GRAND TOTAL</td>
-		                            <td>${subtotal}</td>
-		                        </tr>
-		                    </tfoot>
-		                </table>
-		                <br>
-		                <div class="thanks text-center">Thank you!</div>
-										<br>
-		                <!-- <div class="notices">
+					<h5 class="text-right">
+						<strong>Contact No. :</strong> <span id="medicalContact"> </span>
+					</h5>
+					<h5 class="text-right">
+						<strong>Email Id. :</strong> <span id="medicalEmail"> </span>
+					</h5>
+
+					<div class="circle1">
+						<i class="fa fa-list-ul" aria-hidden="true"></i>
+					</div>
+					<hr>
+					<div class="invoice overflow-auto">
+						<div>
+							<header>
+							<div class="row">
+								<div class="col">
+
+									<a target="_blank"> <img
+										src="${pageContext.request.contextPath}/resources/images/logo.png"
+										data-holder-rendered="true" />
+									</a>
+								</div>
+								<hr>
+
+							</div>
+							</header>
+							<main>
+							<div class="row contacts text-left">
+								<div class="col-sm-6 invoice-to">
+									<div class="text-gray-light">
+										<strong>INVOICE TO:</strong>
+									</div>
+									<h4 class="to" id="patientName"></h4>
+
+								</div>
+								<div class="col-sm-6 invoice-details text-right">
+									<div class="invoice-id">
+										<strong>INVOICE: <span id="invoiceNo"></span></strong>
+									</div>
+									<h5 class="date">
+										<span>Date of Invoice: <span id="invoiceDate"></span></span>
+									</h5>
+								</div>
+							</div>
+							<table border="0" cellspacing="0" cellpadding="0"
+								id="invoiceTable">
+								<thead>
+									<tr>
+										<th>SR.NO.</th>
+										<th class="text-center">ITEM NAME</th>
+										<th class="text-right">QTY</th>
+										 
+										<th class="right">TOTAL</th>
+									</tr>
+								</thead>
+
+								<tbody>
+
+
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="1"></td>
+										<td colspan="2">SUBTOTAL</td>
+										<td><span id="invSubTotal"></span></td>
+									</tr>
+
+									<tr>
+										<td colspan="1"></td>
+										<td colspan="2">GRAND TOTAL</td>
+										<td><span id="invGrandTotal"></span></td>
+									</tr>
+								</tfoot>
+							</table>
+							<br>
+							<div class="thanks text-center">Thank you!</div>
+							<br>
+							<!-- <div class="notices">
 		                    <div>NOTICE:</div>
 		                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-		                </div> -->
-		            </main>
-		            <footer class="invoicefoot">
-		                Invoice was created on a computer and is valid without the signature and seal.
-		            </footer>
-		        </div>
-		        <div></div>
-		    </div>
+		                </div> --> </main>
+							<footer class="invoicefoot"> Invoice was created on a
+							computer and is valid without the signature and sealff. </footer>
+						</div>
+						<div></div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 	<div id="bill2" class="modal fade bs-example-modal-lg reportsDesign"
 		tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">
@@ -1276,6 +1268,110 @@
 	          	 
 	          }
 	            	
+</script>
+
+<script type="text/javascript">
+function getPrescriptionDetails(requestId)
+{
+	   
+	 
+	   
+	 
+	 $('#prescTable tbody tr').remove();
+	 $
+		.getJSON(
+				'${getPrescriptionDetailsForOrder}',
+				{
+					requestId : requestId,
+					
+					ajax : 'true'
+				},
+				function(data) {
+					 
+					 $("#drName").text(data.doctorName);
+					 $("#hospitalName").text(data.hospitalName);
+				 
+					 document.getElementById("doctorSign").src=data.signature;
+					$.each(
+							data.getPrescriptionDetailsForOrderList,
+								function(key, prescriptionList) {
+							 
+								var tr = $('<tr></tr>');
+								
+					 		tr.append($('<td></td>').html(key+1));  
+								tr.append($('<td></td>').html(prescriptionList.medicineName));
+								tr.append($('<td></td>').html(prescriptionList.quantity));
+								tr.append($('<td></td>').html(prescriptionList.medicineInstruction));
+								tr.append($('<td></td>').html(prescriptionList.medicineTiming));
+								 
+								 
+								 
+							 
+					
+								$('#prescTable tbody').append(tr);
+							})	
+							
+							
+				});
+	 
+	 
+}
+
+
+
+function getPrescriptionDetailsForInvoice(requestId,totAmt)
+{
+	   
+	 
+	 
+	 $('#invoiceTable tbody tr').remove();
+	 $
+		.getJSON(
+				'${getPrescriptionDetailsForInvoice}',
+				{
+					requestId : requestId,
+					
+					ajax : 'true'
+				},
+				function(data) {
+					 
+					 $("#medicalName").text(data.medicalName);
+					 $("#mediclaAddress").text(data.address);
+					 $("#medicalContact").text(data.contact);
+					 $("#medicalEmail").text(data.email);
+					 $("#patientName").text(data.patientName);
+					 $("#invoiceNo").text(requestId);
+					 $("#invoiceDate").text(data.invoiceDate);
+					 $("#invSubTotal").text(totAmt);
+					 $("#invGrandTotal").text(totAmt);
+					 
+		              
+		                
+		                        
+					 
+					$.each(
+							data.getPrescriptionDetailsForOrderList,
+								function(key, prescriptionList) {
+								 
+								var tr = $('<tr></tr>');
+								
+						  		tr.append($('<td></td>').html(key+1));  
+								tr.append($('<td></td>').html(prescriptionList.medicineName));
+								tr.append($('<td></td>').html(prescriptionList.quantity));
+							 
+								/* onkeyup=" return checkNum(event,this);" */
+								tr.append($('<td></td>').html(prescriptionList.price+'/-'));
+							 
+					
+								$('#invoiceTable tbody').append(tr);
+							})	
+							
+							
+				});
+	  
+	 
+}
+
 </script>
 </body>
 </html>

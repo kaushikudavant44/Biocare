@@ -168,7 +168,11 @@ public class LabReportsController {
 					patientReportsDetails.setStatus(0);
 
 			
-
+				 
+				if(patientReportsDetails.getFileType()==2) {
+					String filrName="https://www.bionische.com/showDcmViewer?input="+Constant.patientUrl+patientId+"/reports/"+patientReportsDetails.getFileName();
+					patientReportsDetails.setFileName(fileName);
+				}
 				PatientReportsDetails patientReportsDetailsRes = Constant.getRestTemplate().postForObject(
 						Constant.url + "lab/insertPatientReports", patientReportsDetails, PatientReportsDetails.class);
 

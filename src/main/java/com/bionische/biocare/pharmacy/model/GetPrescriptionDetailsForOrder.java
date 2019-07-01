@@ -25,6 +25,8 @@ public class GetPrescriptionDetailsForOrder {
 	private String medicineInstruction;
 	 
 	private String medicineDuration;
+	
+ 
 
 	public int getPrescriptionOrderDetailsId() {
 		return prescriptionOrderDetailsId;
@@ -125,7 +127,8 @@ public class GetPrescriptionDetailsForOrder {
 				+ ", medicineDuration=" + medicineDuration + "]";
 	}
 
+ 
+
 	 
-	
 	
 }

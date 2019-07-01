@@ -35,6 +35,7 @@ import com.bionische.biocare.patient.model.PatientDetails;
 import com.bionische.biocare.patientdoctor.model.AppointmentDetails;
 import com.bionische.biocare.patientdoctor.model.ConsultingDetails;
 import com.bionische.biocare.patientdoctor.model.DoctorPatientMeeting;
+import com.bionische.biocare.patientdoctor.model.GetPrescription;
 import com.bionische.biocare.patientdoctor.model.GetSuggestLabTestFromDoctor;
 import com.bionische.biocare.patientdoctor.model.PrescriptionDetails;
 import com.bionische.biocare.patienthistory.model.PatientAllPersonalHistory;
@@ -47,7 +48,7 @@ public class ConsultingController {
 	RestTemplate rest = new RestTemplate();
 
 	public final Log LOGGER = LogFactory.getLog(ConsultingController.class);
-	
+	List<ConsultingDetails> consultingDetailsList;
 	String paymentMessage=null;
 	 SuggestLabTestFromDoctor suggestLabTestFromDoctor;
 	
@@ -415,7 +416,7 @@ public class ConsultingController {
 		map.add("doctorId", doctorDetails.getDoctorId());
 		map.add("startdate", fromDate);
 		map.add("enddate", toDate);
-		List<ConsultingDetails> consultingDetailsList = new ArrayList<ConsultingDetails>();
+		 consultingDetailsList = new ArrayList<ConsultingDetails>();
 		try {
 			if (fromDate == null) {
 				/*fromDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -535,7 +536,7 @@ public class ConsultingController {
 		HttpSession session = request.getSession();
 		DoctorDetails doctorDetails = (DoctorDetails) session.getAttribute("doctorDetails");
 
-		List<ConsultingDetails> consultingDetailsList = new ArrayList<ConsultingDetails>();
+	  consultingDetailsList = new ArrayList<ConsultingDetails>();
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 		int patientId=Integer.parseInt(request.getParameter("patientId"));
 		
@@ -559,11 +560,55 @@ public class ConsultingController {
 
 	}
 	
+	
+	
+
+	@RequestMapping(value = "/getPrescriptionDetaisByMeetingId", method = RequestMethod.GET)
+	public @ResponseBody GetPrescription getPrescriptionDetaisByMeetingId(HttpServletRequest request,
+			HttpServletResponse response) {
+ 
+		int meetingId = Integer.parseInt(request.getParameter("meetId"));
+
+		List<PrescriptionDetails> prescriptionDetails = new ArrayList<PrescriptionDetails>();
+
+		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+
+		map.add("meetingId", meetingId);
+		GetPrescription getPrescription=new GetPrescription();
+	 
+		
+		
+		try {
+			ConsultingDetails consultingDetails = Constant.getRestTemplate().postForObject(Constant.url + "getConsultingByMeetingId",
+					map, ConsultingDetails.class);
+			getPrescription.setConsultingDetails(consultingDetails);
+		 
+		} catch (Exception e) {
+
+			LOGGER.error("Error while getConsultingByMeetingId.", e);
+			throw new RuntimeException("Error while getConsultingByMeetingId.", e);
+		}
+		
+		try {
+			prescriptionDetails = Constant.getRestTemplate().postForObject(Constant.url + "getPrescriptionByMeetingId",
+					map, List.class);
+			getPrescription.setPrescriptionDetailsList(prescriptionDetails);
+		} catch (Exception e) {
+
+			LOGGER.error("Error while getPrescriptionByMeetingId.", e);
+			throw new RuntimeException("Error while getPrescriptionByMeetingId.", e);
+		}
+
+		return getPrescription;
+	}
+	
+	
+	
 	@RequestMapping(value = "/checkPaymentStatus", method = RequestMethod.GET)
 	public @ResponseBody Info checkPaymentStatus(HttpServletRequest request, HttpServletResponse response) {
 		
 		
-		System.out.println("dsd");
+	 
 		int appointId=Integer.parseInt(request.getParameter("appointId"));
 		MultiValueMap<String, Object> mapApp = new LinkedMultiValueMap<String, Object>();
 		

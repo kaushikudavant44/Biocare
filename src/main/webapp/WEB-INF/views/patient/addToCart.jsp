@@ -414,7 +414,7 @@
 </form>	
 <hr>
 					<div class="signB">
-						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
+						Signature: <img id="doctorSign" class="img-responsive img-center">
 					</div>
 					</div>
 					 
@@ -851,7 +851,7 @@ $.each(
   	
   	document.getElementById("hospitalName").innerHTML =data1.hospitalName; 
   	document.getElementById("drName").innerHTML ="Dr. "+data1.doctorName; 
-		 
+  	document.getElementById("doctorSign").src =data1.signature; 
   	  $('#prescTable td').remove();
    
   	

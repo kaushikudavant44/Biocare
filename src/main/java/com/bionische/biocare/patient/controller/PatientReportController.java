@@ -249,6 +249,10 @@ public String submitOwnRepotsByPatient(@RequestParam("reportFile") List<Multipar
 				patientReportsDetails.setFileType(0);
 			} else if (VpsImageUpload.getFileExtension(file).equalsIgnoreCase(".DCM")) {
 				patientReportsDetails.setFileType(2);
+				
+				String fileWithUrl=Constant.patientUrl+patientId+"/reports/"+fileName;
+				patientReportsDetails.setFileName(fileWithUrl);
+				
 			} else {
 				patientReportsDetails.setFileType(1);
 			}

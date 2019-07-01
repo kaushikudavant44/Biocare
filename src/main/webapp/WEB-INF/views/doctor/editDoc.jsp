@@ -215,7 +215,7 @@
 				<div class="form-group">
 				                     <label for="exampleInputEmail1">Country</label>
 				             <select required class="input-text chosen-select" id="countryId" name="countryId" onchange="getStateBYCountry()">
-				             <option  value ="">---Select Country---</option>
+				             <option selected disabled="disabled"  value ="">---Select Country---</option>
 											 <c:forEach items="${countryList}" var = "countryList">
 											 
 											 

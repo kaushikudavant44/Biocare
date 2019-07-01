@@ -46,8 +46,8 @@
 	<jsp:include page="../include/doctorHeader.jsp" />
 
 
-	<c:url var="getPrescriptionByMeetingId"
-		value="/getPrescriptionByMeetingId" />
+	<c:url var="getPrescriptionDetaisByMeetingId"
+		value="/getPrescriptionDetaisByMeetingId" />
 	<c:url var="getSuggestLabTestFromDoctor"
 		value="/getSuggestLabTestFromDoctor" />
 
@@ -145,7 +145,7 @@
 													
 													
 													
-													<a href="#"><span class="icon-prescription-1" aria-hidden="true" 
+													<a href="#" onclick="getPrescriptionDetails(${consultingDetail.meetId})"><span class="icon-prescription-1" aria-hidden="true" 
 													 data-target="#prescModl" data-toggle="modal"> <i>Prescription</i></span>
 													</a>
 													<!-- data-original-title="Prescription" -->
@@ -319,7 +319,7 @@
 							aria-hidden="true">&times;</button>
 							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
-							<h4 class="modal-title">Hari Om <br> <span  id="docName">Dr. vhjghg</span></h4>
+							<h4 class="modal-title"><span id="hospitalName"></span> <br> <span  id="doctorName"></span></h4>
 							<hr>
 							<div class="circle1">
 							<i class="fa fa-list-ul" aria-hidden="true"></i>
@@ -328,20 +328,20 @@
 					<div class="panel-body pat_consult">
 					<div class="row filled_prescript docconslt">
 												 <div class="col-sm-4"><label>Patient-Problem</label></div>
-							       			<div class="col-sm-8"><p>${consultingDetail.patientProblem}bgbbgbg</p></div>
+							       			<div class="col-sm-8"><p id="problem11"> </p></div>
 							       			<div class="clearfix"></div>
 							       			<div class="col-sm-4"><label>Description</label></div>
-							       			<div class="col-sm-8"><p>${consultingDetail.discussion} gfbgbfb</p></div>
+							       			<div class="col-sm-8"><p id="problem12"><p></div>
 							       			<div class="clearfix"></div>
 							       			<div class="col-sm-4"><label>Instructions</label></div>
-							       			<div class="col-sm-8"><p>${consultingDetail.note}bgbgbtyfgd</p></div>
+							       			<div class="col-sm-8"><p id="problem13"> </p></div>
 							       			<div class="clearfix"></div>
 
 
 													<div class="table-responsive">
 														<table width="100%" border="0"
 															class="tbl table table-bordered table table-hover"
-															id="prescTable${consultingDetail.meetId}">
+															id="prescTable1">
 															<thead>
 																<tr align="center">
 																	<th>Sr.No</th>
@@ -364,7 +364,7 @@
 											</div>
 					<hr>
 					<div class="signB">
-						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
+						Signature: <img  id="doctorSign" class="img-responsive img-center">
 					</div>
 </div>
 				</div>
@@ -705,11 +705,10 @@ $(document).ready(function() {
 
 var prescriptionData=[];
 
- function getPrescriptionDetails(meetId) { 
+function getPrescriptionDetails(meetId) { 
 	 
-	
-	 
-	 $.getJSON('${getPrescriptionByMeetingId}',
+  	
+	 $.getJSON('${getPrescriptionDetaisByMeetingId}',
 
 				{
 		 meetId : meetId,
@@ -718,11 +717,19 @@ var prescriptionData=[];
 
 				}, function(data) {
 					
-					 $('#prescTable'+meetId+' td').remove();
+					 $('#prescTable1 td').remove();
 					
+					 document.getElementById("problem11").innerHTML =data.consultingDetails.patientProblem; 
+				  	 document.getElementById("problem12").innerHTML =data.consultingDetails.discussion; 
+				  	 document.getElementById("problem13").innerHTML =data.consultingDetails.note;  
+				  	
+				  	document.getElementById("hospitalName").innerHTML =data.consultingDetails.hospitalName; 
+				  	document.getElementById("doctorName").innerHTML ="Dr. "+data.consultingDetails.doctorName; 
+				  	document.getElementById("doctorSign").src =data.consultingDetails.signature; 
+				  	
 					$
 					.each(
-							data,
+							data.prescriptionDetailsList,
 							function(key, prescriptionList) {
 
 								var tr = $('<tr></tr>');
@@ -733,11 +740,12 @@ var prescriptionData=[];
 								tr.append($('<td></td>').html(prescriptionList.medicineInstruction));
 								tr.append($('<td></td>').html(prescriptionList.medicineTiming));
 								
-								$('#prescTable'+meetId+' tbody').append(tr);
+								$('#prescTable1 tbody').append(tr);
 							})
-							prescriptionData=data;
+							prescriptionData=data.prescriptionDetailsList;
 				});
 }
+
  
  
  function createPdf1(meetId,hospitalName,doctorName,address,qualification,contact,patientName){

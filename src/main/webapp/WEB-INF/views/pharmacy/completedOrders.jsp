@@ -37,8 +37,8 @@
 		
 		<c:url var="updatePaidStatus" value="/updatePaidStatus" />
 		<c:url var="updateDeliveredStatus" value="/updateDeliveredStatus" />
-		<%-- 	<c:url var="updateUploadedPrescriptionPaidStatus" value="/updateUploadedPrescriptionPaidStatus" />
-		<c:url var="updateUploadedPrescriptionDeliveredStatus" value="/updateUploadedPrescriptionDeliveredStatus" /> --%>
+	
+			<%--<c:url var="updateUploadedPrescriptionDeliveredStatus" value="/updateUploadedPrescriptionDeliveredStatus" /> --%>
   
 <div class="clearfix"></div>
 <section class="doc_login doc_filter">
@@ -164,8 +164,10 @@
 							aria-hidden="true">&times;</button>
 							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
-							<h4 class="modal-title">Hospital Name <br> <span>Dr. Kaushik Udavant</span></h4>
-							<h5 class="text-right"><strong>Contact No. :</strong> <span id="docContact"></span></h5>
+							<h4 class="modal-title" id="hospitalName"></h4>
+							<h5 class="text-right"><strong>Doctor Name : </strong> <span id="docName"> </span></h5>
+	                			 
+	                			<h5 class="text-right"><strong>Contact No. :</strong> <span id="docContact"></span></h5>
 							<hr>
 							<div class="circle1">
 							<i class="fa fa-list-ul" aria-hidden="true"></i>
@@ -221,7 +223,7 @@
 	                			</div>
 	                			<hr>
 					<div class="signB">
-						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
+						Signature: <img id="doctorSign" class="img-responsive img-center">
 					</div>
 
 					</div>
@@ -367,8 +369,7 @@ function getPrescriptionDetails(requestId, doctorName, doctorContact,totAmt)
 {
 	   
 	 
-	   $("#docName").text(doctorName);
-	 $("#docContact").text(doctorContact);
+	  
 	 $("#totAmt").text(totAmt);  
 	 $('#precsription tbody tr').remove();
 	 $
@@ -381,9 +382,13 @@ function getPrescriptionDetails(requestId, doctorName, doctorContact,totAmt)
 				},
 				function(data) {
 					 
-					
+					 $("#docName").text(data.doctorName);
+					 $("#hospitalName").text(data.hospitalName);
+					 $("#docContact").text(data.contact);
+					 document.getElementById("doctorSign").src=data.signature;
+					 
 					$.each(
-							data,
+							data.getPrescriptionDetailsForOrderList,
 								function(key, prescriptionList) {
 								//alert(prescriptionList.medicineName);
 								var tr = $('<tr></tr>');
@@ -407,6 +412,8 @@ function getPrescriptionDetails(requestId, doctorName, doctorContact,totAmt)
 	 
 	 
 }
+
+
 
  
 $('#paidStatus').click(function(){

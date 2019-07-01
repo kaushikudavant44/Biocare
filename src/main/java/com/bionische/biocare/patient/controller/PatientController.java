@@ -319,7 +319,7 @@ catch (Exception e) {
 		List<GetLabAppointment> getlabAppointmentDetailsList = Constant.getRestTemplate()
 				.postForObject(Constant.url + "lab/getLabAppmtDetailsByPatientId",map,  List.class);
 		
-		if(getlabAppointmentDetailsList!=null || getAppointmentDetailsList!=null) {
+		if(!getlabAppointmentDetailsList.isEmpty() || !getAppointmentDetailsList.isEmpty()) {
 		model.addAttribute("getlabAppointmentDetailsList", getlabAppointmentDetailsList);
 		model.addAttribute("getAppointmentDetailsList", getAppointmentDetailsList);
 		model.addAttribute("appointActive", "active");

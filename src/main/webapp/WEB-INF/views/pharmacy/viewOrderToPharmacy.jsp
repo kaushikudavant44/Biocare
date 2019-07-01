@@ -128,7 +128,7 @@
 						<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
 								<hr>
-							<h4 class="modal-title"> Hospital Name </h4>
+							<h4 class="modal-title" id="hospitalName"></h4>
 							<h5 class="text-right"><strong>Doctor Name : </strong> <span id="docName"> </span></h5>
 	                				<!-- <h5><strong>Hospital Name :</strong> <span> Surya Multispaclity Hospital </span></h5> -->
 	                			<h5 class="text-right"><strong>Contact No. :</strong> <span id="docContact"></span></h5>
@@ -197,7 +197,7 @@
 <input type="hidden" id="totAmount" name="totAmount" value="0" required>
 			<hr>
 					<div class="signB">
-						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
+						Signature: <img id="doctorSign" class="img-responsive img-center">
 					</div>
 					<p class="text-center medicine-order"><input type="submit" class="btn-fr-all" value="send"></p>
 					</div>
@@ -334,8 +334,7 @@ jQuery(document).ready(function() {
  {
 	  
 	 document.getElementById("requestId").value=requestId;
-	 $("#docName").text(doctorName);
-	 $("#docContact").text(doctorContact);
+	
 	 $("#totalAmt").text(00);
 	 $('#precsription tbody tr').remove();
 	 $
@@ -348,9 +347,13 @@ jQuery(document).ready(function() {
 				},
 				function(data) {
 					 
-					
+					 $("#docName").text(data.doctorName);
+					 $("#hospitalName").text(data.hospitalName);
+					 $("#docContact").text(data.contact);
+					 document.getElementById("doctorSign").src=data.signature;
+					 
 					$.each(
-							data,
+							data.getPrescriptionDetailsForOrderList,
 								function(key, prescriptionList) {
 								//alert(prescriptionList.medicineName);
 								var tr = $('<tr></tr>');
