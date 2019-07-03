@@ -208,7 +208,12 @@
 												</a><a href="#" onclick="getInvoiceDetails(${getConsultingDetailsByDoctor.meetId})"><span
 													class="icon-newspaper mar-right" aria-hidden="true"
 													data-target="#invoice1" data-toggle="modal" rel="popover" data-placement="bottom"
-													data-original-title="Invoice"> <i>Invoice</i></span></a> <a
+													data-original-title="Invoice"> <i>Invoice</i></span></a> 
+													<a href="#" onclick="getInvoiceDetails(${getConsultingDetailsByDoctor.meetId})"><span
+													class="icon-newspaper mar-right" aria-hidden="true"
+													data-target="#invoiceLab" data-toggle="modal" rel="popover" data-placement="bottom"
+													data-original-title="Invoice"> <i>Lab Invoice</i></span></a>
+													<a
 											
 													href="#" onclick="getSuggestedLabTest(${getConsultingDetailsByDoctor.meetId})"><span
 													class="icon-experiment mar-right" aria-hidden="true"
@@ -390,6 +395,100 @@
 		                    <div class="col-sm-6 invoice-details text-right">
 		                        <div class="invoice-id"><strong>INVOICE: </strong><span id="invoiceNo"></span></div>
 		                        <h5 class="date"><strong>Date of Invoice: </strong><span id="invoiceDate"></span></h5>
+		                    </div>
+		                </div>
+		                <table border="0" cellspacing="0" cellpadding="0">
+		                    <thead>
+		                        <tr>
+		                            <th >SR.NO.</th>
+		                            <th class="text-center">Invoice For</th>
+		                           
+		                            <th class="right">Amount</th>
+		                        </tr>
+		                    </thead>
+		                  
+		                    <tbody>
+		                     <tr>
+		                            <th >1.</th>
+		                            <th class="text-center">Consulting Fees</th>
+		                           
+		                            <th class="right"><span id="amount"></span></th>
+		                        </tr>
+		                     
+		                    </tbody>
+		                    <tfoot>
+		                         
+		                        
+		                        <tr>
+		                            
+		                            <td colspan="2"> TOTAL</td>
+		                            <td><span id="totalAmt"></span></td>
+		                        </tr>
+		                    </tfoot>
+		                </table>
+		                <br>
+		                <div class="thanks text-center">Thank you!</div>
+										<br>
+		                <!-- <div class="notices">
+		                    <div>NOTICE:</div>
+		                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+		                </div> -->
+		            </main>
+		            <footer class="invoicefoot">
+		                Invoice was created on a computer and is valid without the signature and seal.
+		            </footer>
+		        </div>
+		        <div></div>
+		    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="invoiceLab" class="modal fade bs-example-modal-lg reportsDesign"
+		tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" style="margin-top: 20%;">
+				<div class="modal-body card_sec" id="displayTable">
+				<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
+						<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+								<hr>
+							<h4 class="modal-title" id="hospName"></h4>
+					
+							<h5 class="text-right"><strong>Dr.</strong> <span id="docName1"><br>
+ </span><span id="docQualification"></span></h5>
+	                				 <h5 class="text-right"><strong>Address :</strong> </h5> 
+	                			<h5 class="text-right"><strong>Contact No. :</strong> </h5>
+	                			<h5 class="text-right"><strong>Email Id. :</strong> </h5>
+							
+							<div class="circle1">
+							<i class="fa fa-list-ul" aria-hidden="true"></i>
+						</div>
+						<hr>
+					<div class="overflow-auto">
+		        <div>
+		            <header>
+		                <div class="row">
+		                    <div class="col">
+		                   
+		                        <a target="_blank" >
+		                            <img src="${pageContext.request.contextPath}/resources/images/logo.png" data-holder-rendered="true" />
+		                            </a>
+		                    </div>
+		                    <hr>
+		                     
+		                </div>
+		            </header>
+		            <main>
+		                <div class="row contacts text-left">
+		                    <div class="col-sm-6 invoice-to">
+		                        <div class="text-gray-light"><strong>INVOICE TO:</strong></div>
+		                         <h4 class="to" id="patName"> </h4>
+		                       <!--  <div class="email"><a >ganesh@example.com</a></div> -->
+		                    </div>
+		                    <div class="col-sm-6 invoice-details text-right">
+		                        <div class="invoice-id"><strong>INVOICE: </strong></div>
+		                        <h5 class="date"><strong>Date of Invoice: </strong></h5>
 		                    </div>
 		                </div>
 		                <table border="0" cellspacing="0" cellpadding="0">
