@@ -35,6 +35,7 @@ import com.bionische.biocare.patient.model.PatientDetails;
 import com.bionische.biocare.patientdoctor.model.AppointmentDetails;
 import com.bionische.biocare.patientdoctor.model.ConsultingDetails;
 import com.bionische.biocare.patientdoctor.model.DoctorPatientMeeting;
+import com.bionische.biocare.patientdoctor.model.GetConsultingBill;
 import com.bionische.biocare.patientdoctor.model.GetPrescription;
 import com.bionische.biocare.patientdoctor.model.GetSuggestLabTestFromDoctor;
 import com.bionische.biocare.patientdoctor.model.PrescriptionDetails;
@@ -748,4 +749,26 @@ public class ConsultingController {
 		 return "doctor/showPatientSharedReports";
 	 }
 	
+	 
+	 
+	 
+	 
+	 @RequestMapping(value = "/getConsultingBillByMeetId", method = RequestMethod.GET)
+		public @ResponseBody GetConsultingBill getConsultingBillByMeetId(HttpServletRequest request) {
+		 
+		 
+		 MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
+			map.add("meetId", Integer.parseInt(request.getParameter("meetId")));
+		 try {
+		 return Constant.getRestTemplate().postForObject(Constant.url + "getConsultingBillByMeetId", map, GetConsultingBill.class);
+			 
+		 }
+		 catch (Exception e) {
+			 LOGGER.error("Error while getConsultingBillByMeetId", e);
+				 
+		}
+		  return null;
+	 }
+	 
+	 
 }
