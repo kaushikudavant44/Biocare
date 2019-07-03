@@ -108,7 +108,8 @@
 												<th>Sr.No</th>
 												<th>Patient Name</th>
 												<th>Date</th>
-												<th>Report</th>
+												<th>Report Name</th>
+												<th>View Report</th>
 												<th>Payment</th>
 											</tr>
 										</c:when>
@@ -123,7 +124,8 @@
 											<td>${myIndex.index+1}</td>
 											<td>${getPatientReports.patientName}</td>
 											<td>${getPatientReports.date}</td>
-
+<td><a href="#"
+												onclick="openReport(${getPatientReports.reportId},'${getPatientReports.fileName}',${getPatientReports.patientId},${getPatientReports.fileType})">${getPatientReports.labTestName} </a></td>
 											<td><a href="#"
 												onclick="openReport(${getPatientReports.reportId},'${getPatientReports.fileName}',${getPatientReports.patientId},${getPatientReports.fileType})"><i
 													class="icon-eye-with-a-diagonal-line-interface-symbol-for-invisibility
