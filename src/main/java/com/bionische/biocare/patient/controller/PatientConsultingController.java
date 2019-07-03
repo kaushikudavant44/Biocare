@@ -25,6 +25,7 @@ import com.bionische.biocare.common.DateConverter;
 import com.bionische.biocare.doctor.model.DoctorDetails;
 import com.bionische.biocare.patient.model.PatientDetails;
 import com.bionische.biocare.patientdoctor.model.ConsultingDetails;
+import com.bionische.biocare.patientdoctor.model.GetPrescriptionDetailsWithDoctorDetailsByMeetId;
 import com.bionische.biocare.patientdoctor.model.PrescriptionDetails;
 
 @Scope("session")
@@ -246,5 +247,26 @@ public class PatientConsultingController {
 		}
 		return getConsultingDetailsByDoctor;
 	}
+	
+	
+	@RequestMapping(value = "/getPrescriptionWithDoctorByMeetId", method = RequestMethod.GET)
+	public @ResponseBody GetPrescriptionDetailsWithDoctorDetailsByMeetId getPrescriptionWithDoctorByMeetId(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		
+		
+		try {
+			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 
+			map.add("meetId", Integer.parseInt(request.getParameter("meetId")));
+			GetPrescriptionDetailsWithDoctorDetailsByMeetId getPrescriptionDetailsWithDoctorDetailsByMeetId= Constant.getRestTemplate()
+					.postForObject(Constant.url + "getPrescriptionDetailsAndDoctorDetailsByMeetid", map, GetPrescriptionDetailsWithDoctorDetailsByMeetId.class);
+return getPrescriptionDetailsWithDoctorDetailsByMeetId;
+		} catch (Exception e) {
+
+			LOGGER.error("Error while getPrescriptionWithDoctorByMeetId.", e);
+			throw new RuntimeException("Error while getPrescriptionWithDoctorByMeetId.", e);
+		}
+		
+	}
 }

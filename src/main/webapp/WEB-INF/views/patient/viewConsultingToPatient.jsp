@@ -54,15 +54,15 @@
 <body onload="getDoctors();">
 	<jsp:include page="../include/patientHeader.jsp" />
 
-
+ 
 <c:url var="getConsultingBillByMeetId"
 		value="/getConsultingBillByMeetId" />
 	<c:url var="showDoctorProfile" value="/showDoctorProfile" />
 	<c:url var="getRatingAndReviewsDetailsOfDoctor"
 		value="/getRatingAndReviewsDetailsOfDoctor" />
 	
-	<c:url var="getPrescriptionByMeetingId"
-		value="/getPrescriptionByMeetingId" />
+	<c:url var="getPrescriptionWithDoctorByMeetId"
+		value="/getPrescriptionWithDoctorByMeetId" />
 	<c:url var="getDoctorsByPatientId" value="/getDoctorsByPatientId" />
 
 	<c:url var="getDoctorsAndLabsForRating"
@@ -204,16 +204,11 @@
 													</div> <span class="icon-prescription-1 mar-right"
 													aria-hidden="true" data-target="#prescModl" data-toggle="modal" rel="popover"
 													data-placement="bottom" data-original-title="Prescription"
-													<%-- onclick="showPrescription('${getConsultingDetailsByDoctor.patientProblem}','${getConsultingDetailsByDoctor.discussion}','${getConsultingDetailsByDoctor.note}',${getConsultingDetailsByDoctor.meetId},'${getConsultingDetailsByDoctor.hospitalName}','${getConsultingDetailsByDoctor.doctorName}')" --%>><i>Prescription</i></span>
+													  onclick="showPrescription(${getConsultingDetailsByDoctor.meetId},'${getConsultingDetailsByDoctor.patientProblem}','${getConsultingDetailsByDoctor.discussion}','${getConsultingDetailsByDoctor.note}')"><i>Prescription</i></span>
 												</a><a href="#" onclick="getInvoiceDetails(${getConsultingDetailsByDoctor.meetId})"><span
 													class="icon-newspaper mar-right" aria-hidden="true"
 													data-target="#invoice1" data-toggle="modal" rel="popover" data-placement="bottom"
-													data-original-title="Invoice"> <i>Invoice</i></span></a> 
-													<a href="#" onclick="getInvoiceDetails(${getConsultingDetailsByDoctor.meetId})"><span
-													class="icon-newspaper mar-right" aria-hidden="true"
-													data-target="#invoiceLab" data-toggle="modal" rel="popover" data-placement="bottom"
-													data-original-title="Invoice"> <i>Lab Invoice</i></span></a>
-													<a
+													data-original-title="Invoice"> <i>Invoice</i></span></a> <a
 											
 													href="#" onclick="getSuggestedLabTest(${getConsultingDetailsByDoctor.meetId})"><span
 													class="icon-experiment mar-right" aria-hidden="true"
@@ -341,7 +336,7 @@
 					</div>
 					<hr>
 					<div class="signB">
-						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
+						Signature: <img  src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
 					</div>
 
 				</div>
@@ -444,100 +439,6 @@
 			</div>
 		</div>
 	</div>
-	<div id="invoiceLab" class="modal fade bs-example-modal-lg reportsDesign"
-		tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content" style="margin-top: 20%;">
-				<div class="modal-body card_sec" id="displayTable">
-				<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
-						<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-								<hr>
-							<h4 class="modal-title" id="hospName"></h4>
-					
-							<h5 class="text-right"><strong>Dr.</strong> <span id="docName1"><br>
- </span><span id="docQualification"></span></h5>
-	                				 <h5 class="text-right"><strong>Address :</strong> </h5> 
-	                			<h5 class="text-right"><strong>Contact No. :</strong> </h5>
-	                			<h5 class="text-right"><strong>Email Id. :</strong> </h5>
-							
-							<div class="circle1">
-							<i class="fa fa-list-ul" aria-hidden="true"></i>
-						</div>
-						<hr>
-					<div class="overflow-auto">
-		        <div>
-		            <header>
-		                <div class="row">
-		                    <div class="col">
-		                   
-		                        <a target="_blank" >
-		                            <img src="${pageContext.request.contextPath}/resources/images/logo.png" data-holder-rendered="true" />
-		                            </a>
-		                    </div>
-		                    <hr>
-		                     
-		                </div>
-		            </header>
-		            <main>
-		                <div class="row contacts text-left">
-		                    <div class="col-sm-6 invoice-to">
-		                        <div class="text-gray-light"><strong>INVOICE TO:</strong></div>
-		                         <h4 class="to" id="patName"> </h4>
-		                       <!--  <div class="email"><a >ganesh@example.com</a></div> -->
-		                    </div>
-		                    <div class="col-sm-6 invoice-details text-right">
-		                        <div class="invoice-id"><strong>INVOICE: </strong></div>
-		                        <h5 class="date"><strong>Date of Invoice: </strong></h5>
-		                    </div>
-		                </div>
-		                <table border="0" cellspacing="0" cellpadding="0">
-		                    <thead>
-		                        <tr>
-		                            <th >SR.NO.</th>
-		                            <th class="text-center">Invoice For</th>
-		                           
-		                            <th class="right">Amount</th>
-		                        </tr>
-		                    </thead>
-		                  
-		                    <tbody>
-		                     <tr>
-		                            <th >1.</th>
-		                            <th class="text-center">Consulting Fees</th>
-		                           
-		                            <th class="right"><span id="amount"></span></th>
-		                        </tr>
-		                     
-		                    </tbody>
-		                    <tfoot>
-		                         
-		                        
-		                        <tr>
-		                            
-		                            <td colspan="2"> TOTAL</td>
-		                            <td><span id="totalAmt"></span></td>
-		                        </tr>
-		                    </tfoot>
-		                </table>
-		                <br>
-		                <div class="thanks text-center">Thank you!</div>
-										<br>
-		                <!-- <div class="notices">
-		                    <div>NOTICE:</div>
-		                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-		                </div> -->
-		            </main>
-		            <footer class="invoicefoot">
-		                Invoice was created on a computer and is valid without the signature and seal.
-		            </footer>
-		        </div>
-		        <div></div>
-		    </div>
-				</div>
-			</div>
-		</div>
-	</div>
 	 
 	<div id="prescModl"
 		class="modal fade bs-example-modal-md prescription_mod reportsDesign" tabindex="-1"
@@ -549,12 +450,13 @@
 							aria-hidden="true">&times;</button>
 							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
-							<h4 class="modal-title">Hari Om <br> <span  id="docName">Dr. vhjghg</span></h4>
+							<h4 class="modal-title"  id="hospitalName2"> </h4>
+							<h4 class="modal-title"><span  id="doctorName2"></span></h4>
 							<hr>
 							<div class="circle1">
 							<i class="fa fa-list-ul" aria-hidden="true"></i>
 						</div>
-					
+
 					<div class="panel-body pat_consult prescript-Con">
 												<div class="row filled_prescript" id="downloadPrescription">
 													<h3>Prescription</h3>
@@ -562,7 +464,7 @@
 														<label>Problem</label>
 													</div>
 													<div class="col-sm-10">
-														<input id="medicine_nm" value="${getConsultingDetailsByDoctor.patientProblem}" type="text"
+														<input  id="patientProblem2" type="text"
 															readonly="">
 													</div>
 													<div class="clearfix"></div>
@@ -570,21 +472,21 @@
 														<label>Discussion</label>
 													</div>
 													<div class="col-sm-10">
-														<input id="qnty" type="text" value="${getConsultingDetailsByDoctor.discussion}" readonly="">
+														<input   type="text"id="disscuss2" readonly="">
 													</div>
 													<div class="clearfix"></div>
 													<div class="col-sm-2">
 														<label>Note</label>
 													</div>
 													<div class="col-sm-10">
-														<input id="instruction" type="text" value="${getConsultingDetailsByDoctor.note}"
+														<input   type="text" id="note2"
 															readonly="">
 													</div>
 													<div class="clearfix"></div>
 													<div class="table-responsive" id="panel-body${getConsultingDetailsByDoctor.meetId}">
 														<table width="100%" border="1"
 															class="tbl table table-bordered table table-hover"
-															id="prescTable${getConsultingDetailsByDoctor.meetId}">
+															id="prescTable1">
 															<tbody>
 																<tr align="center">
 																	<th>Sr.No</th>
@@ -600,7 +502,7 @@
 											</div>
 					<hr>
 					<div class="signB">
-						Signature: <img src="${pageContext.request.contextPath}/resources/images/sign.png" class="img-responsive img-center">
+						Signature: <img id="doctorSign" class="img-responsive img-center">
 					</div>
 
 				</div>
@@ -1033,54 +935,14 @@ function consultList(doc, i)
 	strVar += "										   <\/div>";
 	strVar += "										  <\/div>";
 	strVar += "										<\/div>";
-	 
-	strVar += "									<span class=\"icon-prescription-1 mar-right\" aria-hidden=\"true\" id=\"popoverOption\" rel=\"popover\" data-placement=\"bottom\" data-original-title=\"Prescription\" onClick=\"showPrescription('"+patientProblem+"','"+discussion+"','"+note+"',"+meetId+",'"+hospitalName+"','"+doctorName+"')\"><i>Prescription</i><\/span>";
+ 
+	 strVar += "									<span class=\"icon-prescription-1 mar-right\" aria-hidden=\"true\" data-target=\"#prescModl\" data-toggle=\"modal\" id=\"popoverOption\" rel=\"popover\" data-placement=\"bottom\" data-original-title=\"Prescription\" onClick=\"showPrescription("+meetId+",'"+patientProblem+"','"+discussion+"','"+note+"')\"><i>Prescription</i><\/span>";
 	strVar += "									<a href=\"#\" onclick=\"getInvoiceDetails("+meetId+")\"><span class=\"icon-newspaper mar-right\" aria-hidden=\"true\" id=\"popoverOption\" data-target=\"#invoice1\" data-toggle=\"modal\" rel=\"popover\" data-placement=\"bottom\" data-original-title=\"Invoice\" \"> <i>Invoice<\/i><\/span><\/a>";
 	strVar += "	 									<a href=\"#\" onclick=\"getSuggestedLabTest("+meetId+")\"><span class=\"icon-experiment mar-right\" aria-hidden=\"true\" id=\"popoverOption\" rel=\"popover\"   \"><i>Suggested Tests</i><\/span><\/a>";
 	strVar += "									<\/a>";
 	strVar += "							        <\/h4>";
 	strVar += "							      <\/div>";
-	strVar += "							      <div id=\"prescription"+meetId+"\" class=\"collapse panel-collapse presIcon\">";
-
-	strVar += "<a id=\"downloadButton\" onclick=\"createPdf('"+meetId+"','"+patientProblem+"','"+discussion+"','"+note+"','"+hospitalName+"','"+doctorName+"','"+hospitalAddress+"','"+doctorQualification+"','"+doctorSignature+"','"+doctorContact+"','"+patientName+"')\"><span class=\"icon-download-to-storage-drive right-specing\"><\/span><\/a>"; 
-	/* strVar += "<a onclick=\"printTable('"+meetId+"','"+hospitalName+"')\"><span class=\"icon-printer right-specing\"><\/span><\/a>";  */
-
-	
-	strVar += "<div class=\"panel-body\">";
-	strVar += "							       		<div class=\"row filled_prescript\" id=\"downloadPrescription\">";
-	
-	/* strVar += "<p class=\"text-right\"><i class=\"glyphicon glyphicon-download-alt\"<\/i><\/p>"; */
-	strVar += "							       		<h3>Prescription<\/h3>";
-	strVar += "							       			<div class=\"col-sm-2\"><label>Problem<\/label><\/div>";
-	strVar += "							       			<div class=\"col-sm-10\"><input id=\"medicine_nm\" value='"+patientProblem+"' type=\"text\" readonly><\/div>";
-	strVar += "							       			<div class=\"clearfix\"><\/div>";
-	strVar += "							       			<div class=\"col-sm-2\"><label>Discussion<\/label><\/div>";
-	strVar += "							       			<div class=\"col-sm-10\"><input id=\"qnty\" type=\"text\" value='"+discussion+"' readonly><\/div>";
-	strVar += "							       			<div class=\"clearfix\"><\/div>";
-	strVar += "							       			<div class=\"col-sm-2\"><label>Note<\/label><\/div>";
-	strVar += "							       			<div class=\"col-sm-10\"><input id=\"instruction\" type=\"text\" value='"+note+"' readonly><\/div>";
-	strVar += "							       			<div class=\"clearfix\"><\/div>";
-	strVar += "							       			<div class=\"table-responsive\" id=\"panel-body"+meetId+"\">";
-	strVar += "        	<table width=\"100%\" border=\"1\" class=\"tbl table table-bordered table table-hover\" id=\"prescTable"+meetId+"\">";
-	strVar += "   <tr align=\"center\">";
-	strVar += "    <th>Sr.No<\/th>";
-	strVar += "    ";
-	strVar += "    <th>Medicine<\/th>";
-	strVar += "    <th>quantity<\/th>";
-	strVar += "    <th>Instructions<\/th>";
-	strVar += "    <th>Timing<\/th>";
-	strVar += "  <\/tr>";
-	strVar += "";
-	strVar += "<\/table> ";
-	strVar += "";
-	strVar += "        <\/div>";
-	strVar += "							       			";
-	strVar += "							       	    ";
-	strVar += "							       		<\/div>";
-	strVar += "							       		";
-	strVar += "					                <\/div>";
-
-	strVar += "							      <\/div>";
+ 
 	strVar += "							    <\/div>";
 	strVar += "							    <\/div>";
 	strVar += "				  <\/div>";
@@ -1096,35 +958,32 @@ function consultList(doc, i)
 	<script>
 var prescriptionData = [];
 
-function showPrescription(patientProblem,discussion,note,meetId,hospitalName,doctorName)
+function showPrescription(meetId,patientProblem,discussion,note)
 {	 
-	
-	 
-	/* document.getElementById("doctorName").value =doctorName;
-	document.getElementById("hospitalName").value =hospitalName;
-	document.getElementById("meetId").value=meetId; */
-	
-	/*  document.getElementById("problem11").innerHTML =patientProblem; 
-	 document.getElementById("problem12").innerHTML =discussion; 
-	 document.getElementById("problem13").innerHTML =note;  */
-	/*   $('#prescTable td').remove();
- */
-	
+ 
+ document.getElementById("patientProblem2").value =patientProblem; 
+	 document.getElementById("disscuss2").value =discussion; 
+	 document.getElementById("note2").value =note;  
 	 $
 		.getJSON(
-				'${getPrescriptionByMeetingId}',
+				'${getPrescriptionWithDoctorByMeetId}',
 				{
 					meetId : meetId,
 					
 					ajax : 'true'
 				},
-				function(data) {
-					$('#prescTable'+meetId+' td').remove();
+				function(data) { 
+				  	
+				  	document.getElementById("hospitalName2").innerHTML =data.hospitalName; 
+				  	document.getElementById("doctorName2").innerHTML ="Dr. "+data.doctorName; 
+				  	document.getElementById("doctorSign").src =data.signature; 
+				  	
+					$('#prescTable1 td').remove();
 					$.each(
-							data,
+							data.prescriptionDetailsList,
 								function(key, display) {
 
-					var tr = $('<tr id="prescTableData'+meetId+'"></tr>');
+								var tr = $('<tr></tr>');
 					tr.append($('<td></td>').html(key+1));
 					tr.append($('<td></td>').html(display.medicineName));
 					tr.append($('<td></td>').html(display.medicineQuantity));
@@ -1134,7 +993,7 @@ function showPrescription(patientProblem,discussion,note,meetId,hospitalName,doc
 					
 				
 					
-				 	 $('#prescTable'+meetId).append(tr);
+				 	 $('#prescTable1').append(tr);
 							})
 
 							prescriptionData=data;
@@ -1162,7 +1021,7 @@ var specialElementHandlers = {
         return true;
     }
 };
-function createPdf(meetId,problem,discussion,note,hospitalName,doctorName,address,qualification,sign,contact,patientName){
+/* function createPdf(meetId,problem,discussion,note,hospitalName,doctorName,address,qualification,sign,contact,patientName){
 	$('#prescTabl'+meetId).remove();
 	var count=1;
 	var strVar="";
@@ -1209,7 +1068,7 @@ function createPdf(meetId,problem,discussion,note,hospitalName,doctorName,addres
 	$('#myModal').modal('show'); 
 	
 	
-}
+} */
 
 function printTable(tableId,hospital)
 {

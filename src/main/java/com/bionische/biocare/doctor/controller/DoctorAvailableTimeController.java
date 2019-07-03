@@ -313,7 +313,7 @@ public String  submitFixScheduleToList(HttpServletRequest request, @ModelAttribu
 		throw new RuntimeException("Error while showing doctor available time fix schedule in submitFixScheduleToList",e);
 	}
 	}
-	return "redirect:/showDoctorHomePage";
+	return "redirect:/doctorAvailableTime/showDoctorFixSchedule";
 }
 
 
