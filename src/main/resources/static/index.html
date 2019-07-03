@@ -330,7 +330,18 @@
 <script src="resourcesWebsite/js/ie10-viewport-bug-workaround.js"></script> 
 <script src="resourcesWebsite/js/owl.carousel.js"></script> 
 <script>
+
+window.onload = function() {
+	
+	if (location.protocol != 'https:' && !location.port )
+	{
+	 location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+	}
+	};
+
 $(document).ready(function () {
+	
+	
     $(".icon").click(function () {
         $(".mobilenav").fadeToggle(500);
         $(".top-menu").toggleClass("top-animate");
