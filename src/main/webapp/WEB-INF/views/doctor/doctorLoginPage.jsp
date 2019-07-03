@@ -93,10 +93,13 @@
 		
 	</div>
 </section> --%>
-	<div class="login_screen">
-		<img
+	<div class="login_screen doclogin">
+		<%-- <img
 			src="${pageContext.request.contextPath}/resources/images/login_bg.png"
-			class="img-responsive" alt="login">
+			class="img-responsive" alt="login"> --%>
+			 <img
+			src="${pageContext.request.contextPath}/resources/images/dr_login1.jpg"
+			class="img-responsive" alt="login"> 
 	</div>
 	<div class="log_user dr-log">
 		<%-- <img src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-responsive" alt="logo"> --%>

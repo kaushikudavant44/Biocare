@@ -3954,14 +3954,14 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 .navbar-inverse .navbar-nav>li:last-child a {border:none}
 .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
-	color: #fff;
+	color: #fff !important ;
 	/* background-color: tranPermalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0495cb+0,0093d0+40,81ce00+100
 background: #0495cb; Old browsers
 background: -moz-linear-gradient(left, #0495cb 0%, #0093d0 40%, #81ce00 100%); FF3.6-15
 background: -webkit-linear-gradient(left, #0495cb 0%,#0093d0 40%,#81ce00 100%); Chrome10-25,Safari5.1-6
 background: linear-gradient(to right, #0495cb 0%,#0093d0 40%,#81ce00 100%); W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0495cb', endColorstr='#81ce00',GradientType=1 ); IE6-9 */
-background:#81CE00;
+background:#81CE00 !important;
 padding:8px 15px;
 }
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {

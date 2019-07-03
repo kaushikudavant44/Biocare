@@ -82,6 +82,51 @@
 		</c:otherwise>
 	</c:choose>
 	<div class="clearfix"></div>
+	<div id="termcon" class="modal fade reportsDesign" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body card_sec">
+      <div class="circle1">
+							<i class="fa fa-list-ul" aria-hidden="true"></i>
+						</div>
+       <h4 class="modal-title text-left">Terms & Conditions</h4>
+                    <h3>Refund Policy</h3>
+                    <p>This policy is applicable on fees paid through Bionische platforms for Video Consultation, and In-Person Consultation.</p>
+                    <ul>
+                    	<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </li> 
+                    	<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </li> 
+                    	<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </li> 
+                    	
+                    </ul>
+                    <hr>
+                    <h3>Cancellation Policy</h3>
+                    <p>This policy is applicable on fees paid through Bionische platforms for Video Consultation, and In-Person Consultation.</p>
+                    <ul>
+                    	<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </li> 
+                    	<li>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</li> 
+                    	<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </li> 
+                    	
+                    </ul>
+                    <hr>
+                    <h3>Disclaimer</h3>
+                    <p>This policy is applicable on fees paid through Bionische platforms for Video Consultation, and In-Person Consultation.</p>
+                    <ul>
+                    	<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </li> 
+                    	<li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </li> 
+                    	<li>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</li> 
+                    	
+                    </ul>
+                    <hr>
+                    <input id="product6" type="checkbox" name="product[6]" value="1" checked="checked"> <strong>I Agree Terms & Conditions</strong>
+                    <div class="clearfix"></div>
+                    <button type="button" class="btn-fr-all" data-dismiss="modal">Continue</button>
+        
+                </div>
+    </div>
+
+  </div>
+</div>
 	<div class="header">
 		<!-- Carousel================================================== -->
 		<div id="myCarousel" class="carousel carousel-fade slide"
@@ -1477,6 +1522,14 @@ function myFunction() {
 		        reader.readAsDataURL(input.files[0]);
 		    }
 		}
+	 
+	 
+	 $(window).load(function(){        
+		   $('#termcon').modal('show');
+		    });
+	 
+	 
+	
 	</script>
 
 </body>

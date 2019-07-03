@@ -23,7 +23,7 @@
   <div class="container-fluid">
   <input type="hidden" id="doctorIdTopic" value="${sessionScope.doctorDetails.doctorId}">
     <nav class="navbar navbar-inverse navbar-static-top navbar navbar-default">
-      <a class="navbar-brand animate" data-animate="slideInLeft" data-duration="1.0s" data-delay="0.2s" href="${pageContext.request.contextPath}/homePage"><img src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-responsive" alt="health care"></a> 
+      <a class="navbar-brand animate" data-animate="slideInLeft" data-duration="1.0s" data-delay="0.2s" href="${pageContext.request.contextPath}/homePage"><img src="${pageContext.request.contextPath}/resources/images/logoDoc.png" class="img-responsive" alt="health care"></a> 
         <div class="navbar-header login-box">
         <ul class="nav navbar-nav navbar-right mobileNotify docNotify">
          	<li><ul class="nav navbar-nav navbar-right mar-top0">

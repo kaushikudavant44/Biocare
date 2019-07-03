@@ -4962,9 +4962,9 @@ span.chek-num {
 }
 
 /*-----------3-11-2018 (Login Section)----------------------------*/
-.login_screen {background: rgb(82,203,254); background: -moz-linear-gradient(-45deg, rgba(82,203,254,1) 0%, rgba(82,203,254,1) 25%, rgba(165,205,57,1) 69%); background: -webkit-linear-gradient(-45deg, rgba(82,203,254,1) 0%,rgba(82,203,254,1) 25%,rgba(165,205,57,1) 69%);
+.login_screen {/* background: rgb(82,203,254); background: -moz-linear-gradient(-45deg, rgba(82,203,254,1) 0%, rgba(82,203,254,1) 25%, rgba(165,205,57,1) 69%); background: -webkit-linear-gradient(-45deg, rgba(82,203,254,1) 0%,rgba(82,203,254,1) 25%,rgba(165,205,57,1) 69%);
 background: linear-gradient(135deg, rgba(82,203,254,1) 0%,rgba(82,203,254,1) 25%,rgba(165,205,57,1) 69%)
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#52cbfe', endColorstr='#a5cd39',GradientType=1 ); padding:40px 0}
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#52cbfe', endColorstr='#a5cd39',GradientType=1 );  *//* padding:40px 0 */}
 .login_prt {background:#efefef}
 .log_user {margin: 0 auto; margin-top: -78px; position:relative; padding: 30px 50px 40px 50px; width: 26%; font-family: 'Poppins', sans-serif !important; background:#fff /*url(../images/lock_img.jpg) no-repeat center*/} 
 .login_screen img, .log_user img {margin:0 auto}
@@ -6127,6 +6127,8 @@ height: 10px;
     font-size: 18px;
     color: #000;
 }
+#termcon .modal-title {text-align: left}
+#termcon input{width: 30px !important;  height: 20px !important; margin: 20px 0;}
 #termcon .modal-body p {
     line-height: 22px;
     margin: 10px 0 0;
