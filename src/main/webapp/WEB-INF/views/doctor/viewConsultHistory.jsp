@@ -41,6 +41,28 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
+
+
+  <style type="text/css">
+@media print
+{
+body * { visibility: hidden; }
+
+#invoice1 * { visibility: visible; }
+#invoice1 { position: absolute; top: 00px; left: 30px; }
+
+
+
+
+#prescModl * { visibility: visible; }
+#prescModl { position: absolute; top: 00px; left: 30px; }
+
+
+#viewLabTestModal * { visibility: visible; }
+#viewLabTestModal { position: absolute; top: 00px; left: 30px; }
+
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../include/doctorHeader.jsp" />
@@ -273,7 +295,7 @@
 				<div class="modal-body card_sec">
 				<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
+							<a onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
 							<h4 class="modal-title">Hari Om <br> <span  id="docName">Dr. vhjghg</span></h4>
 							<hr>
@@ -319,7 +341,7 @@
 				<div class="modal-body card_sec">
 				<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
+							<a onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
 							<h4 class="modal-title"><span id="hospitalName"></span> <br> <span  id="doctorName"></span></h4>
 							<hr>
@@ -380,7 +402,7 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="margin-top: 20%;">
 				<div class="modal-body card_sec" id="displayTable">
-				<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
+				<a onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
 						<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
 								<hr>

@@ -42,6 +42,17 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
+
+
+    <style type="text/css">
+@media print
+{
+body * { visibility: hidden; }
+#invoiceLab * { visibility: visible; }
+#invoiceLab { position: absolute; top: 00px; left: 30px; }
+}
+</style>
+    
 </head>
 <body>
 	<jsp:include page="../include/labHeader.jsp" />
@@ -62,7 +73,7 @@
 	<div class="dashboard_nm text-center">
 		<h4>Test History</h4>
 	</div>
-	<div class="container-fluid">
+	<div id="nonPrintable" class="container-fluid">
 		<div class="row">
 			<div class="bhoechie-tab-container">
 				<jsp:include page="../include/labLeftMenu.jsp" />
@@ -184,9 +195,11 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="margin-top: 20%;">
 				<div class="modal-body card_sec" id="displayTable">
-				<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
+				<a onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
 						<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
+								
+								<div id ="printable">
 								<hr>
 							<h4 class="modal-title" id="labName1"></h4>
 					
@@ -268,6 +281,9 @@
 		            </footer>
 		        </div>
 		        <div></div>
+		    </div>
+		    
+		    
 		    </div>
 				</div>
 			</div>
@@ -393,6 +409,20 @@ $(document).ready(function() {
       $(".highlighted").addClass('disabled');
     });
 });
+
+
+</script>
+
+
+
+<script type="text/javascript">
+
+function printInv() {
+	
+	
+	
+	
+}
 
 
 </script>
@@ -642,8 +672,6 @@ $
 		},
 		function(data) {
 			 
-			
-			
 			
 			
 			

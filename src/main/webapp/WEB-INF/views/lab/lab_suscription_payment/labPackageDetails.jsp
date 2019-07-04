@@ -21,6 +21,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.css">
 </head>
 <body>
+
+
+<c:url var="checkPromoCode" value="/checkPromoCode" />
+
+
 <%-- <jsp:include page="../../include/labHeader.jsp"/> --%>
 <section class="doc_login inssurance_buy">
 	<div class="dashboard_nm text-center"><h4>Our Packages</h4></div>

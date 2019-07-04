@@ -48,8 +48,8 @@ import com.bionische.biocare.radiology.model.PNDTPatientDetails;
 @Controller
 public class LabReportsController {
 
-	 @Autowired
-	    private   AmazonS3ClientService amazonS3ClientService;
+	@Autowired
+	private AmazonS3ClientService amazonS3ClientService;
 	RestTemplate rest = new RestTemplate();
 	Info info = new Info();
 	String msg = "";
@@ -87,8 +87,7 @@ public class LabReportsController {
 			throw new RuntimeException("Error while Show Upload Lab Reports", e);
 		}
 		// model.addObject("labTestId", labTestId);
-		
-		
+
 		model.addObject("patientDetails", patientDetails);
 		model.addObject("appoitId", appoitId);
 		model.addObject("appointActive", "active");
@@ -100,13 +99,13 @@ public class LabReportsController {
 
 		int appointmentId = Integer.parseInt(request.getParameter("appoitId"));
 		int paymentStstus = 0;
-		String reportIdForShare="";
+		String reportIdForShare = "";
 		int patientId = Integer.parseInt(request.getParameter("patientId"));
-		GetLabAppointment getLabAppointment=new GetLabAppointment();
+		GetLabAppointment getLabAppointment = new GetLabAppointment();
 		try {
 			MultiValueMap<String, Object> mapAppoint = new LinkedMultiValueMap<String, Object>();
 			mapAppoint.add("appointmentId", appointmentId);
-			  getLabAppointment = Constant.getRestTemplate().postForObject(
+			getLabAppointment = Constant.getRestTemplate().postForObject(
 					Constant.url + "lab/getLabAppointmentByAppointmentId", mapAppoint, GetLabAppointment.class);
 			if (getLabAppointment.getPaymentStatus() == 1)
 				paymentStstus = 1;
@@ -119,28 +118,37 @@ public class LabReportsController {
 		HttpSession session = request.getSession();
 		LabDetails labDetails = (LabDetails) session.getAttribute("labDetails");
 		int labId = labDetails.getLabId();
+
 		StringBuilder fileNameList = new StringBuilder();
-		if(labDetails.getIsRadiologist()==1) {
-			
-			   List<MultipartFile> files = mfr.getFiles("radiologistFiles");
-			   System.out.println("Size of file is= "+files.get(0).getOriginalFilename());
-			   int labTestId=Integer.parseInt(request.getParameter("labTestId"));
-			   PatientReportsDetails patientReportsDetails = new PatientReportsDetails();
-			   String fileName = null;
-			   for(int i=0;i<files.size();i++) {
-				   fileName= new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
-						+ i + VpsImageUpload.getFileExtension(files.get(i));
-				fileNameList.append(fileName+",");
-				
-				if(files.size()>1) {
-				if (VpsImageUpload.getFileExtension(files.get(i)).equalsIgnoreCase(".PDF")) {
-					patientReportsDetails.setFileType(0);
-				} else if (VpsImageUpload.getFileExtension(files.get(i)).equalsIgnoreCase(".DCM")) {
-					patientReportsDetails.setFileType(3);
+		StringBuilder mulitDCMFileURL = new StringBuilder();
+
+		if (labDetails.getIsRadiologist() == 1) {
+
+			List<MultipartFile> files = mfr.getFiles("radiologistFiles");
+			System.out.println("Size of file is= " + files.get(0).getOriginalFilename());
+			int labTestId = Integer.parseInt(request.getParameter("labTestId"));
+			PatientReportsDetails patientReportsDetails = new PatientReportsDetails();
+			String fileName = null;
+			for (int i = 0; i < files.size(); i++) {
+				fileName = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date()) + i
+						+ VpsImageUpload.getFileExtension(files.get(i));
+				fileNameList.append(fileName + ",");
+
+				if (i == files.size() - 1) {
+
+					mulitDCMFileURL.append(fileName + "&dwvReplaceMode=void");
+
 				} else {
-					patientReportsDetails.setFileType(1);
+
+					mulitDCMFileURL.append(fileName + "%26file%3D");
+
 				}
-				}else {
+
+				if (files.size() > 1) {
+					if (VpsImageUpload.getFileExtension(files.get(i)).equalsIgnoreCase(".DCM")) {
+						patientReportsDetails.setFileType(3);
+					}
+				} else {
 					if (VpsImageUpload.getFileExtension(files.get(i)).equalsIgnoreCase(".PDF")) {
 						patientReportsDetails.setFileType(0);
 					} else if (VpsImageUpload.getFileExtension(files.get(i)).equalsIgnoreCase(".DCM")) {
@@ -148,60 +156,18 @@ public class LabReportsController {
 					} else {
 						patientReportsDetails.setFileType(1);
 					}
+
+				}
+
+				amazonS3ClientService.uploadFileToS3Bucket(files.get(i), fileName, "patient/" + patientId + "/reports/",
+						true);
+
 				
-				}
-			 
 				
-				amazonS3ClientService.uploadFileToS3Bucket(files.get(i),fileName,"patient/" + patientId + "/reports/", true);
-			   }
-				System.out.println("fileNameList= "+fileNameList.toString());
-				patientReportsDetails.setFileName(fileNameList.substring(0, fileNameList.length() - 1));
-				patientReportsDetails.setLabTestId(labTestId);
-				patientReportsDetails.setAppointmentId(appointmentId);
-				patientReportsDetails.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-				patientReportsDetails.setDelStatus(0);
-				patientReportsDetails.setLabId(labId);
-				patientReportsDetails.setPatientId(patientId);
-				if (paymentStstus == 1)
-					patientReportsDetails.setStatus(1);
-				else
-					patientReportsDetails.setStatus(0);
-
-			
-				 
-				if(patientReportsDetails.getFileType()==2) {
-					String filrName="https://www.bionische.com/showDcmViewer?input="+Constant.patientUrl+patientId+"/reports/"+patientReportsDetails.getFileName();
-					patientReportsDetails.setFileName(fileName);
-				}
-				PatientReportsDetails patientReportsDetailsRes = Constant.getRestTemplate().postForObject(
-						Constant.url + "lab/insertPatientReports", patientReportsDetails, PatientReportsDetails.class);
-
-				if(getLabAppointment.getDoctorId()!=0) {
-					
-						reportIdForShare=patientReportsDetailsRes.getReportId()+"";
-					
-				}
-			
-			   
-			
-		}else {
-
-		for (int i = 0; i < labTestsList.size(); i++) {
-			MultipartFile file = mfr.getFile("reportFile" + labTestsList.get(i).getLabTestId());
-			
-			
-			String fileName = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
-					+ labTestsList.get(i).getLabTestId() + VpsImageUpload.getFileExtension(file);
-
-			System.out.println("filename"+fileName);
-			 
-			
-			amazonS3ClientService.uploadFileToS3Bucket(file,fileName,"patient/" + patientId + "/reports/", true);
-			
-			PatientReportsDetails patientReportsDetails = new PatientReportsDetails();
-
-			patientReportsDetails.setFileName(fileName);
-			patientReportsDetails.setLabTestId(labTestsList.get(i).getLabTestId());
+			}
+			System.out.println("fileNameList= " + fileNameList.toString());
+			patientReportsDetails.setFileName(fileNameList.substring(0, fileNameList.length() - 1));
+			patientReportsDetails.setLabTestId(labTestId);
 			patientReportsDetails.setAppointmentId(appointmentId);
 			patientReportsDetails.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 			patientReportsDetails.setDelStatus(0);
@@ -212,53 +178,102 @@ public class LabReportsController {
 			else
 				patientReportsDetails.setStatus(0);
 
-			if (VpsImageUpload.getFileExtension(file).equalsIgnoreCase(".PDF")) {
-				patientReportsDetails.setFileType(0);
-			} else if (VpsImageUpload.getFileExtension(file).equalsIgnoreCase(".DCM")) {
-				patientReportsDetails.setFileType(2);
-			} else {
-				patientReportsDetails.setFileType(1);
-			}
+			if (patientReportsDetails.getFileType() == 2) {
+				String fileURL = "https://www.bionische.com/showDcmViewer?input=" + Constant.patientUrl + patientId
+						+ "/reports/" + patientReportsDetails.getFileName();
+				patientReportsDetails.setFileName(fileURL);
+			} else if (patientReportsDetails.getFileType() == 3) {
 
+				// http%3A%2F%2F104.238.116.176%2Fimages%2Fpatient%2F1%2Freports%2F%3Ffile%3D230520191201450.dcm&dwvReplaceMode=void
+
+				String fileURL = "https://www.bionische.com/showDcmViewer";
+				String suffix = "?input=https%3A%2F%2Felasticbeanstalk-ap-south-1-724717550681.s3.ap-south-1.amazonaws.com%2Fpatient%2F"
+						+ patientId + "%2Freports%2F%3Ffile%3D" + mulitDCMFileURL.toString();
+
+				patientReportsDetails.setFileName(fileURL + suffix);
+
+			}
 			PatientReportsDetails patientReportsDetailsRes = Constant.getRestTemplate().postForObject(
 					Constant.url + "lab/insertPatientReports", patientReportsDetails, PatientReportsDetails.class);
 
-			if(getLabAppointment.getDoctorId()!=0) {
-				if(i==0)
-					reportIdForShare=patientReportsDetailsRes.getReportId()+"";
+			if (getLabAppointment.getDoctorId() != 0) {
+
+				reportIdForShare = patientReportsDetailsRes.getReportId() + "";
+
+			}
+
+		} else {
+
+			for (int i = 0; i < labTestsList.size(); i++) {
+				MultipartFile file = mfr.getFile("reportFile" + labTestsList.get(i).getLabTestId());
+
+				String fileName = new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date())
+						+ labTestsList.get(i).getLabTestId() + VpsImageUpload.getFileExtension(file);
+
+				System.out.println("filename" + fileName);
+
+				amazonS3ClientService.uploadFileToS3Bucket(file, fileName, "patient/" + patientId + "/reports/", true);
+
+				PatientReportsDetails patientReportsDetails = new PatientReportsDetails();
+
+				patientReportsDetails.setFileName(fileName);
+				patientReportsDetails.setLabTestId(labTestsList.get(i).getLabTestId());
+				patientReportsDetails.setAppointmentId(appointmentId);
+				patientReportsDetails.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+				patientReportsDetails.setDelStatus(0);
+				patientReportsDetails.setLabId(labId);
+				patientReportsDetails.setPatientId(patientId);
+				if (paymentStstus == 1)
+					patientReportsDetails.setStatus(1);
 				else
-				{
-					reportIdForShare+=","+patientReportsDetailsRes.getReportId();
+					patientReportsDetails.setStatus(0);
+
+				if (VpsImageUpload.getFileExtension(file).equalsIgnoreCase(".PDF")) {
+					patientReportsDetails.setFileType(0);
+				} else if (VpsImageUpload.getFileExtension(file).equalsIgnoreCase(".DCM")) {
+					patientReportsDetails.setFileType(2);
+				} else {
+					patientReportsDetails.setFileType(1);
+				}
+
+				PatientReportsDetails patientReportsDetailsRes = Constant.getRestTemplate().postForObject(
+						Constant.url + "lab/insertPatientReports", patientReportsDetails, PatientReportsDetails.class);
+
+				if (getLabAppointment.getDoctorId() != 0) {
+					if (i == 0)
+						reportIdForShare = patientReportsDetailsRes.getReportId() + "";
+					else {
+						reportIdForShare += "," + patientReportsDetailsRes.getReportId();
+					}
 				}
 			}
 		}
+		if (getLabAppointment.getDoctorId() != 0) {
+			SharingReportWithDoc sharingReportWithDoc = new SharingReportWithDoc();
+
+			sharingReportWithDoc.setPatientId(patientId);
+			sharingReportWithDoc.setDoctorId(getLabAppointment.getDoctorId());
+			sharingReportWithDoc.setReportId(reportIdForShare);
+			sharingReportWithDoc.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+			sharingReportWithDoc.setDelStatus(0);
+			sharingReportWithDoc.setString1("1");
+			sharingReportWithDoc.setString2("1");
+			sharingReportWithDoc.setInt1(0);
+			sharingReportWithDoc.setInt2(0);
+
+			Info info = new Info();
+			RestTemplate rest = new RestTemplate();
+			try {
+				info = Constant.getRestTemplate().postForObject(Constant.url + "submitSharingReportWithDoc",
+						sharingReportWithDoc, Info.class);
+				System.out.println("infoinfo:" + info.toString());
+			} catch (Exception e) {
+
+				logger.error("Error while sharePatientReportWithDoc.", e);
+				throw new RuntimeException("Error while sharePatientReportWithDoc.", e);
+			}
 		}
-		if(getLabAppointment.getDoctorId()!=0) {
-		SharingReportWithDoc sharingReportWithDoc=new SharingReportWithDoc();
-		
-		sharingReportWithDoc.setPatientId(patientId);
-		sharingReportWithDoc.setDoctorId(getLabAppointment.getDoctorId());
-		sharingReportWithDoc.setReportId(reportIdForShare);
-		sharingReportWithDoc.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-		sharingReportWithDoc.setDelStatus(0);
-		sharingReportWithDoc.setString1("1");
-		sharingReportWithDoc.setString2("1");
-		sharingReportWithDoc.setInt1(0);
-		sharingReportWithDoc.setInt2(0);
-		
-		Info info = new Info();
-		RestTemplate rest=new RestTemplate();
-		try {
-			info=Constant.getRestTemplate().postForObject(Constant.url+"submitSharingReportWithDoc",sharingReportWithDoc,Info.class);
-		System.out.println("infoinfo:"+info.toString());
-		}
-catch (Exception e) {
-			
-	logger.error("Error while sharePatientReportWithDoc.",e);
-			throw new RuntimeException("Error while sharePatientReportWithDoc.",e);
-		}
-		}
-		
+
 		try {
 			MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
 			map.add("labAppId", appointmentId);

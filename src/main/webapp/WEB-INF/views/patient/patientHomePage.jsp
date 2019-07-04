@@ -77,7 +77,7 @@
 				     <div class="col-sm-12">
 				     <div class="col-sm-2 text-center"> 
 				        	<div class="profile_doc"> <!-- id="docImage" -->
-				        	<a href="#" data-toggle="modal" data-target="#profileModal" class="profilePic"><img class="img-responsive" alt="patient_profile" src="${patientDetails.profilePhoto}"></a>
+				        	<a href="#" data-toggle="modal" data-target="#profileModal" class="profilePic"><img class="img-responsive" ></a>
 				           
 				            </div>
 				            <%-- <img src="166.62.32.164:8080/biocare/${getDoctorProfile.fName}" class="img-responsive verifd" alt="verified"> --%>
