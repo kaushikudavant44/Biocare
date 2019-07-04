@@ -106,7 +106,7 @@ public class LabPaymentController {
 
 		request.setAttribute("mobileNo", labDetails.getContact());
 		request.setAttribute("email", labDetails.getEmail());
-		request.setAttribute("txnAmount", String.valueOf(txnAmount));
+		request.setAttribute("txnAmount",  String.format("%.2f", txnAmount));
 		return "lab/lab_suscription_payment/labPaymentRedirect";
 	}
 	@RequestMapping(value = "/labSuscriptionPaymentResponse", method = RequestMethod.POST)

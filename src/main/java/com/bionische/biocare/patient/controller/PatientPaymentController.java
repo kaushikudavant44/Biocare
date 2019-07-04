@@ -123,7 +123,7 @@ public class PatientPaymentController {
 
 		request.setAttribute("mobileNo", patientDetail.getContactNo());
 		request.setAttribute("email", patientDetail.getEmail());
-		request.setAttribute("txnAmount", String.valueOf(txnAmount));
+		request.setAttribute("txnAmount",  String.format("%.2f", txnAmount));
 		return "patient/lab_payment/labReportPaymentRedirect";
 	}
 
@@ -227,7 +227,7 @@ public class PatientPaymentController {
 
 		request.setAttribute("mobileNo", patientDetail.getContactNo());
 		request.setAttribute("email", patientDetail.getEmail());
-		request.setAttribute("txnAmount", String.valueOf(txnAmount));
+		request.setAttribute("txnAmount",  String.format("%.2f", txnAmount));
 		return "patient/pharmacy_payment/patientMedicinePaymentRedirect";
 	}
 	@RequestMapping(value = "/patientMedicinePaymentResponse", method = RequestMethod.POST)
@@ -330,7 +330,7 @@ public class PatientPaymentController {
 
 		request.setAttribute("mobileNo", patientDetail.getContactNo());
 		request.setAttribute("email", patientDetail.getEmail());
-		request.setAttribute("txnAmount", String.valueOf(txnAmount));
+		request.setAttribute("txnAmount",  String.format("%.2f", txnAmount));
 		return "patient/consulting_payment/consultingPaymentRedirect";
 	}
 	@RequestMapping(value = "/consultingPaymentResponse", method = RequestMethod.POST)
@@ -413,7 +413,7 @@ public class PatientPaymentController {
 
 		request.setAttribute("mobileNo", patientDetail.getContactNo());
 		request.setAttribute("email", patientDetail.getEmail());
-		request.setAttribute("txnAmount", String.valueOf(txnAmount));
+		request.setAttribute("txnAmount",  String.format("%.2f", txnAmount));
 		return "patient/patient_suscription_payment/patientPaymentRedirect";
 	}
 	@RequestMapping(value = "/patientSuscriptionPaymentResponse", method = RequestMethod.POST)

@@ -204,6 +204,7 @@ a:hover {
 	<c:url var="submitLabRating" value="/submitLabRating" />
 		<c:url var="getLabAppointmentForPayment" value="/getLabAppointmentForPayment" />
 	 
+<c:url var="getLabInvoice" value="/getLabInvoice" />
 
 	<div class="clearfix"></div>
 	<section class="doc_login doc_filter">
@@ -223,6 +224,7 @@ a:hover {
 						<div class="filter_div">
 							<div class="col-md-12 col-sm-12">
 								<h3>Your Appointment</h3>
+								 
 							</div>
 							<input type="hidden" id="selectedAppType" name="selectedAppType"
 								value="${appointmentType}">
@@ -289,7 +291,10 @@ a:hover {
 						<div class="clearfix"></div>
 						<hr>
 						<div class="reporttable">
-							<div class="table-responsive" id="tab1" style='display: none'>
+						<c:choose>
+											<c:when test="${appointmentType==0}">
+											
+							<div class="table-responsive" id="tab1" >
 								<c:if test="${! empty( getAppointmentDetailsList ) }">
 									<table width="100%" border="0"
 										class="tbl table table-bordered table table-hover" id="table1">
@@ -379,7 +384,7 @@ a:hover {
 																	value="${getAppointmentDetailsList.amount}">
 
 																<td><input type="submit" class="btn-fr-all"
-																	data-toggle="modal" data-target="#myModal"
+																	 
 																	value="Payment"></td>
 															</c:when>
 															<c:when
@@ -400,7 +405,9 @@ a:hover {
 									</table>
 								</c:if>
 							</div>
-							<div class="table-responsive" id="tab2" style='display: none'>
+							</c:when>
+							<c:otherwise>
+							<div class="table-responsive" id="tab2">
 								<table width="100%" border="0"
 									class="tbl table table-bordered table table-hover" id="table2">
 									<thead>
@@ -419,26 +426,26 @@ a:hover {
 									<tbody>
 
 										<c:forEach items="${getlabAppointmentDetailsList}"
-											var="getAppointmentDetailsList" varStatus="count">
+											var="getlabAppointmentDetails" varStatus="count">
 											<tr>
 												<td><c:out value="${count.index+1}" /></td>
-												<td><c:out value="${getAppointmentDetailsList.date}" /></td>
-												<td><c:out value="${getAppointmentDetailsList.time}" /></td>
-												<td><c:out value="${getAppointmentDetailsList.labName}" /></td>
+												<td><c:out value="${getlabAppointmentDetails.date}" /></td>
+												<td><c:out value="${getlabAppointmentDetails.time}" /></td>
+												<td><c:out value="${getlabAppointmentDetails.labName}" /></td>
 												<td><c:out
-														value="${getAppointmentDetailsList.labTestName}" /></td>
+														value="${getlabAppointmentDetails.labTestName}" /></td>
 
 												<c:choose>
-													<c:when test="${getAppointmentDetailsList.status==4}">
+													<c:when test="${getlabAppointmentDetails.status==4}">
 														<td><strong>Sample Collected</strong></td>
 													</c:when>
-													<c:when test="${getAppointmentDetailsList.status==5}">
+													<c:when test="${getlabAppointmentDetails.status==5}">
 														<td><strong>Completed</strong></td>
 													</c:when>
-													<c:when test="${getAppointmentDetailsList.status==2}">
+													<c:when test="${getlabAppointmentDetails.status==2}">
 														<td><strong>Cancelled</strong></td>
 													</c:when>
-													<c:when test="${getAppointmentDetailsList.status==3}">
+													<c:when test="${getlabAppointmentDetails.status==3}">
 														<td><strong>Rejected</strong></td>
 													</c:when>
 
@@ -446,7 +453,7 @@ a:hover {
 														<td>
 															<button class="appoinment-btn hvr-rectangle-in"
 																<c:out value="${delStatus}" /> style="color: blue"
-																onclick="deleteLabAppointment(${getAppointmentDetailsList.appointId});">
+																onclick="deleteLabAppointment(${getlabAppointmentDetails.appointId});">
 																<strong>Cancel</strong>
 															</button>
 														</td>
@@ -454,40 +461,40 @@ a:hover {
 												</c:choose>
 
 												<c:choose>
-													<c:when test="${getAppointmentDetailsList.status==1}">
+													<c:when test="${getlabAppointmentDetails.status==1}">
 														<td><strong>Confirmed</strong></td>
 													</c:when>
-													<c:when test="${getAppointmentDetailsList.status==0}">
+													<c:when test="${getlabAppointmentDetails.status==0}">
 														<td><strong>Pending</strong></td>
 													</c:when>
-													<c:when test="${getAppointmentDetailsList.status==2}">
+													<c:when test="${getlabAppointmentDetails.status==2}">
 														<td><strong>Cancelled</strong></td>
 													</c:when>
-													<c:when test="${getAppointmentDetailsList.status==3}">
+													<c:when test="${getlabAppointmentDetails.status==3}">
 														<td><strong>Rejected</strong></td>
 													</c:when>
-													<c:when test="${getAppointmentDetailsList.status==4}">
+													<c:when test="${getlabAppointmentDetails.status==4}">
 
-														<c:if test="${getAppointmentDetailsList.paymentStatus==1}">
+														<c:if test="${getlabAppointmentDetails.paymentStatus==1}">
 															<td><strong>Sample Collected & Paid</strong></td>
 														</c:if>
-														<c:if test="${getAppointmentDetailsList.paymentStatus==0}">
+														<c:if test="${getlabAppointmentDetails.paymentStatus==0}">
 															<td><strong><a href="#myModal"
 																	data-toggle="modal"
-																	onclick="getReportPayment(${getAppointmentDetailsList.appointId},'${getAppointmentDetailsList.labName}')">Proceed
+																	onclick="getReportPayment(${getlabAppointmentDetails.appointId},'${getlabAppointmentDetails.labName}')">Proceed
 																		to Payment <i class="fa fa-arrow-circle-right"
 																		style="font-size: 24px"></i>
 																</a></strong></td>
 														</c:if>
 													</c:when>
-													<c:when test="${getAppointmentDetailsList.status==5}">
-														<c:if test="${getAppointmentDetailsList.paymentStatus==1}">
+													<c:when test="${getlabAppointmentDetails.status==5}">
+														<c:if test="${getlabAppointmentDetails.paymentStatus==1}">
 															<td><strong>Completed & Paid</strong></td>
 														</c:if>
-														<c:if test="${getAppointmentDetailsList.paymentStatus==0}">
+														<c:if test="${getlabAppointmentDetails.paymentStatus==0}">
 															<td><strong><a href="#myModal"
 																	data-toggle="modal"
-																	onclick="getReportPayment(${getAppointmentDetailsList.appointId}, '${getAppointmentDetailsList.labName}')">Proceed
+																	onclick="getReportPayment(${getlabAppointmentDetails.appointId}, '${getlabAppointmentDetails.labName}')">Proceed
 																		to Payment <i class="fa fa-arrow-circle-right"
 																		style="font-size: 24px"></i>
 																</a></strong></td>
@@ -500,9 +507,9 @@ a:hover {
 
 												</c:choose>
 												<c:choose>
-												<c:when test="${getAppointmentDetailsList.paymentStatus==1}">
+												<c:when test="${getlabAppointmentDetails.paymentStatus==1}">
 												 
-<td><a href="<%-- ${pageContext.request.contextPath}/showLabBill/${getAppointmentDetailsList.appointId} --%>#"class="icon-newspaper mar-right" data-target="#invoiceLab" data-toggle="modal"> &nbsp;Invoice</a></td>
+<td><a href="#"class="icon-newspaper mar-right" data-target="#invoiceLab" data-toggle="modal" onclick="labInvoce(${getlabAppointmentDetails.appointId})"> &nbsp;Invoice</a></td>
 </c:when>
 <c:otherwise>
 <td></td>
@@ -518,7 +525,8 @@ a:hover {
 								</table>
 
 							</div>
-
+</c:otherwise>
+</c:choose>
 						</div>
 
 
@@ -541,13 +549,12 @@ a:hover {
 						<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
 								<hr>
-							<h4 class="modal-title" id="hospName"></h4>
+							<h4 class="modal-title" id="labName1"></h4>
 					
-							<h5 class="text-right"><strong>Dr.</strong> <span id="docName1"><br>
- </span><span id="docQualification"></span></h5>
-	                				 <h5 class="text-right"><strong>Address :</strong> </h5> 
-	                			<h5 class="text-right"><strong>Contact No. :</strong> </h5>
-	                			<h5 class="text-right"><strong>Email Id. :</strong> </h5>
+							 
+	                				 <h5 class="text-right"><strong>Address : </strong><span id="labAddress"></span></h5> 
+	                			<h5 class="text-right"><strong>Contact No. : </strong><span id="labContactNo"></span></h5>
+	                			<h5 class="text-right"><strong>Email Id. : </strong><span id="labEmail"></span></h5>
 							
 							<div class="circle1">
 							<i class="fa fa-list-ul" aria-hidden="true"></i>
@@ -572,18 +579,18 @@ a:hover {
 		                    <div class="col-sm-6 invoice-to">
 		                        <div class="text-gray-light"><strong>INVOICE TO:</strong></div>
 		                         <h4 class="to" id="patName"> </h4>
-		                       <!--  <div class="email"><a >ganesh@example.com</a></div> -->
+		                     
 		                    </div>
 		                    <div class="col-sm-6 invoice-details text-right">
-		                        <div class="invoice-id"><strong>INVOICE: </strong></div>
-		                        <h5 class="date"><strong>Date of Invoice: </strong></h5>
+		                        <div class="invoice-id"><strong>INVOICE: </strong><span id="invoiceNo"></span></div>
+		                        <h5 class="date"><strong>Date of Invoice: </strong><span id="dateOfInvoce"></span></h5>
 		                    </div>
 		                </div>
 		                <table border="0" cellspacing="0" cellpadding="0">
 		                    <thead>
 		                        <tr>
 		                            <th >SR.NO.</th>
-		                            <th class="text-center">Invoice For</th>
+		                            <th class="text-center">Lab Test Fees</th>
 		                           
 		                            <th class="right">Amount</th>
 		                        </tr>
@@ -592,9 +599,10 @@ a:hover {
 		                    <tbody>
 		                     <tr>
 		                            <th >1.</th>
-		                            <th class="text-center">Consulting Fees</th>
+		                            
+		                             <th class="text-center"><p id="labTestName"></p></th>
 		                           
-		                            <th class="right"><span id="amount"></span></th>
+		                            <th class="right"><span id="paidAmount"></span></th>
 		                        </tr>
 		                     
 		                    </tbody>
@@ -604,7 +612,7 @@ a:hover {
 		                        <tr>
 		                            
 		                            <td colspan="2"> TOTAL</td>
-		                            <td><span id="totalAmt"></span></td>
+		                            <td><span id="totalPaidAmt"></span></td>
 		                        </tr>
 		                    </tfoot>
 		                </table>
@@ -1141,6 +1149,44 @@ $
   
 
 	}
+</script>
+
+<script type="text/javascript">
+
+
+function labInvoce(appointmentId){
+$
+.getJSON(
+		'${getLabInvoice}',
+		{
+
+			appointmentId : appointmentId,
+		 
+			ajax : 'true'
+		},
+		function(data) {
+			 
+			
+			
+			
+			
+			
+		 
+			 $("#labName1").text(data.labName);
+			 $("#labAddress").text(data.address);
+			 $("#labContactNo").text(data.contact);
+			 $("#labEmail").text(data.email);
+			 $("#patName").text(data.patientName);
+			 $("#invoiceNo").text(data.id);
+			 $("#labTestName").text(data.labTestName);
+			 
+			 $("#dateOfInvoce").text(data.paymentDate);
+			 $("#paidAmount").text(data.amount);
+			 $("#totalPaidAmt").text(data.amount);
+			 
+		});
+		
+}
 </script>
 </body>
 </html>

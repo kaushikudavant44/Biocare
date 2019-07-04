@@ -2251,7 +2251,7 @@ msg="User Name not found";
 			
 			request.setAttribute("mobileNo", doctorDetails.getContactNo());
 			request.setAttribute("email", doctorDetails.getEmail());
-			request.setAttribute("txnAmount", String.valueOf(txnAmount));
+			request.setAttribute("txnAmount",  String.format("%.2f", txnAmount));
 		} catch (Exception e) {
 			
 		

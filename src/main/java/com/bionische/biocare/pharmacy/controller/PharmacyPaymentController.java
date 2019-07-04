@@ -104,7 +104,7 @@ public class PharmacyPaymentController {
 
 		request.setAttribute("mobileNo", medicalDetails.getContact());
 		request.setAttribute("email", medicalDetails.getEmail());
-		request.setAttribute("txnAmount", String.valueOf(txnAmount));
+		request.setAttribute("txnAmount",  String.format("%.2f", txnAmount));
 		
 		return "pharmacy/pharmacy_suscription_payment/pharmacyPaymentRedirect";
 	}
