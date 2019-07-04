@@ -68,7 +68,8 @@
 	</div>
 </section>
  --%>
- <div class="login_screen"><img src="${pageContext.request.contextPath}/resources/images/login_bg.png" class="img-responsive" alt="login"></div>
+ <div class="login_screen"><img src="${pageContext.request.contextPath}/resources/images/pharmacylogin1.jpg" class="img-responsive" alt="login">
+ <%-- <img src="${pageContext.request.contextPath}/resources/images/login_bg.png" class="img-responsive" alt="login"> --%></div>
     <div class="log_user dr-log">
     <%-- <img src="${pageContext.request.contextPath}/resources/images/logo.png" class="img-responsive" alt="logo"> --%>
     <h4 class="text-center">Pharmacy Login</h4>
