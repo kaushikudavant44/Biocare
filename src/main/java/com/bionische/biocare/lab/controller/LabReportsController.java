@@ -148,7 +148,7 @@ public class LabReportsController {
 					if (VpsImageUpload.getFileExtension(files.get(i)).equalsIgnoreCase(".DCM")) {
 						patientReportsDetails.setFileType(3);
 					}
-				} else {
+				} else { 
 					if (VpsImageUpload.getFileExtension(files.get(i)).equalsIgnoreCase(".PDF")) {
 						patientReportsDetails.setFileType(0);
 					} else if (VpsImageUpload.getFileExtension(files.get(i)).equalsIgnoreCase(".DCM")) {
