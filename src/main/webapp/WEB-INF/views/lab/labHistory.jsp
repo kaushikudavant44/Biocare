@@ -56,7 +56,7 @@
 		value="/getPrescriptionByMeetingId" />
 	<c:url var="getDoctorsByPatientId" value="/getDoctorsByPatientId" />
 
-
+<c:url var="getLabInvoice" value="/getLabInvoice" />
 	<div class="clearfix"></div>
 	<section class="doc_login doc_filter">
 	<div class="dashboard_nm text-center">
@@ -141,9 +141,16 @@
 												</c:when>
 
 											</c:choose>
-												<td><a href="#"><span
+											
+												<td>
+												<c:choose>
+												<c:when test="${getPatientReports.status==1}">
+												<a href="#" onclick="labInvoce(${getPatientReports.appointmentId})"><span
 													class="icon-newspaper mar-right" aria-hidden="true"
-													data-target="#invoiceLab" data-toggle="modal"> Lab Invoice</span></a></td>
+													data-target="#invoiceLab" data-toggle="modal"> Lab Invoice</span></a>
+													</c:when>
+													</c:choose>
+													</td>
 										</tr>
 
 
@@ -181,13 +188,12 @@
 						<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
 								<hr>
-							<h4 class="modal-title" id="hospName"></h4>
+							<h4 class="modal-title" id="labName1"></h4>
 					
-							<h5 class="text-right"><strong>Dr.</strong> <span id="docName1"><br>
- </span><span id="docQualification"></span></h5>
-	                				 <h5 class="text-right"><strong>Address :</strong> </h5> 
-	                			<h5 class="text-right"><strong>Contact No. :</strong> </h5>
-	                			<h5 class="text-right"><strong>Email Id. :</strong> </h5>
+							 
+	                				 <h5 class="text-right"><strong>Address : </strong><span id="labAddress"></span></h5> 
+	                			<h5 class="text-right"><strong>Contact No. : </strong><span id="labContactNo"></span></h5>
+	                			<h5 class="text-right"><strong>Email Id. : </strong><span id="labEmail"></span></h5>
 							
 							<div class="circle1">
 							<i class="fa fa-list-ul" aria-hidden="true"></i>
@@ -212,18 +218,18 @@
 		                    <div class="col-sm-6 invoice-to">
 		                        <div class="text-gray-light"><strong>INVOICE TO:</strong></div>
 		                         <h4 class="to" id="patName"> </h4>
-		                       <!--  <div class="email"><a >ganesh@example.com</a></div> -->
+		                     
 		                    </div>
 		                    <div class="col-sm-6 invoice-details text-right">
-		                        <div class="invoice-id"><strong>INVOICE: </strong></div>
-		                        <h5 class="date"><strong>Date of Invoice: </strong></h5>
+		                        <div class="invoice-id"><strong>INVOICE: </strong><span id="invoiceNo"></span></div>
+		                        <h5 class="date"><strong>Date of Invoice: </strong><span id="dateOfInvoce"></span></h5>
 		                    </div>
 		                </div>
 		                <table border="0" cellspacing="0" cellpadding="0">
 		                    <thead>
 		                        <tr>
 		                            <th >SR.NO.</th>
-		                            <th class="text-center">Invoice For</th>
+		                            <th class="text-center">Lab Test Fees</th>
 		                           
 		                            <th class="right">Amount</th>
 		                        </tr>
@@ -232,9 +238,10 @@
 		                    <tbody>
 		                     <tr>
 		                            <th >1.</th>
-		                            <th class="text-center">Consulting Fees</th>
+		                            
+		                             <th class="text-center"><p id="labTestName"></p></th>
 		                           
-		                            <th class="right"><span id="amount"></span></th>
+		                            <th class="right"><span id="paidAmount"></span></th>
 		                        </tr>
 		                     
 		                    </tbody>
@@ -244,7 +251,7 @@
 		                        <tr>
 		                            
 		                            <td colspan="2"> TOTAL</td>
-		                            <td><span id="totalAmt"></span></td>
+		                            <td><span id="totalPaidAmt"></span></td>
 		                        </tr>
 		                    </tfoot>
 		                </table>
@@ -616,6 +623,46 @@ $(document).ready(function() {
 				     })
 				}); */  
 
+				
+				
+                
+</script>
+<script type="text/javascript">
+
+
+function labInvoce(appointmentId){
+$
+.getJSON(
+		'${getLabInvoice}',
+		{
+
+			appointmentId : appointmentId,
+		 
+			ajax : 'true'
+		},
+		function(data) {
+			 
+			
+			
+			
+			
+			
+		 
+			 $("#labName1").text(data.labName);
+			 $("#labAddress").text(data.address);
+			 $("#labContactNo").text(data.contact);
+			 $("#labEmail").text(data.email);
+			 $("#patName").text(data.patientName);
+			 $("#invoiceNo").text(data.id);
+			 $("#labTestName").text(data.labTestName);
+			 
+			 $("#dateOfInvoce").text(data.paymentDate);
+			 $("#paidAmount").text(data.amount);
+			 $("#totalPaidAmt").text(data.amount);
+			 
+		});
+		
+}
 </script>
 </body>
 </html>

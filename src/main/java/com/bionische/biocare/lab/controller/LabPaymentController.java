@@ -237,28 +237,28 @@ return getLabPaymentDetailsList;
 	
 }
 
-@RequestMapping(value = "/showLabBill/{id}", method = RequestMethod.GET)
-public ModelAndView showLabBill(HttpServletRequest request,
-	HttpServletResponse response,@PathVariable("id")int id) {
-	ModelAndView model=new ModelAndView("lab/lab_bill");
-	GetLabBillDetails getLabBillDetails=new GetLabBillDetails();
-	HttpSession session = request.getSession();
-	LabDetails labDetails = (LabDetails) session.getAttribute("labDetails");
+@RequestMapping(value = "/getLabInvoice", method = RequestMethod.GET)
+public @ResponseBody GetLabBillDetails getLabInvoice(HttpServletRequest request,
+	HttpServletResponse response) {
+	 
+	int appointmentId=Integer.parseInt(request.getParameter("appointmentId"));
+	
+	 
 try {
 		
 		MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-		map.add("id", id);
-		/*map.add("labId", labDetails.getLabId());*/
-		getLabBillDetails=Constant.getRestTemplate().postForObject(Constant.url + "paymentDetails/getLabTransactionDetailsById", map, GetLabBillDetails.class);
-	 System.out.println("getLabBillDetails "+getLabBillDetails.toString());
-
-	 model.addObject("getLabBillDetails", getLabBillDetails);
+		map.add("id", appointmentId);
+	 
+		GetLabBillDetails	getLabBillDetails=Constant.getRestTemplate().postForObject(Constant.url + "paymentDetails/getLabTransactionDetailsById", map, GetLabBillDetails.class);
+	 
+return getLabBillDetails;
+ 
 }
 	catch (Exception e) {
 		System.out.println(e.getMessage());// TODO: handle exception
 }
 	
-	return model;
+	return null;
 
 }
 
