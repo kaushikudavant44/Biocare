@@ -51,16 +51,19 @@ body * { visibility: hidden; }
 #invoice1 * { visibility: visible; }
 #invoice1 { position: absolute; top: 00px; left: 30px; }
 
-
+#print {display: none;}
+#close {display: none;}
 
 
 #prescModl * { visibility: visible; }
 #prescModl { position: absolute; top: 00px; left: 30px; }
-
+#print {display: none;}
+#close {display: none;}
 
 #viewLabTestModal * { visibility: visible; }
 #viewLabTestModal { position: absolute; top: 00px; left: 30px; }
-
+#print {display: none;}
+#close {display: none;}
 }
 </style>
 </head>

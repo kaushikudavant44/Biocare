@@ -49,6 +49,38 @@
 	href="${pageContext.request.contextPath}/resources/css/lobipanel.css" />
 	<c:url var="getConsultingDetailsByDoctor"
 		value="/getConsultingDetailsByDoctor" />
+		
+		
+	
+		
+		
+  <style type="text/css">
+@media print
+{
+body * { visibility: hidden; }
+
+#invoice1 * { visibility: visible; }
+#invoice1 { position: absolute; top: 00px; left: 30px; }
+
+#print {display: none;}
+#close {display: none;}
+
+
+#prescModl * { visibility: visible; }
+#prescModl { position: absolute; top: 00px; left: 30px; }
+#print {display: none;}
+#close {display: none;}
+
+#viewLabTestModal * { visibility: visible; }
+#viewLabTestModal { position: absolute; top: 00px; left: 30px; }
+
+#suggestion {display: none;}
+
+#print {display: none;}
+#close {display: none;}
+}
+</style>
+		
 </head>
 
 <body onload="getDoctors();">
@@ -293,9 +325,9 @@
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
 				<div class="modal-body card_sec">
-				<button type="button" class="close" data-dismiss="modal"
+				<button id="close" type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
+							<a  id="print" onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
 							<h4 class="modal-title">Hari Om <br> <span  id="docName">Dr. vhjghg</span></h4>
 							<hr>
@@ -319,7 +351,7 @@
 							</div>
 						</div>
 
-						<div class="form-group row">
+						<div class="form-group row" id="suggestion">
 							<!-- <label for="medicine" class="col-sm-4 col-form-label">Referred Lab :</label> -->
 							<div class="col-sm-8 medicine1">
 								<a href="${pageContext.request.contextPath}/showBookLabAppointmentByReferrence" class="btn-fr-all">Book
@@ -350,10 +382,10 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="margin-top: 20%;">
 				<div class="modal-body card_sec" id="displayTable">
-				<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
-						<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-								<hr>
+			<button id="close" type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+							<a  id="print" onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
+									<hr>
 							<h4 class="modal-title" id="hospName"></h4>
 					
 							<h5 class="text-right"><strong>Dr.</strong> <span id="docName1"><br>
@@ -446,9 +478,9 @@
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
 				<div class="modal-body card_sec">
-				<button type="button" class="close" data-dismiss="modal"
+				<button id="close" type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
+							<a  id="print" onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
 							<h4 class="modal-title"  id="hospitalName2"> </h4>
 							<h4 class="modal-title"><span  id="doctorName2"></span></h4>
@@ -523,7 +555,7 @@
 						href=${pageContext.request.contextPath}/resources/css/prescription.css>
 					<script
 						src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-					<a href="#" onclick="printDiv('printableArea')"><span
+					<a href="#" onclick="print('printableArea')"><span
 						class="icon-printer right-specing"></span></a>
 					<div class="clearfix"></div>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>

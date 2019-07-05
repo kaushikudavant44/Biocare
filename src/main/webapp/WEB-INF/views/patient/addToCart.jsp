@@ -27,6 +27,23 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/lobipanel.css"/>
 
+
+	
+  <style type="text/css">
+@media print
+{
+body * { visibility: hidden; }
+
+#largeModal * { visibility: visible; }
+#print {display: none;}
+#close {display: none;}
+#largeModal { position: absolute; top: 00px; left: 30px; }
+
+
+
+}
+</style>
+
 <script type="text/javascript">
         var specialKeys = new Array();
         specialKeys.push(8); //Backspace
@@ -38,6 +55,9 @@
         }
        
     </script>
+    
+    
+    
 </head>
 
 <body  onload="displayMessage(${message});getDoctors();getLast10ConsultingDeatils()">
@@ -359,10 +379,10 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content" style="margin-top: 20%;">
 					<div class="modal-body card_sec" id="displayTable">
-					<button type="button" class="close" data-dismiss="modal"
+					<button id="close" type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-							<a onclick="printTable()"><span class="icon-printer down-icon-modal"></span></a>
-							<hr>
+							<a  id="print" onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
+					<hr>
 							<h4 class="modal-title"><span id="hospitalName"></span><br> <span id="drName"></span></h4>
 							<hr>
 							<div class="circle1">
