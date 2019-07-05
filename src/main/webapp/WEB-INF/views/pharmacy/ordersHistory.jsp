@@ -44,6 +44,27 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/lightbox.min.css">
 
+
+
+
+    <style type="text/css">
+@media print
+{
+body * { visibility: hidden; }
+#largeModal * { visibility: visible; }
+#largeModal { position: absolute; top: 00px; left: 30px; }
+
+#print {display: none;}
+#close {display: none;}
+
+
+#invoice1 * { visibility: visible; }
+#invoice1 { position: absolute; top: 00px; left: 30px; }
+
+#print {display: none;}
+#close {display: none;}
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../include/pharmacyHeader.jsp" />
@@ -300,9 +321,9 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="margin-top: 20%;">
 				<div class="modal-body card_sec" id="displayTable">
-					<a onclick="printTable()"><span
+					<a id="print" onclick="print()"><span
 						class="icon-printer down-icon-modal"></span></a>
-					<button type="button" class="close" data-dismiss="modal"
+					<button id="close" type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 					<hr>
 					<h4 class="modal-title" id="hospitalName"></h4>
@@ -446,9 +467,9 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="margin-top: 20%;">
 				<div class="modal-body card_sec" id="displayTable">
-					<a onclick="printTable()"><span
+					<a id="print" onclick="print()"><span
 						class="icon-printer down-icon-modal"></span></a>
-					<button type="button" class="close" data-dismiss="modal"
+					<button type="button" id="close"class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
 					<hr>
 					<h4 class="modal-title" id="medicalName"></h4>
