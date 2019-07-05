@@ -6121,23 +6121,23 @@ height: 10px;
 
 
 /*9-1-19 */
-#termcon .modal-body h3 {
+#termcon .modal-body h3, #termcon1 .modal-body h3 {
     margin: 0;
     font-weight: 600;
     font-size: 18px;
     color: #000;
 }
-#termcon .modal-title {text-align: left}
-#termcon input{width: 30px !important;  height: 20px !important; margin: 20px 0;}
-#termcon .modal-body p {
+#termcon .modal-title, #termcon1 .modal-title {text-align: left}
+#termcon input, #termcon1 input{width: 30px !important;  height: 20px !important; margin: 20px 0;}
+#termcon .modal-body p, #termcon1 .modal-body p {
     line-height: 27px;
     margin: 10px 0 0;
     font-size: 13px !important;
     color:#000000;
 }
-#termcon .modal-body ul { margin:0px; padding:0px;}
-#termcon .modal-body li { list-style-type:none; display:block; padding:5px 5px; border-bottom:1px dashed #eee; color:#535353; font-size: 13px !important;}
-#termcon .modal-body li:last-child { border-bottom:none;}
+#termcon .modal-body ul,#termcon1 .modal-body ul { margin:0px; padding:0px;}
+#termcon .modal-body li, #termcon1 .modal-body li { list-style-type:none; display:block; padding:5px 5px; border-bottom:1px dashed #eee; color:#535353; font-size: 13px !important;}
+#termcon .modal-body li:last-child, #termcon1 .modal-body li:last-child { border-bottom:none;}
 /*9-1-19 */
 
 /* 10-1-19 */
@@ -6444,6 +6444,8 @@ font-size: 25px;  line-height: 36px; text-align: center;}
 }
 .invoice footer {color:#ccc}
 .thanks {font-size: 25px;font-weight: 600;}
+.footer_sec a i {font-size: 11px; color: #fff}
+.footer_sec a:hover i {color: #0661ae}
 /*--------17-7-2018 Doctor Responsive --------------------------*/ 
 @media (max-width: 1920px) {
 	.login1_blk p{line-height: 18px;} 

@@ -169,9 +169,12 @@
 					</p>
 				</div>
 				<div class="col-sm-4 text-center">
+					
 					<img
 						src="${pageContext.request.contextPath}/resources/images/logofoot.png"
 						class="img-responsive" alt="health care">
+						<a href="#termcon" data-toggle="modal"><i>Terms & Condition</i></a>
+					<a href="#termcon1" data-toggle="modal"><i>Privacy_Policy</i></a>
 
 				</div>
 				<!-- <div class="col-sm-4 text-right">
