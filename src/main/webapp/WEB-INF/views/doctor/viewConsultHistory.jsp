@@ -296,9 +296,9 @@ body * { visibility: hidden; }
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
 				<div class="modal-body card_sec">
-				<button type="button" class="close" data-dismiss="modal"
+				<button id="close" type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-							<a onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
+							<a id="print" onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
 							<hr>
 							<h4 class="modal-title">Hari Om <br> <span  id="docName">Dr. vhjghg</span></h4>
 							<hr>
@@ -342,10 +342,10 @@ body * { visibility: hidden; }
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
 				<div class="modal-body card_sec">
-				<button type="button" class="close" data-dismiss="modal"
+				<button id="close" type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
-							<a onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
-							<hr>
+							<a id="print" onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
+								<hr>
 							<h4 class="modal-title"><span id="hospitalName"></span> <br> <span  id="doctorName"></span></h4>
 							<hr>
 							<div class="circle1">
@@ -405,10 +405,10 @@ body * { visibility: hidden; }
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="margin-top: 20%;">
 				<div class="modal-body card_sec" id="displayTable">
-				<a onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
-						<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-								<hr>
+			<button id="close" type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+							<a id="print" onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
+									<hr>
 							<h4 class="modal-title" id="hospName"></h4>
 					
 							<h5 class="text-right"><strong>Dr.</strong> <span id="docName1"><br>
