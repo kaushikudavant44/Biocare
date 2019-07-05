@@ -50,6 +50,9 @@
 body * { visibility: hidden; }
 #invoiceLab * { visibility: visible; }
 #invoiceLab { position: absolute; top: 00px; left: 30px; }
+
+#print {display: none;}
+#close {display: none;}
 }
 </style>
     
@@ -195,8 +198,8 @@ body * { visibility: hidden; }
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="margin-top: 20%;">
 				<div class="modal-body card_sec" id="displayTable">
-				<a onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
-						<button type="button" class="close" data-dismiss="modal"
+				<a  id="print"onclick="print()"><span class="icon-printer down-icon-modal"></span></a>
+						<button id ="close" type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
 								
 								<div id ="printable">
@@ -382,6 +385,8 @@ body * { visibility: hidden; }
 	<script>
 $(document).ready(function() {
     $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+    	
+    	
         e.preventDefault();
         $(this).siblings('a.active').removeClass("active");
         $(this).addClass("active");

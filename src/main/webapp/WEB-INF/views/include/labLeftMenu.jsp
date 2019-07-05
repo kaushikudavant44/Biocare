@@ -15,7 +15,7 @@
                 <a href="#" onclick="openPage('showLabTestEdit')" class="list-group-item text-center ${testActive}">
                   <h4 class="icon-user"></h4>Edit Tests
                 </a>
-                 <a href="#" onclick="openPage('showLabBankDetails')" class="list-group-item text-center ${testActive}">
+                 <a href="#" onclick="openPage('showLabBankDetails')" class="list-group-item text-center ${labBankAcc}">
                   <h4 class="icon-newspaper"></h4>Bank Details
                 </a>
                  <c:if test="${sessionScope.labDetails.isRadiologist==1}">

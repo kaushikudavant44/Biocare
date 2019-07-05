@@ -57,6 +57,7 @@ public class AccountController {
 		map.add("labId", ""+labDetails.getLabId());
 		labBankAccountInfo=Constant.getRestTemplate().postForObject(Constant.url + "getLabBankDetails", map, LabBankAccountInfo.class);
 		model.addObject("labBankAccountInfo",labBankAccountInfo);
+		model.addObject("labBankAcc","active");
 	 	return model;
 	 	
 	 }
