@@ -22,22 +22,8 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/ie-emulation-modes-warning.js"
 	type="text/javascript"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/owl.theme.default.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/hover.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/animate.min.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/set2.css" />
 <link href="${pageContext.request.contextPath}/resources/css/style.css"
 	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 </head>
 <body>

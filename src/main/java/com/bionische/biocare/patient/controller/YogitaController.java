@@ -267,6 +267,18 @@ public class YogitaController {
 	 	return model;
 	 	
 	 }
+	 @RequestMapping(value="/showPrivacyPolicy", method=RequestMethod.GET)
+
+	 public ModelAndView showPrivacyPolicy(HttpServletRequest request,
+	 		HttpServletResponse response)
+	 {
+	   
+	 	ModelAndView model=new ModelAndView("privacy");
+	 	
+	 	
+	 	return model;
+	 	
+	 }
 	
 	
 	
