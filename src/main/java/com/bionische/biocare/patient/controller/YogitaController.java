@@ -255,6 +255,18 @@ public class YogitaController {
 	 	return model;
 	 	
 	 }
+	 @RequestMapping(value="/showAboutInfo", method=RequestMethod.GET)
+
+	 public ModelAndView showAboutInfo(HttpServletRequest request,
+	 		HttpServletResponse response)
+	 {
+	   
+	 	ModelAndView model=new ModelAndView("aboutus");
+	 	
+	 	
+	 	return model;
+	 	
+	 }
 	
 	
 	
