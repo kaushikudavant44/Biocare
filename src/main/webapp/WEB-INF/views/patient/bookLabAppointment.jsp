@@ -682,7 +682,7 @@ jQuery(document).ready(function() {
 
 <script type="text/javascript">
 $(".datepicker").datepicker({
-	  dateFormat: "dd-mm-yyyy",
+	  dateFormat: "dd-mm-yy",
 	  minDate: 0,
 	  autoclose: true
 	});
